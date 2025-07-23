@@ -1,0 +1,35 @@
+/* Start Media Screens */
+
+/* Extra small */
+
+@media (max-width: 576px) {
+}
+
+/* small */
+
+@media (min-width: 576px) AND (max-width: 728px) {
+}
+
+/* Medium */
+
+@media (min-width: 728px) AND (max-width: 992px) {
+}
+
+/* Large */
+
+@media (min-width: 992px) AND (max-width: 1200px) {
+}
+
+/* x-large */
+
+@media (min-width: 1200px) AND (max-width: 1400px) {
+}
+
+/* xx-large */
+
+@media (min-width: 1400px) AND (max-width: 1600px) {
+}
+
+/* xxx-large */
+@media (min-width: 1600px) AND (max-width: 1899px) {
+}
