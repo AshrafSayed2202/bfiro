@@ -9,15 +9,15 @@ const HaveDesignSection = () => {
     <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
       <Card
         className={
-          "flex flex-1 flex-col gap-[24px] items-center justify-center !px-[40px]  !py-[128px]  relative"
+          "flex flex-1 flex-col gap-[24px] items-center justify-center !px-[40px] !py-[128px] relative text-center"
         }
       >
         <img
           src={bg}
-          className="absolute h-[500px] w-full top-0 left-1/2 -translate-x-1/2  object-fill"
+          className="absolute h-full w-full top-0 left-1/2 -translate-x-1/2  object-cover"
         />
-        <h2 className="text-[48px] font-[600]">Have a design idea?</h2>
-        <p className="text-[24px] text-[#9CA7B4] font-[300] mb-[20px]">
+        <h2 className="text-[36px] md:text-[48px] font-[600]">Have a <br className="block xs:hidden" /> design idea?</h2>
+        <p className="text-[20px] md:text-[24px] text-[#9CA7B4] font-[300] mb-[20px]">
           Let’s work together
         </p>
         <motion.div whileHover="hover" initial="initial">

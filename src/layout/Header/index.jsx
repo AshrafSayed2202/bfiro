@@ -7,7 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import Cart from "../../assets/images/svgs/Cart";
 const Header = () => {
   return (
-    <div className="bg-[#1212129d] filter-blur sticky top-0 h-[100px] flex items-center  rounded-b-[20px] z-50">
+    <div className="bg-[#1212129d] filter-blur fixed w-full top-0 h-[100px] flex items-center  rounded-b-[20px] z-50">
       <div className="flex items-center justify-between gap-8 mx-auto content-contain">
         <div className="flex items-center justify-start gap-[55px] flex-1 text-[20px] leading-[20px] ">
           <NavLink
@@ -77,10 +77,9 @@ const Header = () => {
             <NavLink
               to="/ux-camp"
               className={({ isActive }) =>
-                `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${
-                  isActive
-                    ? ""
-                    : "text-gray-400 hover:text-white text-blue-gradient"
+                `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${isActive
+                  ? ""
+                  : "text-gray-400 hover:text-white text-blue-gradient"
                 }`
               }
             >

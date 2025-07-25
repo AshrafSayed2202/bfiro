@@ -3,6 +3,7 @@ import MainBtn from "../UI/MainBtn";
 import rec1 from "../assets/images/heroRec1.png";
 import rec2 from "../assets/images/heroRec2.png";
 import rec3 from "../assets/images/heroRec3.png";
+import bg from "../assets/images/bg.jpg";
 
 const HeroSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -14,10 +15,15 @@ const HeroSection = () => {
     ];
 
     return (
-        <section className="relative">
-            <div className="content-contain mx-auto overflow-y-hidden">
-                <div className="flex flex-col items-center justify-center">
-                    <div className="text-center text-[42px] leading-[50px] font-[700] mt-20 text-white mb-[10px]">
+        <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden" >
+            <div className="absolute inset-0 size-full z-[-1] select-none pointer-events-none opacity-15">
+                <img src={bg} alt="" className="size-full object-cover" />
+                {/* <div className="absolute inset-0 size-full bg-[#121212d8]" /> */}
+                <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] to-transparent" />
+            </div>
+            <div className="content-contain mx-auto md:overflow-y-hidden">
+                <div className="flex flex-col items-center justify-center relative">
+                    <div className="text-center text-[24px] leading-8 md:text-[42px] md:leading-[50px] font-[600] mt-20 text-white mb-[10px]">
                         <p>Skip the Ordinary.</p>
                         <p className="bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent">
                             Build What Stands Out.
@@ -38,8 +44,8 @@ const HeroSection = () => {
                 </div>
 
                 <div className="mx-auto w-full h-[400px] pt-[100px] z-[9]">
-                    <div className="absolute left-0 bottom-0 w-screen h-[300px] bg-gradient-to-t from-[#000] to-transparent z-20 select-none pointer-events-none" />
-                    <div className="relative size-full translate-x-[-17%]">
+                    <div className="absolute left-0 bottom-0 w-screen h-[150px] bg-gradient-to-t from-[#000] to-transparent z-20 select-none pointer-events-none" />
+                    <div className="relative size-full translate-x-[-25%] md:translate-x-[-17%]">
                         {images.map((img, index) => (
                             <img
                                 key={index}
@@ -48,7 +54,7 @@ const HeroSection = () => {
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 className={`
-                            absolute top-0 z-10 duration-300 rounded-[20px] hover-glow !w-[38%] object-contain left-[50%]
+                            absolute top-0 z-10 duration-300 rounded-[20px] hover-glow !w-[80%] md:!w-[38%] object-contain left-[50%]
                             ${hoveredIndex !== null && hoveredIndex !== index ? "opacity-10" : "opacity-100"}
                         `}
                                 style={{

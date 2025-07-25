@@ -38,26 +38,26 @@ const KitsSection = () => {
     },
   ];
   return (
-    <div className="content-contain grid grid-cols-12 gap-[5px]  relative z-[25] mb-[5px]">
+    <div className="content-contain grid grid-cols-12 gap-[5px] relative z-[25] mb-[5px]">
       <Card
         className={
-          "col-span-12 flex  gap-[20px] items-center justify-between !px-[28px] !py-[16px]  relative"
+          "col-span-12 flex gap-[10px] sm:gap-[20px] items-end sm:items-center justify-between !px-[28px] !py-[16px]  relative"
         }
       >
-        <span className="text-[24px]  font-[600] flex items-center justify-start gap-2">
+        <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2">
           <span className="text-[#9CA7B4]">
             1000+ premium UI Kits for mobile & web projects
+            <span className="text-[#fff] inline-flex items-center mx-2">UI KITS
+              <span className="size-[12px] inline-block bg-[#9CA7B4] rounded-full ml-[10px]"></span>
+            </span>
           </span>
-          <span className="text-[#fff]">UI KITS</span>
-          <span className="size-[12px] bg-[#9CA7B4] rounded-full ml-[10px]"></span>
         </span>
-        <div>
-          <CircleBtn to={"#"} text={"More"} dir={"right"} />
-        </div>
+        <CircleBtn to={"#"} text={"More"} dir={"right"} />
+
       </Card>
       <Card
         className={
-          "col-span-12 grid grid-cols-4 gap-[5px] items-center justify-center !p-0 relative bg-transparent"
+          "col-span-12 grid sm:grid-cols-4 gap-[5px] items-center !p-0 relative bg-transparent md:!p-0"
         }
       >
         {items.map((item) => (

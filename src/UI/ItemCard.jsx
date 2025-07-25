@@ -9,7 +9,7 @@ const ItemCard = ({ item, className }) => {
   const { id, img, title, type, price } = item;
   return (
     <div
-      className={`flex flex-col group/group1 cursor-pointer gap-[10px] bg-[#171718CC] rounded-[20px] overflow-hidden  ${className}`}
+      className={`flex flex-col group/group1 cursor-pointer gap-[10px] bg-[#171718CC] rounded-[20px] overflow-hidden min-h-[355px] ${className}`}
     >
       <div className="h-[256px] flex items-center justify-center relative">
         <div className="absolute top-0 left-0 w-full h-full bg-[#171718CC] opacity-0 group-hover/group1:opacity-80 trans-3"></div>

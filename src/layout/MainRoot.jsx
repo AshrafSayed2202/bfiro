@@ -2,51 +2,60 @@ import { Outlet } from "react-router";
 import Footer from "./Footer";
 import Header from "./Header";
 import bg from "../assets/images/bg.jpg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MainRoot = () => {
-  const [spotlightPosition, setSpotlightPosition] = useState({
-    x: -100,
-    y: -100,
-  });
-  const [isVisible, setIsVisible] = useState(false);
+  const [spotlights, setSpotlights] = useState([]);
+  const lastCreated = useRef(0);
+  const counter = useRef(0);
 
   useEffect(() => {
-    let timeoutId;
     const handlePointerMove = (e) => {
-      setSpotlightPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsVisible(false);
-      }, 500);
+      const now = Date.now();
+      if (now - lastCreated.current >= 200) {
+        const id = ++counter.current;
+        setSpotlights((prev) => [...prev, { id, x: e.clientX, y: e.clientY }]);
+        lastCreated.current = now;
+        setTimeout(() => {
+          setSpotlights((prev) => prev.filter((s) => s.id !== id));
+        }, 1000);
+      }
     };
 
     window.addEventListener("pointermove", handlePointerMove);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
-      clearTimeout(timeoutId);
     };
   }, []);
 
   return (
     <>
+      <style>
+        {`
+          @keyframes fadeOut {
+            from { opacity: 0.6; }
+            to { opacity: 0; }
+          }
+        `}
+      </style>
       <div className="fixed inset-0 h-screen w-screen z-0">
         <div className="absolute inset-0 bg-black opacity-85" />
         <div className="absolute inset-0 h-screen w-screen bg-gradient-to-t from-black to-transparent" />
-        <div
-          className={`absolute rounded-full z-[10] bg-[#1FCCFF] blur-[70px] transition-opacity duration-500 ${
-            isVisible ? "opacity-60" : "opacity-0"
-          }`}
-          style={{
-            width: "200px",
-            height: "200px",
-            left: spotlightPosition.x - 100,
-            top: spotlightPosition.y - 100,
-            pointerEvents: "none",
-          }}
-        />
+        {spotlights.map((s) => (
+          <div
+            key={s.id}
+            className="absolute rounded-full z-[10] bg-[#1FCCFF] blur-[70px]"
+            style={{
+              width: "200px",
+              height: "200px",
+              left: s.x - 100,
+              top: s.y - 100,
+              pointerEvents: "none",
+              animation: "fadeOut 1s ease-in-out",
+            }}
+          />
+        ))}
       </div>
       <div className="relative z-10 pointer-events-auto">
         <Header className="pointer-events-auto" />

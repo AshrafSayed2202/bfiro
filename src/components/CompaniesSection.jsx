@@ -34,17 +34,17 @@ const CompaniesSection = () => {
     <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
       <Card
         className={
-          "flex flex-1 flex-col  items-center justify-center !px-[40px] gap-[24px] !py-[115px]  relative"
+          "flex flex-1 flex-col  items-center justify-center !px-[20px] md:!px-[40px] gap-[24px] !py-[115px] relative text-center"
         }
       >
         <img
           src={bg}
           className="absolute h-[224px] bottom-0 w-full object-cover"
         />
-        <h2 className="text-[40px] font-[600]">
+        <h2 className="text-[30px] md:text-[40px] font-[600]">
           Chosen by leading creatives globally
         </h2>
-        <p className="text-[24px] text-[#9CA7B4] font-[300] mb-[50px]">
+        <p className="text-[16px] md:text-[24px] text-[#9CA7B4] font-[300] mb-[50px]">
           Bfiro empowers over 20,000 designers from over the the middle east.
         </p>
         <div className="scroll-animation-wrapper">

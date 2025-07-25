@@ -10,7 +10,7 @@ import Linkedin from "../../assets/images/svgs/Linkedin";
 import Email from "../../assets/images/svgs/Email";
 const Footer = () => {
   return (
-    <div className="bg-[#181818c2] pt-[50px] pb-[40px] flex flex-col gap-[120px]">
+    <div className="bg-[#181818c2] pt-[50px] pb-[40px] hidden md:flex flex-col gap-[120px]">
       <div className="content-contain flex items-start justify-between">
         <div className="flex items-start justify-between gap-[63px]">
           <Link

@@ -20,31 +20,31 @@ const PricingSection = () => {
         <h2 className="text-[40px] text-blue-gradient-90 font-[700]">
           Starting From
         </h2>
-        <ul className="flex gap-[8px] font-[400]">
-          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] ">
+        <ul className="flex flex-wrap justify-center gap-[8px] font-[400]">
+          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             Websites
           </li>
-          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] ">
+          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             Mobile Apps
           </li>
-          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] ">
+          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             Mobile Landing Pages
           </li>
-          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] ">
+          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             E-Commerce
           </li>
-          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] ">
+          <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             Dashboards
           </li>
-          <li className="bg-[#070707] text-[#FFA500] p-[12px] opacity-80 rounded-[8px] flex items-center gap-[8px]">
+          <li className="bg-[#070707] text-[#FFA500] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap flex items-center gap-[8px]">
             Sr. Designers <True />
           </li>
         </ul>
         <bold className="relative float">
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-[3px] text-[160px] font-[700] text-[#8D8D8D] -translate-y-1/2 z-[3]">
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-[3px] text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-[#8D8D8D] -translate-y-1/2 z-[3]">
             $3,000
           </span>
-          <span className=" text-[160px] font-[700] text-gray-gradient relative z-[3]">
+          <span className="text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-gray-gradient relative z-[3]">
             $3,000
           </span>
         </bold>
