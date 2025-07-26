@@ -12,13 +12,13 @@ const AboutSection = () => {
             <div className="content-contain flex flex-col gap-[5px] pt-[50px] relative z-[25]">
                 <div className="flex flex-col-reverse md:grid md:grid-cols-3 gap-[5px]">
                     <Card className="text-white py-[90px] leading-tight max-h-[364px] relative md:col-span-1">
-                        <h2 className="text-[30px] font-[600] mb-3">
+                        <h2 className="text-[24px] md:text-[30px] font-[600] mb-3">
                             Bfiro Your Exceptional UX Partner.
                         </h2>
-                        <p className="text-[22px] text-[#9CA7B4] mb-3 font-[300]">
+                        <p className="text-[16px] md:text-[22px] text-[#9CA7B4] mb-3 font-[300]">
                             We are a full fledged digital agency designing
                         </p>
-                        <span className="bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[700] text-[28px]">
+                        <span className="bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[24px] md:text-[28px]">
                             Website
                         </span>
                     </Card>
@@ -34,10 +34,10 @@ const AboutSection = () => {
                         <span className="bg-[#070707] text-[#2D68FF] text-[14px] p-2 opacity-80 rounded-[4px] inline-block mb-8">
                             About Us
                         </span>
-                        <h2 className="text-[24px] md:text-[40px] font-[600] mb-8 md:mb-6">
+                        <h2 className="text-[22px] md:text-[40px] font-[600] mb-8 md:mb-6">
                             Bfiro is a creative design and development studio
                         </h2>
-                        <div className="text-[#9CA7B4] flex flex-col gap-4 text-[18px] leading-loose">
+                        <div className="text-[#9CA7B4] flex flex-col gap-4 text-[16px] leading-loose">
                             <p>
                                 based in San Francisco, California. Throughout the year we have
                                 collaborated with local and international clients🎨💡.
@@ -56,15 +56,15 @@ const AboutSection = () => {
                 </Card>
                 <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-[5px]">
                     <div className="grid grid-cols-2 gap-[5px]">
-                        <Card className="col-span-1 flex items-center justify-center group">
+                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard
                                 header="UI/UX Design"
                                 text="Smart, user-first interfaces."
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="50"
-                                    height="50"
+                                    width={window.innerWidth > 768 ? "50" : "35"}
+                                    height={window.innerWidth > 768 ? "50" : "35"}
                                     viewBox="0 0 50 50"
                                     fill="none"
                                 >
@@ -82,15 +82,15 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group">
+                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard
                                 header="Web Development"
                                 text="Performance meets precision."
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="51"
-                                    height="50"
+                                    width={window.innerWidth > 768 ? "50" : "35"}
+                                    height={window.innerWidth > 768 ? "50" : "35"}
                                     viewBox="0 0 51 50"
                                     fill="none"
                                 >
@@ -105,12 +105,12 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group">
+                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard header="Apps Development" text="Apps that users enjoy.">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="51"
-                                    height="50"
+                                    width={window.innerWidth > 768 ? "50" : "35"}
+                                    height={window.innerWidth > 768 ? "50" : "35"}
                                     viewBox="0 0 51 50"
                                     fill="none"
                                 >
@@ -142,12 +142,12 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group">
+                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard header="Illustration" text="Visuals that tell stories.">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="51"
-                                    height="50"
+                                    width={window.innerWidth > 768 ? "50" : "35"}
+                                    height={window.innerWidth > 768 ? "50" : "35"}
                                     viewBox="0 0 51 50"
                                     fill="none"
                                 >
@@ -184,7 +184,7 @@ const AboutSection = () => {
                     </Card>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 export default AboutSection;

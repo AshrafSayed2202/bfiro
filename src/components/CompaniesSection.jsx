@@ -34,7 +34,7 @@ const CompaniesSection = () => {
     <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
       <Card
         className={
-          "flex flex-1 flex-col  items-center justify-center !px-[20px] md:!px-[40px] gap-[24px] !py-[115px] relative text-center"
+          "flex flex-1 flex-col  items-center justify-center !px-[20px] md:!px-[40px] gap-[24px] pt-[85px] pb-[63px] md:!py-[115px] relative text-center"
         }
       >
         <img

@@ -3,8 +3,8 @@ import React from "react";
 const Delivered = () => {
   return (
     <svg
-      width="50"
-      height="50"
+      width={window.innerWidth > 768 ? "50" : "35"}
+      height={window.innerWidth > 768 ? "50" : "35"}
       viewBox="0 0 50 50"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

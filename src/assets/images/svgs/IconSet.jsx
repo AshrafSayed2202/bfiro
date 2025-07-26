@@ -1,13 +1,14 @@
 import React from "react";
 
-const IconSet = () => {
+const IconSet = ({ className }) => {
   return (
     <svg
-      width="46"
-      height="46"
+      width={window.innerWidth > 768 ? "46" : "33"}
+      height={window.innerWidth > 768 ? "46" : "33"}
       viewBox="0 0 46 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         className="group-hover:fill-[#1FCCFF] trans-3"

@@ -8,8 +8,8 @@ const MainBtn = ({
   onClick = () => { },
 }) => {
   return (
-    <div className="relative group">
-      <div className="absolute left-0 top-0 w-full h-full group-hover:opacity-100 opacity-0 trans-3  animationspacefloot ">
+    <div className="relative group scale-[0.85] md:scale-100">
+      <div className="absolute left-0 top-0 w-full h-full group-hover:opacity-100 opacity-0 trans-3 animationspacefloot ">
         <img
           src={starsBG}
           className="absolute top-1/2 -translate-y-1/2 left-1/2  w-[calc(100%+100px)] h-[calc(100%+100px)]"

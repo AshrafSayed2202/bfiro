@@ -107,7 +107,7 @@ const FAQSection = () => {
       <div className="grid grid-cols-2 gap-[5px]">
         <Card
           className={
-            "col-span-1 flex items-center justify-center group"
+            "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
         >
           <IconCard
@@ -119,7 +119,7 @@ const FAQSection = () => {
         </Card>
         <Card
           className={
-            "col-span-1 flex items-center justify-center group"
+            "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
         >
           <IconCard
@@ -131,7 +131,7 @@ const FAQSection = () => {
         </Card>
         <Card
           className={
-            "col-span-1 flex items-center justify-center group"
+            "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
         >
           <IconCard
@@ -143,7 +143,7 @@ const FAQSection = () => {
         </Card>
         <Card
           className={
-            "col-span-1 flex items-center justify-center group"
+            "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
         >
           <IconCard

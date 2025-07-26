@@ -1,12 +1,13 @@
 import React from "react";
 
-const UIUX = () => {
+const UIUX = ({ className }) => {
   return (
     <svg
-      width="50"
-      height="50"
+      width={window.innerWidth > 768 ? "50" : "35"}
+      height={window.innerWidth > 768 ? "50" : "35"}
       viewBox="0 0 50 50"
       fill="none"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clip-path="url(#clip0_2229_3585)">

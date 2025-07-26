@@ -17,7 +17,7 @@ const PricingSection = () => {
           src={bg}
           className="absolute h-[224px] bottom-0 w-full object-cover"
         />
-        <h2 className="text-[40px] text-blue-gradient-90 font-[700]">
+        <h2 className="text-[40px] text-blue-gradient-90 font-[700] text-center">
           Starting From
         </h2>
         <ul className="flex flex-wrap justify-center gap-[8px] font-[400]">
@@ -28,7 +28,7 @@ const PricingSection = () => {
             Mobile Apps
           </li>
           <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
-            Mobile Landing Pages
+            Landing Pages
           </li>
           <li className="bg-[#070707] text-[#2D68FF] p-[12px] opacity-80 rounded-[8px] flex-1 text-nowrap ">
             E-Commerce

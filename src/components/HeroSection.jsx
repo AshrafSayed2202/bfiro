@@ -29,7 +29,7 @@ const HeroSection = () => {
                             Build What Stands Out.
                         </p>
                     </div>
-                    <p className="text-[20px] leading-[33px] text-[#9ca7b4] text-center mb-[25px]">
+                    <p className="text-[14px] md:text-[20px] leading-[33px] text-[#9ca7b4] text-center mb-[25px]">
                         Here in{" "}
                         <span className="bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[700]">
                             Bfiro
@@ -43,7 +43,7 @@ const HeroSection = () => {
                     } />
                 </div>
 
-                <div className="mx-auto w-full h-[400px] pt-[100px] z-[9]">
+                <div className="mx-auto w-full h-[300px] md:h-[400px] pt-[100px] z-[9]">
                     <div className="absolute left-0 bottom-0 w-screen h-[150px] bg-gradient-to-t from-[#000] to-transparent z-20 select-none pointer-events-none" />
                     <div className="relative size-full translate-x-[-25%] md:translate-x-[-17%]">
                         {images.map((img, index) => (

@@ -44,7 +44,7 @@ const KitsSection = () => {
           "col-span-12 flex gap-[10px] sm:gap-[20px] items-end sm:items-center justify-between !px-[28px] !py-[16px]  relative"
         }
       >
-        <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2">
+        <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight">
           <span className="text-[#9CA7B4]">
             1000+ premium UI Kits for mobile & web projects
             <span className="text-[#fff] inline-flex items-center mx-2">UI KITS
