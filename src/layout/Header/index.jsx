@@ -12,6 +12,7 @@ import IconSet from "../../assets/images/svgs/IconSet";
 import Illustrations from "../../assets/images/svgs/Illustrations";
 import Fonts from "../../assets/images/svgs/Fonts";
 import bfiroWhite from "../../assets/images/bfiro-white.png";
+import { motion } from "framer-motion";
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [productsHovered, setProductsHovered] = useState(false);
@@ -25,7 +26,12 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <div className="sticky top-0 z-[99]">
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+      className="fixed top-0 z-[99] w-screen">
       <div
         className={`h-[100px] ${scrolled ? "bg-[#1212129d] " : "bg-transparent"}  transition-all duration-500 filter-blur-4 ${productsHovered ? "" : "rounded-b-[20px]"}`}
       >
@@ -96,10 +102,9 @@ const Header = () => {
               <NavLink
                 to="/ux-camp"
                 className={({ isActive }) =>
-                  `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${
-                    isActive
-                      ? ""
-                      : "text-gray-400 hover:text-white text-blue-gradient"
+                  `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${isActive
+                    ? ""
+                    : "text-gray-400 hover:text-white text-blue-gradient"
                   }`
                 }
               >
@@ -144,9 +149,8 @@ const Header = () => {
       </div>
       <div
         onMouseLeave={() => setProductsHovered(false)}
-        className={`absolute top-full left-0 w-full rounded-b-[20px] transition-all duration-300  ${
-          scrolled ? "bg-[#1212129d]" : "bg-transparent"
-        } filter-blur-4 ${productsHovered ? "flex" : "hidden"}`}
+        className={`absolute top-full left-0 w-full rounded-b-[20px] transition-all duration-300  ${scrolled ? "bg-[#1212129d]" : "bg-transparent"
+          } filter-blur-4 ${productsHovered ? "flex" : "hidden"}`}
       >
         <div className="content-contain text-[18px] text-[#9CA7B4] font-[600] flex justify-start items-center gap-[16px] py-[30px]">
           <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
@@ -191,7 +195,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

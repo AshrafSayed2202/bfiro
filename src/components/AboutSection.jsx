@@ -5,39 +5,81 @@ import sleep from "../assets/videos/sleep.mp4";
 import talking from "../assets/videos/talking.mp4";
 import VideoComponent from "./VideoComponent";
 import cardBg from "../assets/images/cardBg.png";
+import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
 const AboutSection = () => {
+    const words = ["Website", "Mobile Designs", "UI/UX", "Dreams!"];
+    const [currentWord, setCurrentWord] = useState(words[0]);
+    const [fade, setFade] = useState(true);
+
+    useEffect(() => {
+        let index = 0;
+        const interval = setInterval(() => {
+            setFade(false);
+            setTimeout(() => {
+                index = (index + 1) % words.length;
+                setCurrentWord(words[index]);
+                setFade(true);
+            }, 200);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section className="relative overflow-x-hidden">
             <div className="absolute left-0 top-0 w-screen h-[200px] bg-gradient-to-b from-[#000] to-transparent z-20 select-none pointer-events-none" />
             <div className="content-contain flex flex-col gap-[5px] pt-[50px] relative z-[25]">
                 <div className="flex flex-col-reverse md:grid md:grid-cols-3 gap-[5px]">
-                    <Card className="text-white py-[90px] leading-tight max-h-[364px] relative md:col-span-1">
+                    <Card
+                        animateInint={{ opacity: 0, x: -80 }}
+                        animateWhileInView={{ opacity: 1, x: 0 }}
+                        className="text-white py-[90px] leading-tight max-h-[364px] relative md:col-span-1 flex flex-col justify-center">
                         <h2 className="text-[24px] md:text-[30px] font-[600] mb-3">
                             Bfiro Your Exceptional UX Partner.
                         </h2>
                         <p className="text-[16px] md:text-[22px] text-[#9CA7B4] mb-3 font-[300]">
                             We are a full fledged digital agency designing
                         </p>
-                        <span className="bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[24px] md:text-[28px]">
-                            Website
+                        <span className={`bg-[linear-gradient(190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[24px] md:text-[28px] transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+                            {currentWord}
                         </span>
                     </Card>
-                    <Card className="!p-0 max-h-[364px] flex items-center justify-center md:col-span-2">
+                    <Card
+                        animateInint={{ opacity: 0, x: 80 }}
+                        animateWhileInView={{ opacity: 1, x: 0 }}
+                        className="!p-0 max-h-[364px] flex items-center justify-center md:col-span-2">
                         <VideoComponent src={morning} muted={true} />
                     </Card>
                 </div>
                 <div className="grid md:grid-cols-3 gap-[5px]">
-                    <Card className="!p-0 max-h-[382px] flex items-center justify-center md:col-span-1 min-h-[250px] md:min-h-[477px]">
+                    <Card
+                        animateInint={{ opacity: 0, x: -100 }}
+                        animateWhileInView={{ opacity: 1, x: 0 }}
+                        className="!p-0 max-h-[382px] flex items-center justify-center md:col-span-1 min-h-[250px] md:min-h-[477px]">
                         <VideoComponent src={sleep} muted={true} />
                     </Card>
-                    <Card className="py-[45px] leading-normal md:col-span-2 h-full">
+                    <Card
+                        animateInint={{ opacity: 0, x: 100 }}
+                        animateWhileInView={{ opacity: 1, x: 0 }}
+                        className="py-[45px] leading-normal md:col-span-2 h-full">
                         <span className="bg-[#070707] text-[#2D68FF] text-[14px] p-2 opacity-80 rounded-[4px] inline-block mb-8">
                             About Us
                         </span>
-                        <h2 className="text-[22px] md:text-[40px] font-[600] mb-8 md:mb-6">
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1.8 }}
+                            viewport={{ once: true }}
+                            className="text-[22px] md:text-[40px] font-[600] mb-8 md:mb-6">
                             Bfiro is a creative design and development studio
-                        </h2>
-                        <div className="text-[#9CA7B4] flex flex-col gap-4 text-[16px] leading-loose">
+                        </motion.h2>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 1.4, delay: 2.2 }}
+                            viewport={{ once: true }}
+                            className="text-[#9CA7B4] flex flex-col gap-4 text-[16px] leading-loose">
                             <p>
                                 based in San Francisco, California. Throughout the year we have
                                 collaborated with local and international clients🎨💡.
@@ -47,16 +89,22 @@ const AboutSection = () => {
                                 solutions and implement it into digital products such as web or
                                 apps🚀.
                             </p>
-                        </div>
+                        </motion.div>
                     </Card>
                 </div>
-                <Card className="text-[24px] font-[600] leading-normal uppercase !p-6">
+                <Card
+                    animateInint={{ opacity: 0 }}
+                    animateWhileInView={{ opacity: 1 }}
+                    className="text-[24px] font-[600] leading-normal uppercase !p-6">
                     What We Can Do{" "}
                     <span className="size-3 rounded-full bg-[#9CA7B4] inline-block ml-6" />
                 </Card>
                 <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-[5px]">
                     <div className="grid grid-cols-2 gap-[5px]">
-                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
+                        <Card
+                            animateInint={{ opacity: 0, x: -75 }}
+                            animateWhileInView={{ opacity: 1, x: 0 }}
+                            className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard
                                 header="UI/UX Design"
                                 text="Smart, user-first interfaces."
@@ -82,7 +130,10 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
+                        <Card
+                            animateInint={{ opacity: 0, y: -75 }}
+                            animateWhileInView={{ opacity: 1, y: 0 }}
+                            className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard
                                 header="Web Development"
                                 text="Performance meets precision."
@@ -105,7 +156,10 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
+                        <Card
+                            animateInint={{ opacity: 0, y: 75 }}
+                            animateWhileInView={{ opacity: 1, y: 0 }}
+                            className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard header="Apps Development" text="Apps that users enjoy.">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +196,10 @@ const AboutSection = () => {
                                 </svg>
                             </IconCard>
                         </Card>
-                        <Card className="col-span-1 flex items-center justify-center group aspect-square">
+                        <Card
+                            animateInint={{ opacity: 0, x: 75 }}
+                            animateWhileInView={{ opacity: 1, x: 0 }}
+                            className="col-span-1 flex items-center justify-center group aspect-square">
                             <IconCard header="Illustration" text="Visuals that tell stories.">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -179,12 +236,15 @@ const AboutSection = () => {
                             </IconCard>
                         </Card>
                     </div>
-                    <Card className="!p-0 flex items-center justify-center max-h-[500px] md:max-h-full">
+                    <Card
+                        animateInint={{ opacity: 0, x: 200 }}
+                        animateWhileInView={{ opacity: 1, x: 0 }}
+                        className="!p-0 flex items-center justify-center max-h-[500px] md:max-h-full">
                         <VideoComponent src={talking} muted={false} />
                     </Card>
                 </div>
             </div>
-        </section >
+        </section>
     );
 };
 export default AboutSection;

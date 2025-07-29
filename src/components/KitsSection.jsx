@@ -40,6 +40,8 @@ const KitsSection = () => {
   return (
     <div className="content-contain grid grid-cols-12 gap-[5px] relative z-[25] mb-[5px]">
       <Card
+        animateInint={{ opacity: 0 }}
+        animateWhileInView={{ opacity: 1 }}
         className={
           "col-span-12 flex gap-[10px] sm:gap-[20px] items-end sm:items-center justify-between !px-[28px] !py-[16px]  relative"
         }
@@ -56,6 +58,9 @@ const KitsSection = () => {
 
       </Card>
       <Card
+        animateInint={{ opacity: 0 }}
+        animateWhileInView={{ opacity: 1 }}
+        animateTransition={{ duration: 1.5, delay: 1 }}
         className={
           "col-span-12 grid sm:grid-cols-4 gap-[5px] items-center !p-0 relative bg-transparent md:!p-0"
         }

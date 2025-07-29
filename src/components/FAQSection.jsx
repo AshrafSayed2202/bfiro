@@ -111,8 +111,9 @@ const FAQSection = () => {
           }
         >
           <IconCard
-            header={"517"}
+            header={517}
             text="Delivered Projects"
+            isIncreasing={true}
           >
             <Delivered />
           </IconCard>
@@ -123,8 +124,9 @@ const FAQSection = () => {
           }
         >
           <IconCard
-            header="1,231"
+            header={1231}
             text="UI Kits"
+            isIncreasing={true}
           >
             <UIUX />
           </IconCard>
@@ -135,8 +137,9 @@ const FAQSection = () => {
           }
         >
           <IconCard
-            header="315"
+            header={315}
             text="Icon Sets"
+            isIncreasing={true}
           >
             <IconSet />
           </IconCard>
@@ -147,8 +150,9 @@ const FAQSection = () => {
           }
         >
           <IconCard
-            header="128"
+            header={128}
             text="Code Template"
+            isIncreasing={true}
           >
             <Code />
           </IconCard>
