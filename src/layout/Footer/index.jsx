@@ -8,10 +8,16 @@ import Dribble from "../../assets/images/svgs/Dribble";
 import Instagram from "../../assets/images/svgs/Instagram";
 import Linkedin from "../../assets/images/svgs/Linkedin";
 import Email from "../../assets/images/svgs/Email";
+import { motion } from "framer-motion"
 const Footer = () => {
   return (
     <div className="bg-[#181818c2] pt-[50px] pb-[40px] hidden md:flex flex-col gap-[120px]">
-      <div className="content-contain flex items-start justify-between">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="content-contain flex items-start justify-between">
         <div className="flex items-start justify-between gap-[63px]">
           <Link
             to={"/"}
@@ -157,10 +163,15 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="content-contain font-[300] text-[#4b4b4b]">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="content-contain font-[300] text-[#4b4b4b]">
         {new Date().getFullYear()} Powered by Bfiro
-      </div>
+      </motion.div>
     </div>
   );
 };

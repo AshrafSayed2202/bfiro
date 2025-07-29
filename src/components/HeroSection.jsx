@@ -3,7 +3,7 @@ import MainBtn from "../UI/MainBtn";
 import rec1 from "../assets/images/heroRec1.png";
 import rec2 from "../assets/images/heroRec2.png";
 import rec3 from "../assets/images/heroRec3.png";
-import bg from "../assets/images/bg.jpg";
+import bg from "../assets/images/bg.webp";
 import { motion } from "framer-motion";
 const HeroSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);

@@ -1,8 +1,9 @@
 import { Outlet } from "react-router";
 import Footer from "./Footer";
 import Header from "./Header";
-import bg from "../assets/images/bg.jpg";
+import bg from "../assets/images/bg.webp";
 import { useState, useEffect, useRef } from "react";
+import MobileHeader from "./Header/MobileHeader";
 
 const MainRoot = () => {
   const [spotlights, setSpotlights] = useState([]);
@@ -59,6 +60,7 @@ const MainRoot = () => {
       </div>
       <div className="relative z-10 pointer-events-auto">
         <Header className="pointer-events-auto" />
+        <MobileHeader className="pointer-events-auto" />
         <Outlet />
         <Footer className="pointer-events-auto" />
       </div>

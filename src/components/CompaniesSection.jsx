@@ -8,6 +8,7 @@ import company4 from "../assets/images/companies/4.png";
 import company5 from "../assets/images/companies/5.png";
 import company6 from "../assets/images/companies/6.png";
 import company7 from "../assets/images/companies/7.png";
+import { motion } from "framer-motion";
 const CompaniesSection = () => {
   const companies = [
     { img: company1 },
@@ -33,32 +34,41 @@ const CompaniesSection = () => {
   return (
     <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
       <Card
+        animateInint={{ opacity: 0 }}
+        animateWhileInView={{ opacity: 1 }}
         className={
-          "flex flex-1 flex-col  items-center justify-center !px-[20px] md:!px-[40px] gap-[24px] pt-[85px] pb-[63px] md:!py-[115px] relative text-center"
+          "flex-1 !px-[20px] md:!px-[40px] pt-[85px] pb-[63px] md:!py-[115px] relative text-center"
         }
       >
-        <img
-          src={bg}
-          className="absolute h-[224px] bottom-0 w-full object-cover"
-        />
-        <h2 className="text-[30px] md:text-[40px] font-[600]">
-          Chosen by leading creatives globally
-        </h2>
-        <p className="text-[16px] md:text-[24px] text-[#9CA7B4] font-[300] mb-[50px]">
-          Bfiro empowers over 20,000 designers from over the the middle east.
-        </p>
-        <div className="scroll-animation-wrapper">
-          <div className="gap-[80px] scroll-animation scroll-right-left">
-            {multipliedCompanies.map((company, index) => (
-              <div
-                key={index}
-                className="h-[52px] flex items-center justify-center"
-              >
-                <img src={company.img} className="h-full object-contain" />
-              </div>
-            ))}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center gap-[24px]">
+          <img
+            src={bg}
+            className="absolute h-[224px] bottom-0 w-full object-cover"
+          />
+          <h2 className="text-[30px] md:text-[40px] font-[600]">
+            Chosen by leading creatives globally
+          </h2>
+          <p className="text-[16px] md:text-[24px] text-[#9CA7B4] font-[300] mb-[50px]">
+            Bfiro empowers over 20,000 designers from over the the middle east.
+          </p>
+          <div className="scroll-animation-wrapper">
+            <div className="gap-[80px] scroll-animation scroll-right-left">
+              {multipliedCompanies.map((company, index) => (
+                <div
+                  key={index}
+                  className="h-[52px] flex items-center justify-center"
+                >
+                  <img src={company.img} className="h-full object-contain" />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </motion.div>
       </Card>
     </div>
   );

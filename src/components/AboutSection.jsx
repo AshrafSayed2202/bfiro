@@ -34,7 +34,9 @@ const AboutSection = () => {
                     <Card
                         animateInint={{ opacity: 0, x: -80 }}
                         animateWhileInView={{ opacity: 1, x: 0 }}
-                        className="text-white py-[90px] leading-tight max-h-[364px] relative md:col-span-1 flex flex-col justify-center">
+                        className="text-white py-[90px] leading-tight max-h-[364px] relative md:col-span-1 flex flex-col justify-center"
+                    >
+                        {/* <img src={cardBg} alt="card bg" className="absolute h-full w-[134px] top-0 right-0 object-cover" /> */}
                         <h2 className="text-[24px] md:text-[30px] font-[600] mb-3">
                             Bfiro Your Exceptional UX Partner.
                         </h2>

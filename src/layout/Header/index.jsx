@@ -31,12 +31,13 @@ const Header = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="fixed top-0 z-[99] w-screen">
+      className="fixed top-0 z-[99] w-screen"
+    >
       <div
-        className={`h-[100px] ${scrolled ? "bg-[#1212129d] " : "bg-transparent"}  transition-all duration-500 filter-blur-4 ${productsHovered ? "" : "rounded-b-[20px]"}`}
+        className={`h-[100px] ${scrolled ? "bg-[#121212a6] " : "bg-transparent"}  filter-blur-4 ${productsHovered ? "bg-[#121212a6]" : "rounded-b-[20px]"}`}
       >
         <div className="flex items-center   justify-between gap-8 mx-auto content-contain">
-          <div className="flex items-center justify-start gap-[55px] flex-1 text-[20px] leading-[20px] ">
+          <div className="flex items-center justify-start gap-[55px] flex-1 text-[18px] lg:text-[20px] leading-[20px] ">
             <NavLink
               to={"/"}
               className="h-[67px] w-[52px] relative group cursor-pointer"
@@ -102,9 +103,10 @@ const Header = () => {
               <NavLink
                 to="/ux-camp"
                 className={({ isActive }) =>
-                  `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${isActive
-                    ? ""
-                    : "text-gray-400 hover:text-white text-blue-gradient"
+                  `trans-3  relative p-[8px] rounded-[8px] overflow-hidden group trans-3  hover:text-white hover:bg-blue-gradient ${
+                    isActive
+                      ? ""
+                      : "text-gray-400 hover:text-white text-blue-gradient"
                   }`
                 }
               >
@@ -116,7 +118,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-8 font-[600] text-[20px] h-[100px]">
+          <div className="flex items-center gap-8 font-[600] text-[18px] lg:text-[20px] h-[100px]">
             <NavLink
               to="/contact"
               className={({ isActive }) =>
@@ -149,9 +151,13 @@ const Header = () => {
       </div>
       <div
         onMouseLeave={() => setProductsHovered(false)}
-        className={`absolute top-full left-0 w-full rounded-b-[20px] transition-all duration-300  ${scrolled ? "bg-[#1212129d]" : "bg-transparent"
-          } filter-blur-4 ${productsHovered ? "flex" : "hidden"}`}
+        className={`absolute top-full left-0 w-full rounded-b-[20px] transition-all duration-300  ${
+          scrolled ? "bg-[#1212129d]" : "bg-transparent"
+        } filter-blur-4 ${productsHovered ? "flex" : "hidden"}`}
       >
+        <div
+          className={`absolute top-0 left-0 w-full h-full   bg-[#121212a6] z-[-1] ${productsHovered ? "opacity-100" : "opacity-0"}`}
+        ></div>
         <div className="content-contain text-[18px] text-[#9CA7B4] font-[600] flex justify-start items-center gap-[16px] py-[30px]">
           <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
             <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -183,7 +189,7 @@ const Header = () => {
             </span>
             Fonts
           </button>
-          <div className="bgBlue h-full flex-1 relative rounded-[20px] border py-[20px] gap-[14px] flex flex-col items-start justify-start px-[16px] border-[#5B5E79] overflow-hidden">
+          <div className="bgBlue h-full flex-1 relative rounded-[20px] border py-[20px] gap-[12px] flex flex-col items-start justify-start px-[16px] border-[#5B5E79] overflow-hidden">
             <span className="absolute top-0 left-0 w-full z-[1]  bgGradient h-full"></span>
             <span className="relative z-[2] w-[35px] overflow-hidden flex items-center justify-center">
               <img src={bfiroWhite} className="w-full h-full object-contain" />
@@ -191,7 +197,10 @@ const Header = () => {
             <span className="relative z-[3] text-[24px] font-[600] text-white">
               Yearly Access for 100$
             </span>
-            <button className="relative z-[4]">Get it</button>
+            {/* <MainBtn className="relative z-[4] from-[red]" text="Get it" /> */}
+            <button className="bg-white border border-b-[6px] text-[16px] text-black border-b-[#cccccc] rounded-[50px] relative z-[4] px-[50px] py-[5px] pt-[8px] font-[600]">
+              Get it
+            </button>
           </div>
         </div>
       </div>

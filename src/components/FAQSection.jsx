@@ -12,6 +12,8 @@ const FAQSection = () => {
   return (
     <div className="content-contain flex flex-col-reverse md:grid grid-cols-2 gap-[5px] relative z-[25] mb-[5px]">
       <Card
+        animateInint={{ opacity: 0, x: -200 }}
+        animateWhileInView={{ opacity: 1, x: 0 }}
         className={
           "flex flex-col gap-[22px] items-start justify-start !px-[40px]  !py-[35px]  relative"
         }
@@ -106,6 +108,8 @@ const FAQSection = () => {
       </Card>
       <div className="grid grid-cols-2 gap-[5px]">
         <Card
+          animateInint={{ opacity: 0, x: -75 }}
+          animateWhileInView={{ opacity: 1, x: 0 }}
           className={
             "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
@@ -119,6 +123,8 @@ const FAQSection = () => {
           </IconCard>
         </Card>
         <Card
+          animateInint={{ opacity: 0, y: -75 }}
+          animateWhileInView={{ opacity: 1, y: 0 }}
           className={
             "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
@@ -132,6 +138,8 @@ const FAQSection = () => {
           </IconCard>
         </Card>
         <Card
+          animateInint={{ opacity: 0, y: 75 }}
+          animateWhileInView={{ opacity: 1, y: 0 }}
           className={
             "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }
@@ -145,6 +153,8 @@ const FAQSection = () => {
           </IconCard>
         </Card>
         <Card
+          animateInint={{ opacity: 0, x: 75 }}
+          animateWhileInView={{ opacity: 1, x: 0 }}
           className={
             "col-span-1 flex items-center justify-center group aspect-square md:aspect-auto"
           }

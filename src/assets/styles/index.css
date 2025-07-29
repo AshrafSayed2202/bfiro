@@ -171,7 +171,7 @@ body {
 }
 
 .trans-3 {
-  @apply transition-[300ms];
+  transition: 300ms;
 }
 
 .trans-5 {
@@ -367,7 +367,25 @@ body {
 @media (min-width: 1200px) {
   .content-contain {
     min-width: 75%;
-    width: 1170px;
+    width: 1100px;
+  }
+}
+@media (min-width: 1400px) {
+  .content-contain {
+    min-width: 75%;
+    width: 1250px;
+  }
+}
+@media (min-width: 1600px) {
+  .content-contain {
+    min-width: 75%;
+    width: 1450px;
+  }
+}
+@media (min-width: 1850px) {
+  .content-contain {
+    min-width: 75%;
+    width: 1650px;
   }
 }
 .filter-blur {
