@@ -10,7 +10,7 @@ const Illustrations = ({ className }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <g clip-path="url(#clip0_2341_7091)">
+      <g clipPath="url(#clip0_2341_7091)">
         <rect
           y="0.5"
           width="40"
@@ -88,7 +88,7 @@ const Illustrations = ({ className }) => {
         height="38"
         rx="7"
         stroke="#1D2030"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <defs>
         <clipPath id="clip0_2341_7091">

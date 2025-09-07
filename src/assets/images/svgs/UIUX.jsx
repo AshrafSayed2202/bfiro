@@ -10,7 +10,7 @@ const UIUX = ({ className }) => {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_2229_3585)">
+      <g clipPath="url(#clip0_2229_3585)">
         <path
           className="group-hover:fill-[#1FCCFF] trans-3"
           d="M2.5 2.5H26.25V21.875H47.5L48.125 48.125H14.375V35H2.5V2.5Z"

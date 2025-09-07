@@ -4,6 +4,7 @@ import Header from "./Header";
 import bg from "../assets/images/bg.webp";
 import { useState, useEffect, useRef } from "react";
 import MobileHeader from "./Header/MobileHeader";
+import ArrowSection from "../components/ArrowSection";
 
 const MainRoot = () => {
   const [spotlights, setSpotlights] = useState([]);
@@ -41,8 +42,8 @@ const MainRoot = () => {
         `}
       </style>
       <div className="fixed inset-0 h-screen w-screen z-0">
-        <div className="absolute inset-0 bg-black opacity-85" />
-        <div className="absolute inset-0 h-screen w-screen bg-gradient-to-t from-black to-transparent" />
+        {/* <div className="absolute inset-0 bg-black opacity-85" /> */}
+        {/* <div className="absolute inset-0 h-screen w-screen bg-gradient-to-t from-black to-transparent" /> */}
         {spotlights.map((s) => (
           <div
             key={s.id}
@@ -62,6 +63,7 @@ const MainRoot = () => {
         <Header className="pointer-events-auto" />
         <MobileHeader className="pointer-events-auto" />
         <Outlet />
+        <ArrowSection />
         <Footer className="pointer-events-auto" />
       </div>
     </>

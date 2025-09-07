@@ -29,7 +29,7 @@ const MobileHeader = () => {
   return (
     <div className="fixed w-full top-0 z-[99] block md:hidden ">
       <div
-        className={`h-[90px] ${scrolled ? "bg-[#1212129d] " : "bg-transparent"} px-[15px]  flex items-center transition-all duration-500 filter-blur-4`}
+        className={`h-[90px] ${scrolled ? "bg-[#1212129d] " : "bg-transparent"} px-[15px] rounded-b-[20px] flex items-center transition-all duration-500 filter-blur-4`}
       >
         <div className="flex items-center  justify-between gap-8 mx-auto content-contain">
           <div className="flex items-center justify-between gap-[55px] flex-1 text-[18px] lg:text-[20px] leading-[20px] ">

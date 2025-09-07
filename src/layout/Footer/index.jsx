@@ -8,7 +8,7 @@ import Dribble from "../../assets/images/svgs/Dribble";
 import Instagram from "../../assets/images/svgs/Instagram";
 import Linkedin from "../../assets/images/svgs/Linkedin";
 import Email from "../../assets/images/svgs/Email";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 const Footer = () => {
   return (
     <div className="bg-[#181818c2] pt-[50px] pb-[40px] hidden md:flex flex-col gap-[120px]">
@@ -17,7 +17,8 @@ const Footer = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.6 }}
         viewport={{ once: true }}
-        className="content-contain flex items-start justify-between">
+        className="content-contain flex items-start justify-between"
+      >
         <div className="flex items-start justify-between gap-[63px]">
           <Link
             to={"/"}
@@ -169,7 +170,8 @@ const Footer = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.6 }}
         viewport={{ once: true }}
-        className="content-contain font-[300] text-[#4b4b4b]">
+        className="content-contain font-[300] text-[#4b4b4b]"
+      >
         {new Date().getFullYear()} Powered by Bfiro
       </motion.div>
     </div>

@@ -27,7 +27,7 @@ const Fonts = ({ className }) => {
         height="38"
         rx="7"
         stroke="#1D2030"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         className="group-hover:fill-[#137C9C] trans-3"

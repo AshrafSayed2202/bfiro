@@ -18,7 +18,7 @@ const HeroSection = () => {
         <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden min-h-svh flex flex-col" >
             <div className="absolute inset-0 size-full z-[-1] select-none pointer-events-none opacity-15">
                 <img src={bg} alt="" className="size-full object-cover" />
-                {/* <div className="absolute inset-0 size-full bg-[#121212d8]" /> */}
+                <div className="absolute inset-0 size-full bg-[#121212d8] opacity-50" />
                 <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] to-transparent" />
             </div>
             <div className="content-contain mx-auto md:overflow-y-hidden flex flex-col justify-between flex-1">
@@ -61,7 +61,7 @@ const HeroSection = () => {
                 </div>
 
                 <div className="mx-auto w-full h-[300px] md:h-[400px] pt-[100px] z-[9]">
-                    <div className="absolute left-0 bottom-0 w-screen h-[150px] bg-gradient-to-t from-[#000] to-transparent z-20 select-none pointer-events-none" />
+                    <div className="absolute left-0 bottom-0 w-screen h-[150px] bg-gradient-to-t from-[#121212] to-transparent z-20 select-none pointer-events-none" />
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
