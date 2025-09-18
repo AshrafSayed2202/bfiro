@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
-import bg from "../../assets/images/bg.webp";
+import bg from "../../assets/images/pageBg.png";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 import MainBtn from '../../UI/MainBtn';
 import Stars from '../../assets/images/svgs/Stars';
@@ -76,7 +76,7 @@ const UXCamp = () => {
                     </div>
                     <ul className="flex flex-col gap-[16px]">
                         {uxData.list.map((li, ix) => (
-                            <li key={ix} className="flex items-center gap-[9px]">
+                            <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
                                 <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
                                 {li}
                             </li>
@@ -124,7 +124,7 @@ const UXCamp = () => {
                     </div>
                     <ul className="flex flex-col gap-[16px] mb-6">
                         {uxData.list.map((li, ix) => (
-                            <li key={ix} className="flex items-center gap-[9px]">
+                            <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
                                 <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
                                 {li}
                             </li>
@@ -214,7 +214,7 @@ const UXCamp = () => {
                             key={index}
                             className={`relative h-[225px] flex items-center justify-center bg-[#222] rounded-[20px] hover:bg-[#333] object-cover overflow-hidden cursor-${isStarted ? 'pointer' : 'default'}`}
                         >
-                            <img src={item === 'E-book' ? ebook : item === 'UI Kit' ? uikit : item === 'Mobile App Template' ? mobileTemplate : item === 'Landing Page Template' ? landingTemplate : ''} className='object-cover h-full' />
+                            <img src={item === 'E-book' ? ebook : item === 'UI Kit' ? uikit : item === 'Mobile App Template' ? mobileTemplate : item === 'Landing Page Template' ? landingTemplate : ''} className='object-cover w-full min-h-full' />
                             {isStarted ? (
                                 <div className="absolute inset-0 flex items-center text-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity p-5 select-none">
                                     <p className="text-white text-[24px] md:text-[32px] font-bold">
@@ -241,9 +241,8 @@ const UXCamp = () => {
     return (
         <div>
             <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden min-h-svh flex flex-col">
-                <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
-                    <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
-                    <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] from-[60%] to-transparent" />
+                <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
+                    <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
                 </div>
                 <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
                     <motion.h1

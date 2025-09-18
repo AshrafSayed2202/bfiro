@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bg from "../../assets/images/bg.webp";
+import bg from "../../assets/images/pageBg.png";
 import Card from "../../UI/Card";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 import MainBtn from "../../UI/MainBtn";
@@ -134,71 +134,70 @@ const Pricing = () => {
       <Side isOpen={isOpen} setIsOpen={setIsOpen}>
         <ConnectForm />
       </Side>
-      <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden min-h-svh flex flex-col">
-        <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
+      <section className="relative overflow-x-hidden pt-[100px] overflow-y-auto min-h-svh flex flex-col">
+        <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
           <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
-          <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] from-[60%] to-transparent" />
         </div>
-        <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
+        <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[100px] sm:mt-[150px] pb-[50px] px-4 sm:px-0">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-[600] text-[48px] md:text-[64px] leading-[100%] select-none">
+            className="font-[600] text-[36px] sm:text-[48px] md:text-[64px] leading-[100%] select-none">
             Pricing
           </motion.h1>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-[#9CA7B4] text-[24px] font-[300] leading-[100%] mt-[20px] mb-[150px] select-none">
+            className="text-[#9CA7B4] text-[18px] sm:text-[24px] font-[300] leading-[120%] mt-[20px] mb-[50px] sm:mb-[100px] select-none max-w-[800px]">
             Prices suit with your business
           </motion.span>
-          <div className="grid grid-cols-3 gap-[5px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
             {items.map((item, index) => (
               <Card
                 key={index}
                 animateInint={{ opacity: 0 }}
                 animateWhileInView={{ opacity: 1 }}
                 className={
-                  "flex flex-col !px-[40px] justify-start items-start !pt-[60px] !pb-[36px]  relative"
+                  "flex flex-col px-4 sm:px-6 md:px-[40px] justify-start items-start pt-10 md:pt-[60px] pb-8 md:pb-[36px] relative"
                 }
               >
                 <h2
-                  className={`bg-[linear-gradient(-190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[32px]  transition-opacity duration-500 `}
+                  className={`bg-[linear-gradient(-190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[24px] sm:text-[32px] transition-opacity duration-500 `}
                 >
                   {item.name}
                 </h2>
-                <span className="text-[#9CA7B4] text-[20px] font-[300] leading-[100%] mt-[4px]">
+                <span className="text-[#9CA7B4] text-[16px] sm:text-[20px] font-[300] leading-[100%] mt-[4px]">
                   Start from
                 </span>
-                <span className="text-[64px] mt-[8px] font-[600] leading-[100%] flex items-start justify-start gap-[8px]">
+                <span className="text-[48px] sm:text-[64px] mt-[8px] font-[600] leading-[100%] flex items-start justify-start gap-[8px]">
                   <span>{item.price}</span>
                   <span
-                    className={`${index == 1 ? "" : "line-through"} text-[20px] font-[300] text-[#9CA7B4] h-[24px] flex items-center`}
+                    className={`${index == 1 ? "" : "line-through"} text-[16px] sm:text-[20px] font-[300] text-[#9CA7B4] h-[24px] flex items-center`}
                   >
                     {item.priceInc}
                   </span>
                 </span>
-                <div className="flex items-center justify-start gap-[8px] mt-[22px]">
+                <div className="flex flex-wrap items-center justify-start gap-[8px] mt-[22px]">
                   {item.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className={`text-[${tag.color}] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px]`}
+                      className={`text-[${tag.color}] bg-[#070707] text-[10px] md:text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px]`}
                     >
                       {tag.label}
                     </span>
                   ))}
                 </div>
-                <ul className="flex flex-col gap-[16px] text-[20px] leading-[16px] font-[600] mt-[34px]">
+                <ul className="flex flex-col gap-[16px] text-[16px] sm:text-[20px] leading-[16px] font-[600] mt-[34px] mb-[64px]">
                   {item.list.map((li, ix) => (
-                    <li key={ix} className="flex items-center gap-[9px]">
+                    <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
                       <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
                       {li}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-[64px] flex items-center justify-center w-full">
+                <div className="mt-auto flex items-center justify-center w-full self-end">
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -223,7 +222,7 @@ const Pricing = () => {
               </Card>
             ))}
           </div>
-          <Card className={"w-full p-[50px] mt-[5px] relative"}>
+          <Card className={"w-full p-4 sm:p-8 md:p-[50px] mt-4 relative"}>
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -235,21 +234,21 @@ const Pricing = () => {
                 src={bg2}
                 className="absolute h-[224px] bottom-0 w-full object-cover"
               />
-              <h2 className="text-[40px] text-blue-gradient-90 font-[700] text-center">
+              <h2 className="text-[28px] sm:text-[40px] text-blue-gradient-90 font-[700] text-center">
                 Yearly Access
               </h2>
-              <span className="py-[20px] text-[#9CA7B4] text-[24px] font-[300]">
+              <span className="py-[20px] text-[#9CA7B4] text-[18px] sm:text-[24px] font-[300] text-center">
                 Boost your productivity with instant access to all +1,000
                 existing products and daily new releases.
               </span>
-              <bold className="relative float">
+              <b className="relative float">
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-[3px] text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-[#8D8D8D] -translate-y-1/2 z-[3]">
                   $100
                 </span>
                 <span className="text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-gray-gradient relative z-[3]">
                   $100
                 </span>
-              </bold>
+              </b>
               <motion.div whileHover="hover" initial="initial">
                 <MainBtn
                   text={
@@ -268,10 +267,10 @@ const Pricing = () => {
             animateInint={{ opacity: 0 }}
             animateWhileInView={{ opacity: 1 }}
             className={
-              "col-span-12 flex gap-[10px] w-full mt-[5px] sm:gap-[20px] items-end sm:items-center justify-between !px-[28px] !py-[16px]  relative"
+              "col-span-12 flex flex-col sm:flex-row gap-[10px] w-full mt-4 sm:gap-[20px] items-start sm:items-center justify-between px-4 sm:px-[28px] py-4 sm:py-[16px] relative"
             }
           >
-            <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight">
+            <span className="text-[18px] sm:text-[20px] md:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight text-left">
               <span className="text-[#9CA7B4]">
                 1000+ premium UI Kits for mobile & web projects
                 <span className="text-[#fff] inline-flex items-center mx-2">
@@ -287,7 +286,7 @@ const Pricing = () => {
             animateWhileInView={{ opacity: 1 }}
             animateTransition={{ duration: 1.5, delay: 1 }}
             className={
-              "col-span-12 grid sm:grid-cols-4 mt-[5px] w-full gap-[5px] items-center !p-0 relative bg-transparent md:!p-0"
+              "col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-4 w-full gap-4 items-center p-0 relative bg-transparent"
             }
           >
             {products.map((item) => (

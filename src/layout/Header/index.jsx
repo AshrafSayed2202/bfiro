@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/bfiro.png";
 import logo2 from "../../assets/images/bfiro2.png";
 import logo3 from "../../assets/images/bfiro3.png";
@@ -17,20 +17,30 @@ import fawzy from "../../assets/images/fawzy.png";
 import Inbox from "../../assets/images/svgs/Inbox";
 import Side from "../../UI/Side";
 import ProfileSide from "../../UI/ProfileSide";
-import { useNavigate } from "react-router-dom";
 import CartSide from "../../UI/CartSide";
 import NotificationSide from "../../UI/NotificationSide";
 import { useCart } from "../../store/Cart";
-
+import ConnectForm from "../../UI/ConnectForm";
+import SearchModal from "../../components/SearchModal";
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [productsHovered, setProductsHovered] = useState(false);
   const [logged, setLogged] = useState(false);
   const [open, setOpen] = useState(false);
   const [cartSideOpen, setCartSideOpen] = useState(false);
+  const [isConnectOpen, setConnectOpen] = useState(false);
   const [notificationSideOpen, setNotificationSideOpen] = useState(false);
+  const [cardSideHead, setCardSideHead] = useState(0);
   const { cart } = useCart();
+
+  const handleOpenSearch = () => {
+    const currentParams = new URLSearchParams(location.search);
+    currentParams.set('search', '1');
+    navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
+  };
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -39,6 +49,20 @@ const Header = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    if (cart.items.length > 0) {
+      setCardSideHead(false);
+    } else {
+      setCardSideHead(<div className="flex flex-col">
+        <h1 className="text-[30px] font-[400]">
+          Cart
+        </h1>
+        <p className="text-[16px] opacity-80">
+          Your cart is empty.
+        </p>
+      </div>);
+    }
+  }, [cart]);
   return (
     <>
       <div className="fixed w-full top-0 z-[99] hidden md:block ">
@@ -49,7 +73,7 @@ const Header = () => {
             <div className="flex items-center justify-start gap-[55px] flex-1 text-[18px] lg:text-[20px] leading-[20px] ">
               <NavLink
                 to={"/"}
-                className="h-[67px] w-[52px] relative group cursor-pointer"
+                className="!size-[54px] relative group cursor-pointer"
               >
                 <img
                   src={logo}
@@ -75,7 +99,7 @@ const Header = () => {
                 />
               </NavLink>
 
-              <div className="flex items-center gap-8 font-[600] h-[100px]">
+              <div className="flex items-center gap-8 font-[600] h-[100px] text-[18px]">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -87,6 +111,8 @@ const Header = () => {
                 <NavLink
                   onMouseEnter={() => setProductsHovered(true)}
                   onMouseLeave={() => setProductsHovered(false)}
+                  to="/products"
+                  onClick={(e) => e.preventDefault()}
                   className={({ isActive }) =>
                     `trans-3 group h-full flex items-center justify-center ${isActive ? "text-white" : "text-gray-400 hover:text-white"} ${productsHovered ? "text-white" : ""}`
                   }
@@ -121,15 +147,18 @@ const Header = () => {
                   UX Camp
                   <span className="bg-white opacity-20 w-full h-full absolute top-0 left-0 trans-5 bgSpan z-[-1]"></span>
                 </NavLink>
-                <button className="text-gray-400 trans-3 hover:text-white text-[32px]">
+                <button
+                  onClick={handleOpenSearch}
+                  className="text-gray-400 trans-3 hover:text-white text-[32px]"
+                >
                   <FiSearch />
                 </button>
               </div>
             </div>
-            <div className="flex items-center gap-8 font-[600] text-[18px] lg:text-[20px] h-[100px]">
+            <div className="flex items-center gap-8 font-[600] text-[18px] h-[100px]">
               <NavLink
                 to=""
-                onClick={() => setLogged(false)}
+                onClick={() => setConnectOpen(true)}
                 className={({ isActive }) =>
                   `trans-3 h-full flex items-center justify-center ${isActive ? "text-white" : "text-gray-400 hover:text-white"}`
                 }
@@ -139,8 +168,7 @@ const Header = () => {
               {!logged && (
                 <>
                   <NavLink
-                    to=""
-                    onClick={() => setLogged(true)}
+                    to="/signup"
                     className={({ isActive }) =>
                       `trans-3 h-full flex items-center justify-center ${isActive ? "text-white" : "text-gray-400 hover:text-white"}`
                     }
@@ -195,32 +223,40 @@ const Header = () => {
           ></div>
           <div className="content-contain text-[18px] text-[#9CA7B4] font-[600] flex justify-start items-center gap-[16px] py-[30px]">
             <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
-              onClick={() => navigate("/ui-kits")}
+              onClick={() => navigate("products/ui-kits")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
                 <UIUX className={"size-[35px]"} />
               </span>
               UI Kits
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
+            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+              onClick={() => navigate("products/coded-templates")}
+            >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
                 <Code className={"size-[35px]"} />
               </span>
               Coded Templates
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
+            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+              onClick={() => navigate("products/icons")}
+            >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
                 <IconSet className={"size-[35px]"} />
               </span>
               Icons
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
+            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+              onClick={() => navigate("products/illustrations")}
+            >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
                 <Illustrations className={"size-[35px]"} />
               </span>
               Illustrations
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center">
+            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+              onClick={() => navigate("products/fonts")}
+            >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
                 <Fonts className={"size-[35px]"} />
               </span>
@@ -248,12 +284,16 @@ const Header = () => {
       <Side isOpen={notificationSideOpen} setIsOpen={setNotificationSideOpen}>
         <NotificationSide />
       </Side>
-      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen}>
-        <CartSide />
+      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen} classNames={"!rounded-none"} headContent={cardSideHead}>
+        <CartSide setIsOpen={setCartSideOpen} />
       </Side>
       <Side isOpen={open} setIsOpen={setOpen}>
         <ProfileSide setOpen={setOpen} />
       </Side>
+      <Side isOpen={isConnectOpen} setIsOpen={setConnectOpen}>
+        <ConnectForm />
+      </Side>
+      <SearchModal />
     </>
   );
 };

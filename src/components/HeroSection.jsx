@@ -5,7 +5,7 @@ import rec2 from "../assets/images/heroRec2.png";
 import rec3 from "../assets/images/heroRec3.png";
 import bg from "../assets/images/bg.webp";
 import { motion } from "framer-motion";
-const HeroSection = () => {
+const HeroSection = ({ setConnectOpen }) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const images = [
@@ -56,7 +56,9 @@ const HeroSection = () => {
                             <span className="flex gap-2 items-center font-[400]">
                                 Collaborate with us
                             </span>
-                        } />
+                        }
+                            onClick={() => setConnectOpen(true)}
+                        />
                     </motion.div>
                 </div>
 

@@ -34,9 +34,9 @@ const True = () => {
           width="17.8125"
           height="17.8125"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -69,8 +69,8 @@ const True = () => {
           y2="6.62967"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#1FCCFF" />
-          <stop offset="1" stop-color="#2D68FF" />
+          <stop stopColor="#1FCCFF" />
+          <stop offset="1" stopColor="#2D68FF" />
         </linearGradient>
       </defs>
     </svg>

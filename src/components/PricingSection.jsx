@@ -5,7 +5,10 @@ import bg from "../assets/images/pricingBG.png";
 import MainBtn from "../UI/MainBtn";
 import Stars from "../assets/images/svgs/Stars";
 import { motion } from "framer-motion";
+import { use } from "react";
+import { useNavigate } from "react-router";
 const PricingSection = () => {
+  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,14 +54,14 @@ const PricingSection = () => {
               Sr. Designers <True />
             </li>
           </ul>
-          <bold className="relative float">
+          <b className="relative float">
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-[3px] text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-[#8D8D8D] -translate-y-1/2 z-[3]">
               $3,000
             </span>
             <span className="text-[65px] xs:text-[90px] md:text-[160px] font-[700] text-gray-gradient relative z-[3]">
               $3,000
             </span>
-          </bold>
+          </b>
           <motion.div whileHover="hover" initial="initial">
             <MainBtn
               text={
@@ -67,6 +70,7 @@ const PricingSection = () => {
                   Our Prices
                 </span>
               }
+              onClick={() => navigate("/pricing")}
               className={"group"}
               spanClass="px-[65px] !font-[300]"
             ></MainBtn>

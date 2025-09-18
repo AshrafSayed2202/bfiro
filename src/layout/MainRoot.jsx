@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
 import Footer from "./Footer";
 import Header from "./Header";
-import bg from "../assets/images/bg.webp";
 import { useState, useEffect, useRef } from "react";
 import MobileHeader from "./Header/MobileHeader";
 import ArrowSection from "../components/ArrowSection";

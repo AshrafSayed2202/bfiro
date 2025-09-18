@@ -106,8 +106,8 @@ const Footer = () => {
               label={"Email"}
               type="email"
               inputClass={"pr-[50px]"}
-              required
               placeholder={"designer@example.com"}
+              spanClass={'!bg-transparent'}
             >
               <button className="absolute  size-[32px] text-[22px] flex items-center justify-center rounded-full text-[#9CA7B4] border-2 border-[#9CA7B4] top-1/2 right-3 -translate-y-1/2 !cursor-pointer z-[3]">
                 <LuArrowRight />

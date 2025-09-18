@@ -37,7 +37,7 @@ const NotificationSide = () => {
     };
 
     return (
-        <div className='mt-[24px] w-[390px] h-full flex flex-col gap-[25px]'>
+        <div className='mt-[24px] w-[390px] h-full flex flex-col items-center mx-auto gap-[25px]'>
             <div className="flex justify-between items-center">
                 <span className="text-[30px] font-[500] text-white">Notifications</span>
                 <label className="relative inline-flex items-center cursor-pointer gap-2">

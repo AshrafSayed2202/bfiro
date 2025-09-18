@@ -4,7 +4,7 @@ import MainBtn from "./MainBtn";
 
 const ConnectForm = () => {
     return (
-        <div className="mt-[24px] w-[680px] flex flex-col gap-[25px]">
+        <div className="mt-[24px] w-[680px] flex flex-col gap-[25px] overflow-auto">
             {/* Title */}
             <div className="flex flex-col gap-[8px]">
                 <h2
@@ -30,21 +30,21 @@ const ConnectForm = () => {
                     label={"Name"}
                     type="name"
                     inputClass={"pr-[50px]"}
-                    required
+                    spanClass={'!bg-transparent'}
                     placeholder={"Farid"}
                 ></CustomInput>
                 <CustomInput
                     label={"Email"}
                     type="email"
                     inputClass={"pr-[50px]"}
-                    required
+                    spanClass={'!bg-transparent'}
                     placeholder={"designer@example.com"}
                 ></CustomInput>
                 <CustomInput
                     label={"Phone Number"}
                     type="phone"
                     inputClass={"pr-[50px]"}
-                    required
+                    spanClass={'!bg-transparent'}
                     placeholder={""}
                 ></CustomInput>
                 <div className="flex flex-col gap-[12px]">
@@ -89,7 +89,7 @@ const ConnectForm = () => {
                     label={"Message"}
                     type="textarea"
                     inputClass={"pr-[50px]"}
-                    required
+                    spanClass={'!bg-transparent'}
                     divClass={"!h-[175px]"}
                     placeholder={"Tell us more about your project"}
                 ></CustomInput>

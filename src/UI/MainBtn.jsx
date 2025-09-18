@@ -59,6 +59,21 @@ const MainBtn = ({
             hoverShadow: "#009900",
             innerShadow: "#4dff4d",
         },
+        white:{
+            gradientFrom: "#FFFFFF",
+            gradientTo: "#E0E0E0",
+            shadow: "#E0E0E0",
+            border: "#E0E0E0",
+            disabledBorder: "#222",
+            disabledShadow: "#222",
+            disabledGradient: "#303030",
+            activeBorder: "#E0E0E0",
+            activeShadow: "#E0E0E0",
+            activeGradientFrom: "#E0E0E0",
+            activeGradientTo: "#E0E0E0",
+            hoverShadow: "#E0E0E0",
+            innerShadow: "#FFFFFF",
+        }
     };
 
     // Get the color scheme or fall back to blue if invalid

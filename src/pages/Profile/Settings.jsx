@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import bg from "../../assets/images/bg.webp";
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import bg from "../../assets/images/pageBg.png";
 import { motion } from 'framer-motion';
 import Card from '../../UI/Card';
 import CustomInput from '../../UI/CustomInput';
@@ -8,15 +9,17 @@ import fawzi from '../../assets/images/fawzy.png';
 import { BsFillCreditCardFill } from "react-icons/bs";
 import masterCard from '../../assets/images/mastercard.png';
 import visa from '../../assets/images/visa.png';
+
 const Settings = () => {
-    const [activeTab, setActiveTab] = useState('Profile');
-    const [name, setName] = useState('Fawzi Sayed'); // Dummy initial name
-    const [email, setEmail] = useState('bfiro.inc@gmail.com'); // Dummy initial email
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'Profile');
+    const [name, setName] = useState('Fawzi Sayed');
+    const [email, setEmail] = useState('bfiro.inc@gmail.com');
     const [profileImage, setProfileImage] = useState(null);
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const [cards, setCards] = useState([]); // Example: [{id: 1, name: 'My Card', number: '4111111111111111', exp: '12/25', cvv: '123', type: 'visa', isDefault: true}]
+    const [cards, setCards] = useState([]);
     const [isAddingNewCard, setIsAddingNewCard] = useState(false);
     const [newCardName, setNewCardName] = useState('');
     const [newCardNumber, setNewCardNumber] = useState('');
@@ -53,6 +56,13 @@ const Settings = () => {
         }
     };
 
+    useEffect(() => {
+        // Ensure the URL reflects the active tab
+        if (activeTab && activeTab !== searchParams.get('tab')) {
+            setSearchParams({ tab: activeTab });
+        }
+    }, [activeTab, searchParams, setSearchParams]);
+
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file && (file.type === 'image/png' || file.type === 'image/jpeg')) {
@@ -62,7 +72,6 @@ const Settings = () => {
 
     const handleSaveProfile = async () => {
         try {
-            // Dummy POST request for profile update
             const response = await fetch('/api/update-profile', {
                 method: 'POST',
                 headers: {
@@ -79,7 +88,6 @@ const Settings = () => {
 
     const handleSavePassword = async () => {
         try {
-            // Dummy POST request for password update
             const response = await fetch('/api/update-password', {
                 method: 'POST',
                 headers: {
@@ -93,12 +101,14 @@ const Settings = () => {
             console.error('Error updating password:', error);
         }
     };
+
     const getCardType = (number) => {
         const cleaned = number.replace(/\D/g, '');
         if (/^4/.test(cleaned)) return 'visa';
         if (/^5[1-5]/.test(cleaned)) return 'mastercard';
         return null;
     };
+
     const handleAddCard = () => {
         const type = getCardType(newCardNumber);
         const newId = cards.length + 1;
@@ -135,7 +145,6 @@ const Settings = () => {
 
     const handleSaveNotifications = async () => {
         try {
-            // Dummy POST request for notification preferences update
             const response = await fetch('/api/update-notifications', {
                 method: 'POST',
                 headers: {
@@ -152,7 +161,6 @@ const Settings = () => {
 
     const handleDeleteAccount = async () => {
         try {
-            // Dummy DELETE request for account deletion
             const response = await fetch('/api/delete-account', {
                 method: 'DELETE',
                 headers: {
@@ -165,19 +173,17 @@ const Settings = () => {
             console.error('Error deleting account:', error);
         }
     };
-    // Format card number with spaces every 4 digits
+
     const formatCardNumber = (number) => {
         const cleaned = number.replace(/\D/g, '');
         return cleaned.replace(/(.{4})/g, '$1 ').trim();
     };
 
-    // Handle card number input
     const handleCardNumberChange = (value) => {
         const cleaned = value.replace(/\D/g, '').slice(0, 16);
         setNewCardNumber(formatCardNumber(cleaned));
     };
 
-    // Handle expiration date input
     const handleExpDateChange = (value) => {
         let cleaned = value.replace(/\D/g, '').slice(0, 4);
         if (cleaned.length >= 2) {
@@ -190,7 +196,6 @@ const Settings = () => {
         setNewCardExp(cleaned);
     };
 
-    // Validate form
     const isFormValid = () => {
         const cleanedCardNumber = newCardNumber.replace(/\D/g, '');
         const cleanedExp = newCardExp.replace(/\D/g, '');
@@ -202,32 +207,32 @@ const Settings = () => {
             newCardCvv.length >= 3
         );
     };
+
     return (
-        <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden min-h-svh flex flex-col">
-            <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
-                <img src={bg} className="w-full object-cover absolute top-0" />
-                <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] from-[60%] to-transparent" />
+        <section className="relative overflow-x-hidden pt-[50px] sm:pt-[100px] overflow-y-auto min-h-svh flex flex-col">
+            <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
+                <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
             </div>
-            <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
+            <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[50px] sm:mt-[150px] pb-[50px]">
                 <motion.h1
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="font-[600] text-[48px] md:text-[64px] leading-[100%] select-none">
+                    className="font-[600] text-[36px] sm:text-[48px] md:text-[64px] leading-[100%] select-none">
                     Account settings
                 </motion.h1>
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-[#9CA7B4] text-[24px] font-[300] leading-[100%] mt-[20px] mb-[150px] select-none">
+                    className="text-[#9CA7B4] text-[18px] sm:text-[24px] font-[300] leading-[100%] mt-[20px] mb-[50px] sm:mb-[150px] select-none">
                     Manage your profile, security, payment and notification settings.
                 </motion.span>
-                <div className='max-w-[663px] flex justify-center items-start gap-[24px]'>
+                <div className='w-full max-w-[663px] flex flex-col md:flex-row items-start gap-[24px]'>
                     <Card
                         animateInint={{ opacity: 0, x: -50 }}
                         animateWhileInView={{ opacity: 1, x: 0 }}
-                        className="!px-[20px] !py-[20px] relative text-center flex flex-col gap-[8px] w-1/3"
+                        className="!px-[20px] !py-[20px] relative text-center flex flex-col gap-[8px] w-full md:w-1/3"
                     >
                         <div className="flex flex-col items-center justify-center gap-[10px]">
                             {tabs.map((tab) => (
@@ -247,13 +252,13 @@ const Settings = () => {
                     <Card
                         animateInint={{ opacity: 0, x: 50 }}
                         animateWhileInView={{ opacity: 1, x: 0 }}
-                        className="!px-[32px] !py-[32px] !pb-[40px] relative flex flex-col w-2/3 !text-left"
+                        className="!px-[20px] sm:!px-[32px] !py-[20px] sm:!py-[32px] !pb-[40px] relative flex flex-col w-full md:w-2/3 !text-left"
                     >
-                        <h2 className="text-[24px] font-[600] mb-2">{tabContent[activeTab].title}</h2>
-                        <p className="text-[#9CA7B4] text-[16px] font-[300]">{tabContent[activeTab].text}</p>
+                        <h2 className="text-[20px] sm:text-[24px] font-[600] mb-2">{tabContent[activeTab].title}</h2>
+                        <p className="text-[#9CA7B4] text-[14px] sm:text-[16px] font-[300]">{tabContent[activeTab].text}</p>
                         {activeTab === 'Profile' && (
                             <div className="flex flex-col items-center">
-                                <div className="relative size-[160px] overflow-hidden rounded-full cursor-pointer my-4 group">
+                                <div className="relative size-[120px] sm:size-[160px] overflow-hidden rounded-full cursor-pointer my-4 group">
                                     <input
                                         type="file"
                                         accept="image/png,image/jpeg"
@@ -270,13 +275,14 @@ const Settings = () => {
                                     </div>
                                 </div>
                                 <div className="w-full flex flex-col gap-4">
-                                    <h3 className="text-[20px] font-[500]">Details</h3>
+                                    <h3 className="text-[18px] sm:text-[20px] font-[500]">Details</h3>
                                     <CustomInput
                                         id="name"
                                         label="Name"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         className="w-full"
+                                        spanClass={'!bg-transparent'}
                                     />
                                     <CustomInput
                                         id="email"
@@ -285,9 +291,10 @@ const Settings = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="w-full"
+                                        spanClass={'!bg-transparent'}
                                     />
                                 </div>
-                                <div className='w-full mt-[60px]'>
+                                <div className='w-full mt-[40px] sm:mt-[60px]'>
                                     <MainBtn
                                         text="Save changes"
                                         onClick={handleSaveProfile}
@@ -300,7 +307,7 @@ const Settings = () => {
                         )}
                         {activeTab === 'Change Password' && (
                             <div>
-                                <div className="w-full flex flex-col gap-4 mt-8">
+                                <div className="w-full flex flex-col gap-4 mt-4 sm:mt-8">
                                     <CustomInput
                                         id="current-password"
                                         label="Current password"
@@ -309,6 +316,7 @@ const Settings = () => {
                                         onChange={(e) => setCurrentPassword(e.target.value)}
                                         required
                                         className="w-full"
+                                        spanClass={'!bg-transparent'}
                                     />
                                     <CustomInput
                                         id="new-password"
@@ -318,6 +326,7 @@ const Settings = () => {
                                         onChange={(e) => setNewPassword(e.target.value)}
                                         required
                                         className="w-full"
+                                        spanClass={'!bg-transparent'}
                                     />
                                     <CustomInput
                                         id="confirm-new-password"
@@ -327,9 +336,10 @@ const Settings = () => {
                                         onChange={(e) => setConfirmNewPassword(e.target.value)}
                                         required
                                         className="w-full"
+                                        spanClass={'!bg-transparent'}
                                     />
                                 </div>
-                                <div className='!w-full mt-[60px] relative'>
+                                <div className='!w-full mt-[40px] sm:mt-[60px] relative'>
                                     <MainBtn
                                         text="Save changes"
                                         onClick={handleSavePassword}
@@ -344,8 +354,8 @@ const Settings = () => {
                             <div className="w-full flex flex-col gap-[20px]">
                                 {cards.map((card, index) => (
                                     <div key={card.id} className="flex flex-col gap-[10px]">
-                                        <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[50px]'>
-                                            <h3 className="text-[16px] font-[400] absolute top-[-15px] left-[15px]">Card {index + 1}</h3>
+                                        <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[30px] sm:mt-[50px]'>
+                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px]">Card {index + 1}</h3>
                                             <CustomInput custom label="" divClass={'!mt-0'}>
                                                 <input
                                                     type="text"
@@ -353,9 +363,9 @@ const Settings = () => {
                                                     value={formatCardNumber(card.number)}
                                                     readOnly
                                                     onChange={(e) => setNewCardNumber(e.target.value)}
-                                                    className="font-[300] bg-transparent h-full p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
+                                                    className="font-[300] bg-transparent h-full p-[10px] sm:p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
                                                 />
-                                                <div className="absolute right-[20px] top-1/2 -translate-y-1/2">
+                                                <div className="absolute right-[10px] sm:right-[20px] top-1/2 -translate-y-1/2">
                                                     {getCardType(card.number) === 'visa' && (
                                                         <img src={visa} alt="Visa" className="h-6 opacity-100" />
                                                     )}
@@ -367,9 +377,9 @@ const Settings = () => {
                                                     )}
                                                 </div>
                                             </CustomInput>
-                                            <div className="grid grid-cols-2 w-full">
-                                                <span className="font-[300] bg-transparent text-[16px] leading-tight p-[20px] border-r-[2px] border-[#424242] trans-3 outline-none pr-[50px] h-[56px]">{card.exp}</span>
-                                                <label className="relative inline-flex items-center cursor-pointer gap-2 p-[20px] text-[16px] leading-tight h-[56px]">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 w-full">
+                                                <span className="font-[300] bg-transparent text-[16px] leading-tight p-[10px] sm:p-[20px] border-b-[2px] sm:border-b-0 sm:border-r-[2px] border-[#424242] trans-3 outline-none pr-[50px] h-[56px]">{card.exp}</span>
+                                                <label className="relative inline-flex items-center cursor-pointer gap-2 p-[10px] sm:p-[20px] text-[16px] leading-tight h-[56px]">
                                                     <span className="text-[16px] font-[500] text-[#9CA7B4]">Default</span>
                                                     <input
                                                         type="checkbox"
@@ -394,8 +404,8 @@ const Settings = () => {
                                 )}
                                 {(cards.length === 0 || isAddingNewCard) && (
                                     <div className="flex flex-col gap-[20px]">
-                                        <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[50px]'>
-                                            <h3 className="text-[16px] font-[400] absolute top-[-15px] left-[15px]">Card Information</h3>
+                                        <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[30px] sm:mt-[50px]'>
+                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px]">Card Information</h3>
                                             <CustomInput custom label="" divClass={'!mt-0'}>
                                                 <input
                                                     id="card-name"
@@ -403,7 +413,7 @@ const Settings = () => {
                                                     placeholder="Card Name"
                                                     value={newCardName}
                                                     onChange={(e) => setNewCardName(e.target.value)}
-                                                    className="font-[300] bg-transparent h-full p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
+                                                    className="font-[300] bg-transparent h-full p-[10px] sm:p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
                                                     required
                                                 />
                                             </CustomInput>
@@ -413,11 +423,11 @@ const Settings = () => {
                                                     placeholder="1234 1234 1234 1234"
                                                     value={newCardNumber}
                                                     onChange={(e) => handleCardNumberChange(e.target.value)}
-                                                    className="font-[300] bg-transparent h-full p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
+                                                    className="font-[300] bg-transparent h-full p-[10px] sm:p-[20px] border-b-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
                                                     required
                                                     maxLength={19}
                                                 />
-                                                <div className="absolute right-[20px] top-1/2 -translate-y-1/2">
+                                                <div className="absolute right-[10px] sm:right-[20px] top-1/2 -translate-y-1/2">
                                                     {getCardType(newCardNumber) === 'visa' && (
                                                         <img src={visa} alt="Visa" className="h-6 opacity-100" />
                                                     )}
@@ -429,7 +439,7 @@ const Settings = () => {
                                                     )}
                                                 </div>
                                             </CustomInput>
-                                            <div className="grid grid-cols-2 w-full">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 w-full">
                                                 <CustomInput custom label="" divClass={'!mt-0'}>
                                                     <input
                                                         id="exp-date"
@@ -437,7 +447,7 @@ const Settings = () => {
                                                         placeholder="MM / YY"
                                                         value={newCardExp}
                                                         onChange={(e) => handleExpDateChange(e.target.value)}
-                                                        className="font-[300] bg-transparent h-full p-[20px] border-r-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
+                                                        className="font-[300] bg-transparent h-full p-[10px] sm:p-[20px] border-b-[2px] sm:border-b-0 sm:border-r-[2px] border-[#424242] trans-3 outline-none pr-[50px]"
                                                         required
                                                         maxLength={7}
                                                     />
@@ -449,14 +459,14 @@ const Settings = () => {
                                                         placeholder="CCV"
                                                         value={newCardCvv}
                                                         onChange={(e) => setNewCardCvv(e.target.value.replace(/\D/g, ''))}
-                                                        className="font-[300] bg-transparent h-full p-[20px] trans-3 outline-none pr-[50px]"
+                                                        className="font-[300] bg-transparent h-full p-[10px] sm:p-[20px] trans-3 outline-none pr-[50px]"
                                                         required
                                                         maxLength={4}
                                                     />
                                                 </CustomInput>
                                             </div>
                                         </div>
-                                        <div className="flex gap-[10px] mt-[20px] w-full">
+                                        <div className="flex flex-col sm:flex-row gap-[10px] mt-[10px] sm:mt-[20px] w-full">
                                             {cards.length > 0 && (
                                                 <MainBtn
                                                     text="Cancel"
@@ -480,7 +490,7 @@ const Settings = () => {
                             </div>
                         )}
                         {activeTab === 'Notifications' && (
-                            <div className='mt-8'>
+                            <div className='mt-4 sm:mt-8'>
                                 <div className="w-full flex flex-col gap-4">
                                     {['New releases', 'UX Camp', 'Offers'].map((notification) => (
                                         <div key={notification} className="flex justify-between items-center">
@@ -497,7 +507,7 @@ const Settings = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className='mt-[60px] w-full'>
+                                <div className='mt-[40px] sm:mt-[60px] w-full'>
                                     <MainBtn
                                         text="Save Preferences"
                                         onClick={handleSaveNotifications}
@@ -510,11 +520,10 @@ const Settings = () => {
                         )}
                         {activeTab === 'Delete Account' && (
                             <div>
-                                <div className="w-full flex flex-col">
-                                    <br />
-                                    <p className='text-[#9CA7B4] text-[16px] font-[300]'>with caution. You can delete your account by clicking the Delete Account button below.</p>
+                                <div className="w-full flex flex-col mt-4">
+                                    <p className='text-[#9CA7B4] text-[14px] sm:text-[16px] font-[300]'>with caution. You can delete your account by clicking the Delete Account button below.</p>
                                 </div>
-                                <div className='mt-[60px] w-full'>
+                                <div className='mt-[40px] sm:mt-[60px] w-full'>
                                     <MainBtn
                                         text="Delete Account"
                                         onClick={handleDeleteAccount}

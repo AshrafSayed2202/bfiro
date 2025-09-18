@@ -10,7 +10,7 @@ import { useFavorite } from "../store/Favorite";
 import { toast } from "react-toastify";
 
 const ItemCard = ({ item, className }) => {
-    const { id, img, title, type, price, labels, popularity, releaseDate, formats } = item;
+    const { id, img, title, type, price, discount, labels, popularity, releaseDate, formats } = item;
     const { cart, addItem, removeItem } = useCart();
     const { favorites, addFavorite, removeFavorite } = useFavorite();
 
@@ -82,49 +82,27 @@ const ItemCard = ({ item, className }) => {
                 <div className="text-[#9CA7B4] truncate font-[300] flex items-center justify-start">
                     {title}
                 </div>
-                {labels && labels.length > 0 && (
-                    <div className="text-[#9CA7B4] text-sm font-[300] flex items-center justify-between gap-1 truncate">
-                        <div className="flex items-center gap-1">
-                            {labels.slice(0, 2).map((label, index) => (
-                                <span
-                                    key={index}
-                                    className="bg-[#424242cc] text-white font-[600] px-2 py-1 rounded-full text-xs"
-                                >
-                                    {label.text}
-                                </span>
-                            ))}
-                            {labels.length > 2 && (
-                                <span className="text-[#9CA7B4] p-1 bg-[#424242cc] rounded-full size-6 text-[12px] leading-[12px] flex items-center justify-center">
-                                    +{labels.length - 2}
-                                </span>
-                            )}
-                        </div>
-                        {formats && formats.length > 0 && (
-                            <div className="text-[#9CA7B4] text-sm font-[300] flex items-center justify-between gap-2 truncate">
-                                <div className="flex items-center gap-2">
-                                    {formats.map((format, index) => (
-                                        <div key={index} className="flex items-center">
-                                            {format.icon}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                )}
                 <div className="flex items-center justify-between pb-[10px]">
-                    <div className="flex items-center gap-[3px] text-[#9CA7B4] font-[300]">
-                        <div className="flex items-center justify-center mr-[8px] bg-[#000000] rounded-full size-[30px] flex-1 overflow-hidden">
+                    <div className="flex items-center gap-[3px] text-[#9CA7B4] font-[300] text-[14px]">
+                        <div className="min-w-[30px] flex items-center justify-center mr-[8px] bg-[#000000] rounded-full size-[30px] flex-1 overflow-hidden">
                             <img className="size-[14px] object-contain" src={bfiro} />
                         </div>
                         <span>BeFiro</span>
                         <MdOutlineArrowRight className="text-[22px]" />
-                        {type}
+                        <p className="text-left text-nowrap text-ellipsis w-[100px] overflow-hidden">{type}</p>
                     </div>
-                    <div>${price}</div>
+                    {discount ? (
+                        <div className="flex items-center gap-2">
+                            <span className="opacity-50 line-through">${price}</span>
+                            <span className=" font-[600]">${(price - discount) > 0 ? (price - discount) : 0}</span>
+                        </div>
+                    ) : (
+                        <div>${price}</div>
+                    )}
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

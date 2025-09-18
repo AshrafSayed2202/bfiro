@@ -27,8 +27,8 @@ header("Content-Type: application/json");
 date_default_timezone_set('Africa/Cairo');
 
 $host = "mysql:host=localhost;dbname=bfiro;charset=utf8mb4";
-$db_user = "admin";
-$db_pass = "admin";
+$db_user = "root";
+$db_pass = "";
 
 $option = [
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4",

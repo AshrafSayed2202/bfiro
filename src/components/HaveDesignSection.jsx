@@ -4,14 +4,14 @@ import bg from "../assets/images/havedesignBG.png";
 import MainBtn from "../UI/MainBtn";
 import Stars from "../assets/images/svgs/Stars";
 import { motion } from "framer-motion";
-const HaveDesignSection = () => {
+const HaveDesignSection = ({ setConnectOpen, className }) => {
   return (
-    <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
+    <div className={`content-contain flex gap-[5px]  relative z-[25] mb-[5px] ${className}`}>
       <Card
         animateInint={{ opacity: 0 }}
         animateWhileInView={{ opacity: 1 }}
         className={
-          " flex-1 !px-[40px] !py-[128px] relative text-center"
+          " flex-1 !px-[40px] !py-[128px] relative text-center w-f"
         }
       >
         <motion.div
@@ -36,6 +36,7 @@ const HaveDesignSection = () => {
                   Get in Touch
                 </span>
               }
+              onClick={() => setConnectOpen(true)}
               className={"group"}
               spanClass="px-[65px] !font-[300]"
             ></MainBtn>

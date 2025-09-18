@@ -17,11 +17,13 @@ function CustomInput({
     className,
     custom,
     style,
+    secondLabel,
     ...others
 }) {
 
     const arabicPattern = /[\u0600-\u06FF\u0750-\u077F]/;
     const labelRef = useRef();
+    const secondLabelRef = useRef();
     const [maskSize, setMaskSize] = useState("0px 0px");
     const manualSelections = countries.map((country) => {
         const code = country.cca2.toLowerCase();
@@ -43,13 +45,29 @@ function CustomInput({
     }, [labelRef.current]);
     return (
         <label htmlFor={id} className={`relative group ${className}`}>
-            {label && (
+            {(label && !secondLabel) && (
                 <span
                     ref={labelRef}
-                    className={`absolute top-0 left-5  px-2 z-[2] text-[16px] ${spanClass ? spanClass : ""} `}
+                    className={`absolute top-0 left-5  px-2 bg-[#121212] text-[14px] z-[2] ${spanClass ? spanClass : ""} `}
                 >
                     {label} <span className="text-red-500 ">{required && "*"}</span>
                 </span>
+            )}
+            {(label && secondLabel) && (
+                <div className={`flex justify-between items-center w-[calc(100%-40px)] absolute top-0 left-5 z-[2] text-[16px] ${spanClass ? spanClass : ""} `}>
+                    <span
+                        ref={labelRef}
+                        className={`bg-[#121212] px-2 text-[14px]`}
+                    >
+                        {label} <span className="text-red-500 ">{required && "*"}</span>
+                    </span>
+                    <span
+                        ref={secondLabelRef}
+                        className={`bg-[#121212] px-2 text-[14px] cursor-pointer hover:underline`}
+                    >
+                        {secondLabel} <span className="text-red-500 ">{required && "*"}</span>
+                    </span>
+                </div>
             )}
             <div
                 className={`relative flex-1 w-full h-[56px] z-[1] mt-[11px] form-control ${divClass && divClass}`}

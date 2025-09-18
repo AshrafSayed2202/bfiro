@@ -8,7 +8,7 @@ import Code from "../assets/images/svgs/Code";
 import { HiQuestionMarkCircle } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { FiMinus, FiPlus } from "react-icons/fi";
-const FAQSection = () => {
+const FAQSection = ({setConnectOpen}) => {
   return (
     <div className="content-contain flex flex-col-reverse md:grid grid-cols-2 gap-[5px] relative z-[25] mb-[5px]">
       <Card
@@ -93,17 +93,20 @@ const FAQSection = () => {
           </div>
         </div>
         <div className="flex grow items-end justify-center">
-          <p className="flex items-center justify-center text-[12px] md:text-[20px] font-[300] text-[#9CA7B4] gap-[8px] ">
+          <div className="flex items-center justify-center text-[12px] md:text-[20px] font-[300] text-[#9CA7B4] gap-[8px] ">
             <span className="text-[24px]">
               <HiQuestionMarkCircle />
             </span>
             <div>
               <span>Couldn’t find what you were looking for? </span>
-              <Link className="text-[#fff] underline font-[600] trans-3 hover:text-[#1fccff]">
+              <button
+                className="text-[#fff] underline font-[600] trans-3 hover:text-[#1fccff]"
+                onClick={() => setConnectOpen(true)}
+              >
                 Contact us
-              </Link>
+              </button>
             </div>
-          </p>
+          </div>
         </div>
       </Card>
       <div className="grid grid-cols-2 gap-[5px]">

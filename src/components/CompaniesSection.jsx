@@ -9,7 +9,7 @@ import company5 from "../assets/images/companies/5.png";
 import company6 from "../assets/images/companies/6.png";
 import company7 from "../assets/images/companies/7.png";
 import { motion } from "framer-motion";
-const CompaniesSection = () => {
+const CompaniesSection = ({ className }) => {
   const companies = [
     { img: company1 },
     { img: company2 },
@@ -32,7 +32,7 @@ const CompaniesSection = () => {
     ...companies,
   ]; // 3x repetition
   return (
-    <div className="content-contain flex gap-[5px]  relative z-[25] mb-[5px]">
+    <div className={`content-contain flex gap-[5px]  relative z-[25] mb-[5px] ${className}`}>
       <Card
         animateInint={{ opacity: 0 }}
         animateWhileInView={{ opacity: 1 }}

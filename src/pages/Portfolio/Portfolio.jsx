@@ -1,4 +1,4 @@
-import bg from "../../assets/images/bg.webp";
+import bg from "../../assets/images/pageBg.png";
 import { motion } from "framer-motion";
 import Card from "../../UI/Card";
 import PortfolioCard from "../../UI/PortfolioCard";
@@ -74,6 +74,19 @@ const Portfolio = () => {
         document.title = "Bfiro | Portfolio";
     }, []);
 
+    // Add useEffect to handle body overflow when modal is open/closed
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+        // Cleanup on component unmount
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, [isModalOpen]);
+
     const handlePrev = () => {
         if (currentPartner > 0) {
             setCurrentPartner(currentPartner - 1);
@@ -101,9 +114,8 @@ const Portfolio = () => {
     return (
         <div>
             <section className="relative overflow-x-hidden pt-[100px] !overflow-y-hidden min-h-svh flex flex-col">
-                <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
-                    <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
-                    <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] from-[60%] to-transparent" />
+                <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
+                    <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
                 </div>
                 <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
                     <motion.h1
@@ -136,8 +148,8 @@ const Portfolio = () => {
                                 </div>
                                 <div className="flex flex-col justify-between text-left">
                                     <div className="leading-tight">
-                                        <h3 className="text-[20px] text-[#9CA7B4] uppercase text-nowrap">{partner.title}</h3>
-                                        <h2 className="text-[46px] text-wrap font-[600] text-white mt-3 mb-4">{partner.name}</h2>
+                                        <h3 className="text-[20px] text-[#9CA7B4] uppercase font-light text-nowrap">{partner.title}</h3>
+                                        <h2 className="text-[48px] text-wrap font-[600] text-white mt-3 mb-4">{partner.name}</h2>
                                         <p className="text-[20px] text-[#9CA7B4] font-[600]">{partner.description}</p>
                                     </div>
                                     <div className="flex justify-between pb-2">
@@ -253,8 +265,8 @@ const Portfolio = () => {
                             </PortfolioCard>
                         </div>
                     </div>
-                    <CompaniesSection />
-                    <HaveDesignSection />
+                    <CompaniesSection className="w-full" />
+                    <HaveDesignSection className="w-full" />
                 </div>
             </section>
             {isModalOpen && selectedProject && (
@@ -262,7 +274,7 @@ const Portfolio = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100]"
+                    className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] overflow-y-auto"
                     onClick={closeModal}
                 >
                     <motion.div
@@ -282,7 +294,7 @@ const Portfolio = () => {
                             <img
                                 src={selectedProject.image}
                                 alt={`Project ${selectedProject.id} landing`}
-                                className="w-[60%] object-contain"
+                                className="w-full sm:w-[80%] md:w-[60%] object-contain"
                             />
                         </div>
                     </motion.div>

@@ -1,15 +1,25 @@
-import bg from "../../assets/images/bg.webp";
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import bg from "../../assets/images/pageBg.png";
 import fawzy from "../../assets/images/fawzy.png";
 import Card from "../../UI/Card.jsx";
-
 import project1 from "../../assets/images/project1.png";
 import project2 from "../../assets/images/project2.png";
-
 import ItemCard from "../../UI/ItemCard.jsx";
-import { useNavigate } from "react-router";
+import { useFavorite } from '../../store/Favorite.jsx';
+
 const Profile = () => {
   const navigate = useNavigate();
-  const items = [
+  const location = useLocation();
+  const { favorites } = useFavorite();
+
+  // Get active tab from URL query parameter, default to 'favorites'
+  const queryParams = new URLSearchParams(location.search);
+  const initialTab = queryParams.get('tab') || 'favorites';
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  // Sample purchases data (replace with actual purchases data if available)
+  const purchases = [
     {
       id: 1,
       img: project1,
@@ -25,19 +35,36 @@ const Profile = () => {
       price: 39,
     },
   ];
+
+  // Update URL when activeTab changes
+  useEffect(() => {
+    navigate(`?tab=${activeTab}`, { replace: true });
+  }, [activeTab, navigate]);
+
+  // Handle tab click
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  // Determine which items to display based on active tab
+  const displayedItems = activeTab === 'favorites' ? favorites.items : purchases;
+
   return (
     <div>
       <section className="relative overflow-x-hidden pt-[320px] !overflow-y-hidden min-h-svh flex flex-col">
         <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
-          <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
-          <div className="absolute inset-0 size-full bg-gradient-to-t from-[#121212] from-[60%] to-transparent" />
+          <img
+            src={bg}
+            className="min-w-full !h-screen object-cover absolute top-0"
+          />
+          <div className="absolute inset-0 min-w-full !h-screen sm:!min-h-screen bg-gradient-to-t from-[#121212] from-[30%] to-transparent" />
         </div>
         <div className="content-contain flex flex-col">
           <div className="flex gap-[16px] mb-[100px]">
             <div className="flex items-center justify-center size-[100px] overflow-hidden rounded-full">
               <img src={fawzy} className="w-full h-full object-cover" />
             </div>
-            <div className="flex flex-col justify-center items-start ">
+            <div className="flex flex-col justify-center items-start">
               <h2 className="text-[30px] font-[400]">Fawzi Sayed</h2>
               <span className="text-[16px] font-[300]">
                 bfiro.inc@gmail.com
@@ -46,14 +73,29 @@ const Profile = () => {
           </div>
           <div className="flex items-center justify-between w-full mb-[60px]">
             <div className="flex justify-center items-center gap-[20px]">
-              <button className="h-[58px] rounded-[50px] border-[2px] flex px-[16px] border-[#1FCCFF] justify-center items-center text-[18px] font-[600]">
-                Favorites 2
+              <button
+                className={`h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[18px] font-[600] ${activeTab === 'favorites'
+                    ? 'border-[#1FCCFF] text-white'
+                    : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
+                  }`}
+                onClick={() => handleTabClick('favorites')}
+              >
+                Favorites {favorites.items.length}
               </button>
-              <button className="h-[58px] text-[#9CA7B4] trans-3 hover:text-white hover:border-white rounded-[50px] border-[2px] flex px-[16px] border-[#424242] justify-center items-center text-[18px] font-[600]">
+              <button
+                className={`h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[18px] font-[600] ${activeTab === 'purchases'
+                    ? 'border-[#1FCCFF] text-white'
+                    : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
+                  }`}
+                onClick={() => handleTabClick('purchases')}
+              >
                 Purchases
               </button>
             </div>
-            <button className="h-[58px] text-[#9CA7B4] trans-3 hover:text-white hover:border-white rounded-[50px] border-[2px] flex px-[16px] border-[#424242] justify-center items-center text-[18px] font-[600]" onClick={() => navigate("/settings")}>
+            <button
+              className="h-[58px] text-[#9CA7B4] trans-3 hover:text-white hover:border-white rounded-[50px] border-[2px] flex px-[16px] border-[#424242] justify-center items-center text-[18px] font-[600]"
+              onClick={() => navigate("/settings")}
+            >
               Edit Profile
             </button>
           </div>
@@ -65,9 +107,17 @@ const Profile = () => {
               "col-span-12 grid sm:grid-cols-4 gap-[5px] items-center !p-0 relative bg-transparent md:!p-0"
             }
           >
-            {items.map((item) => (
-              <ItemCard key={item.id} item={item} />
-            ))}
+            {displayedItems.length > 0 ? (
+              displayedItems.map((item) => (
+                <ItemCard key={item.id} item={item} />
+              ))
+            ) : (
+              <p className="text-[#9CA7B4] text-[18px] col-span-12 text-center">
+                {activeTab === 'favorites'
+                  ? 'No favorites added yet.'
+                  : 'No purchases made yet.'}
+              </p>
+            )}
           </Card>
         </div>
       </section>
