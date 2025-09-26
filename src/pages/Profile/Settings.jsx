@@ -355,7 +355,7 @@ const Settings = () => {
                                 {cards.map((card, index) => (
                                     <div key={card.id} className="flex flex-col gap-[10px]">
                                         <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[30px] sm:mt-[50px]'>
-                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px]">Card {index + 1}</h3>
+                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px] filter-blur-4 bg-[#171718CC] px-[10px]">Card {index + 1}</h3>
                                             <CustomInput custom label="" divClass={'!mt-0'}>
                                                 <input
                                                     type="text"
@@ -405,7 +405,7 @@ const Settings = () => {
                                 {(cards.length === 0 || isAddingNewCard) && (
                                     <div className="flex flex-col gap-[20px]">
                                         <div className='border-[2px] border-[#424242] rounded-[18px] relative mt-[30px] sm:mt-[50px]'>
-                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px]">Card Information</h3>
+                                            <h3 className="text-[14px] sm:text-[16px] font-[400] absolute top-[-15px] left-[10px] sm:left-[15px] filter-blur-4 bg-[#171718CC] px-[10px]">Card Information</h3>
                                             <CustomInput custom label="" divClass={'!mt-0'}>
                                                 <input
                                                     id="card-name"

@@ -7,6 +7,7 @@ import project1 from "../../assets/images/project1.png";
 import project2 from "../../assets/images/project2.png";
 import ItemCard from "../../UI/ItemCard.jsx";
 import { useFavorite } from '../../store/Favorite.jsx';
+import { RiSettings4Fill } from "react-icons/ri";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -50,8 +51,8 @@ const Profile = () => {
   const displayedItems = activeTab === 'favorites' ? favorites.items : purchases;
 
   return (
-    <div>
-      <section className="relative overflow-x-hidden pt-[320px] !overflow-y-hidden min-h-svh flex flex-col">
+    <div className='min-h-[calc(100vh-160px)] xs:min-h-[calc(100vh-100px)]'>
+      <section className="relative overflow-x-hidden pt-[100px] xs:pt-[320px] !overflow-y-hidden flex flex-col">
         <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none opacity-15 flex items-center justify-center">
           <img
             src={bg}
@@ -60,32 +61,32 @@ const Profile = () => {
           <div className="absolute inset-0 min-w-full !h-screen sm:!min-h-screen bg-gradient-to-t from-[#121212] from-[30%] to-transparent" />
         </div>
         <div className="content-contain flex flex-col">
-          <div className="flex gap-[16px] mb-[100px]">
-            <div className="flex items-center justify-center size-[100px] overflow-hidden rounded-full">
+          <div className="flex gap-[16px] mb-[60px] xs:mb-[100px]">
+            <div className="flex items-center justify-center size-[70px] xs:size-[100px] overflow-hidden rounded-full">
               <img src={fawzy} className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col justify-center items-start">
-              <h2 className="text-[30px] font-[400]">Fawzi Sayed</h2>
-              <span className="text-[16px] font-[300]">
+              <h2 className="text-[24px] xs:text-[30px] font-[400]">Fawzi Sayed</h2>
+              <span className="text-[14px] xs:text-[16px] font-[300] opacity-60">
                 bfiro.inc@gmail.com
               </span>
             </div>
           </div>
-          <div className="flex items-center justify-between w-full mb-[60px]">
-            <div className="flex justify-center items-center gap-[20px]">
+          <div className="flex items-center justify-between w-full mb-[60px] flex-wrap gap-[10px]">
+            <div className="flex justify-center items-center gap-[10px] xs:gap-[20px]">
               <button
-                className={`h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[18px] font-[600] ${activeTab === 'favorites'
-                    ? 'border-[#1FCCFF] text-white'
-                    : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
+                className={`h-[40px] xs:h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[14px] xs:text-[18px] font-[600] ${activeTab === 'favorites'
+                  ? 'border-[#1FCCFF] text-white'
+                  : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
                   }`}
                 onClick={() => handleTabClick('favorites')}
               >
                 Favorites {favorites.items.length}
               </button>
               <button
-                className={`h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[18px] font-[600] ${activeTab === 'purchases'
-                    ? 'border-[#1FCCFF] text-white'
-                    : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
+                className={`h-[40px] xs:h-[58px] rounded-[50px] border-[2px] flex px-[16px] justify-center items-center text-[14px] xs:text-[18px] font-[600] ${activeTab === 'purchases'
+                  ? 'border-[#1FCCFF] text-white'
+                  : 'border-[#424242] text-[#9CA7B4] hover:text-white hover:border-white trans-3'
                   }`}
                 onClick={() => handleTabClick('purchases')}
               >
@@ -93,10 +94,11 @@ const Profile = () => {
               </button>
             </div>
             <button
-              className="h-[58px] text-[#9CA7B4] trans-3 hover:text-white hover:border-white rounded-[50px] border-[2px] flex px-[16px] border-[#424242] justify-center items-center text-[18px] font-[600]"
+              className="h-[40px] xs:h-[58px] text-[#9CA7B4] trans-3 hover:text-white hover:border-white rounded-[50px] xs:border-[2px] flex px-[16px] border-[#424242] justify-center items-center text-[25px] xs:text-[18px] font-[600]"
               onClick={() => navigate("/settings")}
             >
-              Edit Profile
+              <span className='hidden xs:block'>Edit Profile</span>
+              <RiSettings4Fill className='block xs:hidden' />
             </button>
           </div>
           <Card
@@ -112,7 +114,7 @@ const Profile = () => {
                 <ItemCard key={item.id} item={item} />
               ))
             ) : (
-              <p className="text-[#9CA7B4] text-[18px] col-span-12 text-center">
+              <p className="text-[#9CA7B4] text-[14px] xs:text-[18px] col-span-12 text-center">
                 {activeTab === 'favorites'
                   ? 'No favorites added yet.'
                   : 'No purchases made yet.'}

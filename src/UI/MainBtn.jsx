@@ -59,7 +59,7 @@ const MainBtn = ({
             hoverShadow: "#009900",
             innerShadow: "#4dff4d",
         },
-        white:{
+        white: {
             gradientFrom: "#FFFFFF",
             gradientTo: "#E0E0E0",
             shadow: "#E0E0E0",
@@ -141,7 +141,7 @@ const MainBtn = ({
                 onClick={onClick}
                 style={buttonStyle}
                 className={`
-          main-btn relative p-[2px] group rounded-[50px] overflow-hidden
+          main-btn relative p-[2px] group rounded-[40px] xs:rounded-[50px] overflow-hidden
           disabled:animate-none disabled:cursor-default
           active:border-[${colors.activeBorder}]
           active:shadow-[0_4px_0_0_${colors.activeShadow}]
@@ -154,23 +154,25 @@ const MainBtn = ({
                 {!disabled && (
                     <div className="absolute top-0 left-0 w-full h-full animate-rotate-gradient opacity-0 duration-300" />
                 )}
-                <div className="flex justify-center items-center rounded-[50px]">
+                <div className="flex justify-center items-center rounded-[40px] xs:rounded-[50px] h-full">
                     <span
                         style={spanStyle}
                         className={`
-              relative z-10 text-[18px] leading-[24px] font-[700]
-              text-white px-[36px] py-[18px] rounded-[50px] cursor-pointer
-              transition-all duration-300 group ${spanClass}
+              relative z-10 h-full text-[16px] xs:text-[18px] font-[700]
+              text-white px-[36px] py-[12px] xs:py-[18px] rounded-[40px] xs:rounded-[50px] cursor-pointer
+              transition-all duration-300 group ${spanClass} ${colorScheme}
             `}
                     >
-                        <div
-                            style={innerDivStyle}
-                            className={`
-                w-full h-full opacity-0 px-[36px] py-[23px] absolute rounded-[50px]
+                        {!disabled && (
+                            <span
+                                style={innerDivStyle}
+                                className={`
+                hideable w-full h-full opacity-0 px-[36px] py-[17px] xs:py-[23px] absolute rounded-[40px] xs:rounded-[50px]
                 top-0 left-0
                 transition-all duration-300 group-hover:opacity-100
               `}
-                        />
+                            />
+                        )}
                         {text}
                     </span>
                 </div>

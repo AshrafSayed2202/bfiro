@@ -14,6 +14,8 @@ import project3 from "../../assets/images/project3.png";
 import project4 from "../../assets/images/project4.png";
 import Side from "../../UI/Side";
 import ConnectForm from "../../UI/ConnectForm";
+import PriceCheckMark from "../../assets/images/svgs/PriceCheckMark";
+import PriceCheckMarkColored from "../../assets/images/svgs/PriceCheckMarkColored";
 const Pricing = () => {
   const [isOpen, setIsOpen] = useState(false);
   const items = [
@@ -138,7 +140,7 @@ const Pricing = () => {
         <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
           <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
         </div>
-        <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[100px] sm:mt-[150px] pb-[50px] px-4 sm:px-0">
+        <div className="content-contain mx-auto xs:text-center flex flex-col justify-start xs:items-center flex-1 mt-[100px] sm:mt-[150px] pb-[50px]">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -153,16 +155,20 @@ const Pricing = () => {
             className="text-[#9CA7B4] text-[18px] sm:text-[24px] font-[300] leading-[120%] mt-[20px] mb-[50px] sm:mb-[100px] select-none max-w-[800px]">
             Prices suit with your business
           </motion.span>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full"
+          >
             {items.map((item, index) => (
               <Card
                 key={index}
-                animateInint={{ opacity: 0 }}
-                animateWhileInView={{ opacity: 1 }}
                 className={
-                  "flex flex-col px-4 sm:px-6 md:px-[40px] justify-start items-start pt-10 md:pt-[60px] pb-8 md:pb-[36px] relative"
+                  "flex flex-col px-4 sm:px-6 md:px-[36px] justify-start items-start pt-10 md:pt-[60px] pb-8 md:pb-[36px] relative overflow-visible group hover:!bg-[#171718] trans-3"
                 }
               >
+                <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                 <h2
                   className={`bg-[linear-gradient(-190deg,#1fccff,#3060ff)] bg-clip-text text-transparent font-[600] text-[24px] sm:text-[32px] transition-opacity duration-500 `}
                 >
@@ -192,7 +198,14 @@ const Pricing = () => {
                 <ul className="flex flex-col gap-[16px] text-[16px] sm:text-[20px] leading-[16px] font-[600] mt-[34px] mb-[64px]">
                   {item.list.map((li, ix) => (
                     <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
-                      <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
+                      <span className="relative">
+                        <span>
+                          <PriceCheckMark />
+                        </span>
+                        <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 trans-3">
+                          <PriceCheckMarkColored />
+                        </span>
+                      </span>
                       {li}
                     </li>
                   ))}
@@ -221,8 +234,9 @@ const Pricing = () => {
                 </div>
               </Card>
             ))}
-          </div>
-          <Card className={"w-full p-4 sm:p-8 md:p-[50px] mt-4 relative"}>
+          </motion.div>
+          <Card className={"w-full h-full p-4 sm:p-8 md:p-[50px] mt-4 relative overflow-visible group hover:!bg-[#171718] trans-3"}>
+            <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -286,7 +300,7 @@ const Pricing = () => {
             animateWhileInView={{ opacity: 1 }}
             animateTransition={{ duration: 1.5, delay: 1 }}
             className={
-              "col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-4 w-full gap-4 items-center p-0 relative bg-transparent"
+              "col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-4 w-full gap-4 items-center !p-0 relative bg-transparent"
             }
           >
             {products.map((item) => (

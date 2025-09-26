@@ -248,13 +248,25 @@ input {
   filter: blur(15px);
 }
 
-.main-btn:disabled>div>span>div,
-.main-btn:active>div>span>div {
+.main-btn:disabled span.hideable,
+.main-btn:active span.hideable {
   display: none !important;
 }
 
-.main-btn:active>div>span {
+.main-btn:active>div>span.blue {
   background-image: linear-gradient(100deg, #0082a9, #002a94) !important;
+}
+
+.main-btn:active>div>span.red {
+  background-image: linear-gradient(100deg, #cc0000, #b30000) !important;
+}
+
+.main-btn:active>div>span.green {
+  background-image: linear-gradient(100deg, #00cc00, #00b300) !important;
+}
+
+.main-btn:active>div>span.white {
+  background-image: linear-gradient(100deg, #e0e0e0, #b1b1b1) !important;
 }
 
 .main-btn:disabled>div>span {
@@ -420,34 +432,42 @@ input {
 }
 
 .filter-blur {
+  -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
 }
 
 .filter-blur-2 {
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 }
 
 .filter-blur-3 {
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 
 .filter-blur-4 {
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
 .filter-blur-5 {
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
 .filter-blur-6 {
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
 .filter-blur-7 {
+  -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
 }
 
 .filter-blur-8 {
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 

@@ -12,7 +12,7 @@ const Card = ({
       whileInView={animateWhileInView}
       transition={animateTransition || { duration: 1, delay: 0.6 }}
       viewport={{ once: true }}
-      className={`rounded-[20px] bg-[#171718CC] overflow-hidden p-[35px] md:p-10 ${className}`}
+      className={`rounded-[20px] bg-[#171718CC] overflow-hidden p-[16px] xs:p-[35px] md:p-10 ${className}`}
     >
       {children}
     </motion.div>

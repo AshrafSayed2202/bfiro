@@ -28,11 +28,14 @@ import long from "../../assets/images/long.png";
 import pc5 from "../../assets/images/pc5.png";
 import { IoCloseOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import Cart from "../../assets/images/svgs/Cart";
+import { GoComment } from "react-icons/go";
 
 const ProductDetails = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [preview, setPreview] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const items = [
     {
       id: 1,
@@ -69,14 +72,21 @@ const ProductDetails = () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [preview]);
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 150);
+    };
 
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <div className="flex flex-col pt-[165px] content-contain ">
+    <div className="flex flex-col pt-[165px] ">
       {preview && (
         <div className="fixed top-0 left-0 w-full flex items-start justify-center h-full overflow-y-auto z-[999] bg-[#171718E5]">
           <button
             onClick={() => setPreview(false)}
-            className="fixed top-[30px] text-[#9CA7B4] trans-3 hover:border-[white] right-[30px] size-[55px] border-[3px] border-[#424242] rounded-full flex items-center justify-center"
+            className="fixed top-[30px] text-[#9CA7B4] trans-3 hover:border-[white] right-[30px] size-[40px] sm:size-[55px] border-[3px] border-[#424242] rounded-full flex items-center justify-center"
           >
             <IoCloseOutline className="text-[46px]" />
           </button>
@@ -90,35 +100,37 @@ const ProductDetails = () => {
         <img src={pc5} className="w-full h-full object-cover" />
         <div className="absolute bottom-[-50px] left-[-50px] w-[calc(100%+50px)] h-[150px] bg-black blur-lg z-[1]"></div>
       </div>
-      <h1 className="text-[32px] font-[600] mb-[16px] leading-[38px] relative z-[3]">
-        VidMagic - AI Text to video creator app
-      </h1>
-      <h4 className="text-[20px] font-[300] text-[#9CA7B4] mb-[32px] leading-[28px] relative z-[3]">
+      <div className={` w-screen text-[20px] xs:text-[32px] font-[600] mb-[16px] leading-[38px] z-[99] sticky top-[90px] md:top-[100px] pt-1 xs:pt-3 pb-2 xs:pb-5 ${scrolled ? "bg-[rgba(24,24,24,0.98)] filter-blur-4" : "bg-transparent"}`}>
+        <h1 className={` content-contain line-clamp-1`}>
+          VidMagic - AI Text to video creator app
+        </h1>
+      </div>
+      <h4 className="text-[20px] font-[300] text-[#9CA7B4] mb-[32px] leading-[28px] relative z-[3] content-contain">
         AI Text To Video App
       </h4>
-      <div className="flex items-center justify-start gap-[16px] text-[24px] relative z-[3] font-[300] text-[#9CA7B4] mb-[32px]">
+      <div className="flex items-center justify-start gap-1 md:gap-[16px] md:text-[24px] relative z-[3] font-[300] text-[#9CA7B4] mb-[32px] content-contain">
         <div className="bg-black size-[60px] rounded-full flex items-center justify-center">
-          <img src={smallLogo} className="h-[41px] " />
+          <img src={smallLogo} className="h-[32px] md:h-[41px] " />
         </div>
-        <Link to="/">BeFiro</Link>
+        <Link to="/">Bfiro</Link>
         <MdOutlineArrowRight className="text-[20px]" />
         <Link to="/products/ui-kits">UI Kits</Link>
         <MdOutlineArrowRight className="text-[20px]" />
         <div>Figma Resources</div>
-        <div className="bg-[#424242] size-[40px] rounded-full flex items-center justify-center">
-          <img src={figma} className="size-[24px] " />
+        <div className="bg-[#424242] size-[32px] md:size-[40px] rounded-full flex items-center justify-center">
+          <img src={figma} className="size-[16px] md:size-[24px] " />
         </div>
       </div>
-      <div className="flex gap-[32px] justify-start items-start relative z-[3]">
-        <div className="w-[800px] flex flex-col gap-[48px]">
-          <div className="flex flex-col gap-[6px]">
+      <div className="flex gap-[32px] flex-col lg:flex-row justify-start items-start relative z-[3] content-contain xl:gap-[48px]">
+        <div className="w-full lg:w-[800px] flex flex-col gap-[48px] overflow-hidden sm:overflow-visible">
+          <div className="flex flex-col gap-[6px] w-full max-w-[800px] mx-auto">
             <Swiper
               effect={"cards"}
               grabCursor={false}
               modules={[EffectCards, Pagination]}
               loop={true}
               spaceBetween={-60}
-              className="w-[calc(100%)] ml-[-90px]"
+              className="w-[calc(90%)] mr-auto sm:mr-[90px]"
               dir="rtl"
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -126,7 +138,7 @@ const ProductDetails = () => {
               {[pc1, pc2, pc3, pc4].map((img, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className="bg-[#1e1e1e] rounded-[20px] overflow-hidden text-white h-[544px] flex items-center justify-center shadow-lg"
+                    className="bg-[#1e1e1e] rounded-[20px] overflow-hidden text-white w-full flex items-center justify-center shadow-lg"
                     style={{
                       aspectRatio: "151/118",
                     }}
@@ -136,7 +148,7 @@ const ProductDetails = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="bg-[#171718CC] rounded-[25px] h-[92px] flex items-center justify-between pl-[3px] pr-[18px] overflow-hidden">
+            <div className="bg-[#171718CC] rounded-[25px] h-[92px] flex items-center max-w-full justify-between pl-[3px] pr-[18px] overflow-hidden">
               <CircleBtn
                 to={""}
                 handleClick={() => swiperRef.current?.slideNext()}
@@ -162,7 +174,7 @@ const ProductDetails = () => {
           </div>
           <div>
             <h3 className="text-[32px] font-[400] leading-[40px]">Overview</h3>
-            <div className="text-[20px] font-[300] text-[#9CA7B4] leading-[32px] mt-[16px]">
+            <div className="text-[20px] font-[300] text-[#9CA7B4] leading-[32px] mt-[16px] max-w-[90%]">
               Overview &nbsp;&nbsp; VidMagic is a cutting-edge mobile app UI kit
               crafted to empower creators and content enthusiasts to transform
               text into stunning videos effortlessly. With sleek, modern designs
@@ -189,7 +201,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-[#171718CC] bgSquares flex flex-col gap-[32px] rounded-[30px] p-[30px] sticky top-[140px]">
+        <div className="flex-1 bg-[#171718CC] bgSquares flex flex-col gap-[15px] rounded-[30px] p-[30px] sticky top-[210px] z-10 max-w-full">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t to-[#141414] rounded-[20px] from-[#121212fa] z-[-1]"></div>
           <h3 className="text-[32px] font-[400] leading-[40px]">Highlights</h3>
           <ul className="flex flex-col gap-[24px] text-[20px] leading-[24px] font-[300] text-[#9CA7B4]">
@@ -222,44 +234,48 @@ const ProductDetails = () => {
             <FiDownloadCloud className="text-[32px]" />
             135.6 MB in <span>1 File</span>
           </div>
-          <div className="flex items-center gap-[20px] justify-between">
-            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px]">
+          <div className="flex items-center gap-2 sm:gap-5 flex-wrap">
+            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]">
               6 <Heart />
             </button>
-            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px]">
-              6 <Comment />
+            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]">
+              6 <GoComment />
             </button>
             <button
               onClick={() => setPreview(true)}
-              className="flex items-center relative z-[2] gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px]"
+              className="flex items-center relative z-[2] gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]"
             >
               Preview
             </button>
             <MainBtn
-              text="Add to Cart 20$"
-              className={"!px-0 !py-0 "}
+              text={<Cart fill="white" />}
+              className={"!px-0 !py-0  !text-white"}
               spanClass={"!px-6 !py-[12px] !text-[16px] !font-[600]"}
+              hasStars={false}
             />
           </div>
         </div>
       </div>
-      <div className="mt-[32px] bg-[#1D1C1E] opacity-95 rounded-[40px] p-[18px] flex items-center justify-between">
-        <div className="flex items-center justify-center gap-[16px]">
-          <div className="size-[50px] rounded-full border-[2px] border-[#424242] flex items-center justify-center">
-            <BsCloudArrowDownFill className="text-[24px]" />
+      <div className=" content-contain">
+        <div className="mt-[32px] bg-[#1D1C1E] opacity-95 rounded-[40px] p-[18px] flex items-center justify-between">
+          <div className="flex items-center justify-center gap-[16px]">
+            <div className="size-[50px] rounded-full border-[2px] border-[#424242] flex items-center justify-center">
+              <BsCloudArrowDownFill className="text-[24px]" />
+            </div>
+            <p className="text-[16px] font-[300] leading-[24px] text-[#1FCCFF]">
+              You can download this product with the Yearly-Access Pass.
+            </p>
           </div>
-          <p className="text-[16px] font-[300] leading-[24px] text-[#1FCCFF]">
-            You can download this product with the Yearly-Access Pass.
-          </p>
+          <MainBtn
+            text="Get Yearly Access"
+            className={"!px-0 !py-0 "}
+            spanClass={"!px-7 !py-[10px] !text-[16px] !font-[600]"}
+            hasStars={false}
+          />
         </div>
-        <MainBtn
-          text="Get Yearly Access"
-          className={"!px-0 !py-0 "}
-          spanClass={"!px-7 !py-[10px] !text-[16px] !font-[600]"}
-        />
       </div>
-      <div className="mx-[180px] flex flex-col gap-[24px] mt-[50px]">
-        <div className="bg-[#1D1C1E] opacity-95 rounded-[50px] pt-[48px] flex flex-col gap-[32px] overflow-hidden">
+      <div className="flex flex-col items-center gap-[24px] mt-[50px] content-contain">
+        <div className="bg-[#1D1C1E] opacity-95 rounded-[50px] pt-[48px] flex flex-col gap-[32px] overflow-hidden content-contain mx-auto w-full xs:w-[80%]">
           <div className="px-[64px] flex items-center justify-between">
             <h2 className="text-[26px] font-[400] leading-[40px]">Comments</h2>
             <div className="flex items-center justify-center gap-[24px]">
@@ -278,7 +294,7 @@ const ProductDetails = () => {
               </div>
               <div className="flex flex-col gap-[6px]">
                 <h4 className="text-[18px] font-[400] leading-[24px] text-white">
-                  Befiro Studio
+                  Bfiro Studio
                 </h4>
                 <p className="text-[16px] font-[300] leading-[28px] text-[#9CA7B4]">
                   Absolutely Amazing!
@@ -297,10 +313,11 @@ const ProductDetails = () => {
               text="Log in"
               className={"!px-0 !py-0 "}
               spanClass={"!px-12 !py-[14px] !text-[16px] !font-[600]"}
+              hasStars={false}
             />
           </div>
         </div>
-        <div className="flex flex-col gap-[5px]">
+        <div className="flex flex-col gap-[5px] content-contain w-full xs:w-[80%]">
           <Card
             animateInint={{ opacity: 0 }}
             animateWhileInView={{ opacity: 1 }}

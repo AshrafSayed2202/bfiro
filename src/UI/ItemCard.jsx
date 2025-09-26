@@ -1,7 +1,7 @@
 import React from "react";
 import bfiro from "../assets/images/smallLogo.png";
 import { MdOutlineArrowRight } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Heart from "../assets/images/svgs/Heart";
 import Cart from "../assets/images/svgs/Cart";
 import View from "../assets/images/svgs/View";
@@ -18,9 +18,11 @@ const ItemCard = ({ item, className }) => {
     const isInCart = cart.items.some(cartItem => cartItem.id === id);
     // Check if the item is in favorites
     const isFavorite = favorites.items.some(favItem => favItem.id === id);
+    const navigate = useNavigate();
 
     // Handle cart toggle
-    const handleCartToggle = () => {
+    const handleCartToggle = (e) => {
+        e.stopPropagation(); // Prevent card click from triggering
         if (isInCart) {
             removeItem(id);
             toast.info(`${title} removed from cart`, {
@@ -37,7 +39,8 @@ const ItemCard = ({ item, className }) => {
     };
 
     // Handle favorite toggle
-    const handleFavoriteToggle = () => {
+    const handleFavoriteToggle = (e) => {
+        e.stopPropagation(); // Prevent card click from triggering
         if (isFavorite) {
             removeFavorite(id);
         } else {
@@ -45,12 +48,20 @@ const ItemCard = ({ item, className }) => {
         }
     };
 
+    // Handle card click for navigation
+    const handleCardClick = () => {
+        navigate(`/products/browse/${id}`);
+    };
+
     return (
         <div
-            className={`flex flex-col justify-between group/group1 cursor-pointer gap-[10px] bg-[#171718CC] rounded-[20px] overflow-hidden min-h-[355px] ${className}`}
+            className={`flex flex-col justify-between group/group1 cursor-pointer gap-[10px] bg-[#171718CC] rounded-[20px] overflow-hidden min-h-[355px] !max-w-full ${className}`}
+            onClick={handleCardClick}
         >
             <div className="h-[256px] flex items-center justify-center relative">
                 <div className="absolute top-0 left-0 w-full h-full bg-[#171718CC] opacity-0 group-hover/group1:opacity-80 trans-3"></div>
+
+                {/* Favorite button - top right */}
                 <div className="absolute text-[#9CA7B4] group-hover/group1:opacity-100 opacity-0 trans-3 top-[20px] right-[20px] flex items-center justify-end gap-[5px]">
                     {popularity && (
                         <span className="text-[14px] font-[600]">{popularity}</span>
@@ -62,10 +73,12 @@ const ItemCard = ({ item, className }) => {
                         <Heart isActive={isFavorite} />
                     </button>
                 </div>
+
+                {/* Action buttons - center */}
                 <div className="absolute text-[#9CA7B4] group-hover/group1:opacity-100 opacity-0 gap-[30px] trans-3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full">
                     <Link
                         className="size-[55px] border-[3px] group flex items-center justify-center border-[#424242] hover:border-[#9CA7B4] trans-3 rounded-full"
-                        to={`/browse/${id}`}
+                        to={`products/browse/${id}`}
                     >
                         <View />
                     </Link>
@@ -76,33 +89,53 @@ const ItemCard = ({ item, className }) => {
                         <Cart isActive={isInCart} />
                     </button>
                 </div>
-                <img src={img} className="h-full w-full object-cover" />
+
+                <img src={img} className="h-full w-full object-cover" alt={title} />
             </div>
+
+            {/* Content area */}
             <div className="flex flex-col gap-[8px] px-[20px]">
                 <div className="text-[#9CA7B4] truncate font-[300] flex items-center justify-start">
                     {title}
                 </div>
-                <div className="flex items-center justify-between pb-[10px]">
-                    <div className="flex items-center gap-[3px] text-[#9CA7B4] font-[300] text-[14px]">
-                        <div className="min-w-[30px] flex items-center justify-center mr-[8px] bg-[#000000] rounded-full size-[30px] flex-1 overflow-hidden">
-                            <img className="size-[14px] object-contain" src={bfiro} />
-                        </div>
-                        <span>BeFiro</span>
-                        <MdOutlineArrowRight className="text-[22px]" />
-                        <p className="text-left text-nowrap text-ellipsis w-[100px] overflow-hidden">{type}</p>
-                    </div>
-                    {discount ? (
-                        <div className="flex items-center gap-2">
-                            <span className="opacity-50 line-through">${price}</span>
-                            <span className=" font-[600]">${(price - discount) > 0 ? (price - discount) : 0}</span>
-                        </div>
-                    ) : (
-                        <div>${price}</div>
-                    )}
 
+                {/* Breadcrumb and Price */}
+                <div className="flex items-center justify-between pb-[10px]">
+                    {/* Breadcrumb - Make clickable but prevent card navigation */}
+                    <div
+                        className="flex items-center gap-[3px] text-[#9CA7B4] font-[300] text-[14px] cursor-pointer hover:text-white transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent card click
+                            // Add your breadcrumb navigation logic here
+                            // For example: navigate to category page based on type
+                            // navigate(`/category/${type}`);
+                            console.log('Breadcrumb clicked for:', type);
+                        }}
+                    >
+                        <div className="min-w-[30px] flex items-center justify-center mr-[8px] bg-[#000000] rounded-full size-[30px] flex-1 overflow-hidden">
+                            <img className="size-[14px] object-contain" src={bfiro} alt="Bfiro" />
+                        </div>
+                        <span>Bfiro</span>
+                        <MdOutlineArrowRight className="text-[22px]" />
+                        <p className="text-left text-nowrap text-ellipsis w-[100px] overflow-hidden">
+                            {type}
+                        </p>
+                    </div>
+
+                    {/* Price section */}
+                    <div className="flex items-center gap-2">
+                        {discount ? (
+                            <>
+                                <span className="opacity-50 line-through">${price}</span>
+                                <span className="font-[600]">${(price - discount) > 0 ? (price - discount) : 0}</span>
+                            </>
+                        ) : (
+                            <span className="font-[600]">${price}</span>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -49,13 +49,28 @@ const cartReducer = (state, action) => {
 export const CartProvider = ({ children }) => {
     const [cart, dispatch] = useReducer(cartReducer, { items: [] });
 
+    // Sanitize item to ensure only serializable properties are included
+    const sanitizeItem = (item) => ({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        discount: item.discount || 0,
+        img: item.img,
+        quantity: item.quantity || 1,
+        // Add other serializable properties as needed
+    });
+
     // Load cart from localStorage on mount
     useEffect(() => {
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {
             try {
                 const parsedCart = JSON.parse(savedCart);
-                dispatch({ type: 'LOAD_CART', payload: parsedCart.items || [] });
+                // Validate and sanitize loaded items
+                const sanitizedItems = Array.isArray(parsedCart.items)
+                    ? parsedCart.items.map(sanitizeItem)
+                    : [];
+                dispatch({ type: 'LOAD_CART', payload: sanitizedItems });
             } catch (error) {
                 console.error('Error parsing cart from localStorage:', error);
             }
@@ -65,14 +80,18 @@ export const CartProvider = ({ children }) => {
     // Save cart to localStorage whenever it changes
     useEffect(() => {
         try {
-            localStorage.setItem('cart', JSON.stringify(cart));
+            // Create a sanitized version of the cart for storage
+            const sanitizedCart = {
+                items: cart.items.map(sanitizeItem),
+            };
+            localStorage.setItem('cart', JSON.stringify(sanitizedCart));
         } catch (error) {
             console.error('Error saving cart to localStorage:', error);
         }
     }, [cart]);
 
     const addItem = (item) => {
-        dispatch({ type: 'ADD_ITEM', payload: item });
+        dispatch({ type: 'ADD_ITEM', payload: sanitizeItem(item) });
     };
 
     const removeItem = (id) => {

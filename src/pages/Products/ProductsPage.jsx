@@ -10,7 +10,7 @@ import project4 from "../../assets/images/project4.png";
 import Side from "../../UI/Side";
 import ConnectForm from "../../UI/ConnectForm";
 import { FaSort, FaArrowRight, FaArrowLeft } from "react-icons/fa6";
-import { RiDashboardFill } from "react-icons/ri";
+import FormatsIcon from "../../assets/images/Formats/formats.svg";
 import IllustratorIcon from "../../assets/images/Formats/ai-prog.svg";
 import PowerPointIcon from "../../assets/images/Formats/powerpoint-prog.svg";
 import Max3DIcon from "../../assets/images/Formats/3ds-prog.svg";
@@ -42,7 +42,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
     const [products, setProducts] = useState([]);
 
     const formatIcons = {
-        "All Format": <RiDashboardFill className="w-6 h-6" />,
+        "Any format": <img src={FormatsIcon} alt="Any format" className="w-6 h-6" />,
         Illustrator: <img src={IllustratorIcon} alt="Illustrator" className="w-6 h-6" />,
         PowerPoint: <img src={PowerPointIcon} alt="PowerPoint" className="w-6 h-6" />,
         "3D Studio Max": <img src={Max3DIcon} alt="3D Studio Max" className="w-6 h-6" />,
@@ -107,7 +107,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
     };
     const clearLabels = () => setActiveLabels(new Set());
 
-    const [selectedFormat, setSelectedFormat] = useState("All Format");
+    const [selectedFormat, setSelectedFormat] = useState("Any format");
     const [formatOpen, setFormatOpen] = useState(false);
     const toggleFormatDropdown = () => setFormatOpen(!formatOpen);
     const selectFormat = (f) => {
@@ -130,7 +130,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
     if (activeLabels.size > 0) {
         filtered = filtered.filter((p) => p.labels.some((l) => activeLabels.has(l.text)));
     }
-    if (selectedFormat !== "All Format") {
+    if (selectedFormat !== "Any format") {
         filtered = filtered.filter((p) => p.formats.some((fmt) => fmt.text === selectedFormat));
     }
 
@@ -310,26 +310,26 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
             <Side isOpen={isOpen} setIsOpen={setIsOpen}>
                 <ConnectForm />
             </Side>
-            <section className=" pt-[100px]  min-h-svh flex flex-col">
+            <section className="relative overflow-x-hidden pt-[100px] overflow-y-auto min-h-svh flex flex-col">
                 <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
-                    <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
+                    <img src={bg} className="min-w-full min-h-screen object-cover absolute top-0 " />
                 </div>
-                <div className="content-contain mx-auto text-center flex flex-col items-center flex-1 mt-[150px] pb-[50px]">
+                <div className="content-contain mx-auto xs:text-center flex flex-col xs:items-center flex-1 mt-[100px] sm:mt-[150px] pb-[50px]">
                     <motion.h1
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="font-[600] text-[48px] md:text-[64px] leading-[100%] select-none">{title}
+                        className="font-[600] text-[36px] sm:text-[48px] md:text-[64px] leading-[100%] select-none">{title}
                     </motion.h1>
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-[#9CA7B4] text-[24px] font-[300] leading-[100%] mt-[20px] mb-[150px] select-none">
+                        className="text-[#9CA7B4] text-[18px] sm:text-[24px] font-[300] leading-[120%] mt-[20px] mb-[50px] sm:mb-[100px] select-none">
                         {products.length} {subTitle}
                     </motion.span>
-                    <div className={`w-screen mb-8 p-3 sticky top-[90px] md:top-[100px] z-10 ${scrolled ? "bg-[#121212a6] filter-blur-4" : "bg-transparent"}`}>
-                        <div className="products-labels content-contain flex flex-row gap-4 justify-between items-center">
+                    <div className={`w-screen mb-4 py-3 md:px-3 sticky top-[90px] md:top-[100px] z-10 ${scrolled ? "bg-[rgba(24,24,24,0.98)] filter-blur-4" : "bg-transparent"}`}>
+                        <div className="products-labels content-contain flex flex-row gap-4 justify-between items-center sm:!px-0 ">
                             <div className="relative flex gap-2 text-[18px] font-[600] overflow-x-auto sm:overflow-hidden scrollbar-hide" >
                                 <button
                                     onClick={scrollLeft}
@@ -339,7 +339,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                                 </button>
                                 <button
                                     onClick={scrollRight}
-                                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#121212] border-[2px] border-[#323232] hover:border-white p-2 h-full aspect-square rounded-full text-[#9CA7B4] shadow-2xl hidden sm:block ${showRight ? 'sm:!flex justify-center items-center' : '!hidden'}`}
+                                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[rgb(24,24,24)] trans-3 border-[2px] border-[#323232] hover:border-white p-2 h-full aspect-square rounded-full text-[#9CA7B4] shadow-2xl hidden sm:block ${showRight ? 'sm:!flex justify-center items-center' : '!hidden'}`}
                                 >
                                     <FaArrowRight className="w-6 h-6" />
                                 </button>
@@ -362,19 +362,19 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                                 </div>
                             </div>
                             <div className="items-center gap-4 hidden sm:flex">
-                                <div className="format-filter relative" ref={formatRef}>
+                                <div className="format-filter relative min-w-[182px] flex items-center justify-end" ref={formatRef}>
                                     {formatsList.length > 0 && (
                                         <button
                                             onClick={toggleFormatDropdown}
-                                            className={`px-4 py-2 border-[2px] text-nowrap border-[#424242] rounded-[50px] flex items-center gap-2 text-[16px] sm:text-[18px] font-[600] p-4 hover:border-white text-[#9CA7B4] hover:text-white duration-300 ${selectedFormat !== "All Format" ? "!border-[#1FCCFF] !text-white" : ""}`}
+                                            className={`px-4 py-2 border-[2px] w-fit max-w-full text-nowrap border-[#424242] rounded-[50px] flex items-center gap-2 text-[16px] sm:text-[18px] font-[600] p-4 hover:border-white text-[#9CA7B4] hover:text-white duration-300 ${selectedFormat !== "Any format" ? "!border-[#1FCCFF] !text-white" : ""}`}
                                         >
-                                            {selectedFormat === "All Format" ? "Formats" : selectedFormat}
                                             {formatIcons[selectedFormat]}
+                                            {selectedFormat === "Any format" ? "Format" : selectedFormat}
                                         </button>
                                     )}
                                     {formatOpen && (
-                                        <div className="absolute top-full right-0 mt-2 bg-[#262626] w-[600px] shadow-lg rounded-[30px] grid grid-cols-3 gap-3 z-10 p-4">
-                                            {["All Format", ...formatsList].map((f) => (
+                                        <div className="absolute top-full right-0 mt-2 bg-[#262626] w-full sm:w-[600px] shadow-lg rounded-[30px] grid grid-cols-2 sm:grid-cols-3 gap-3 z-10 p-4">
+                                            {["Any format", ...formatsList].map((f) => (
                                                 <button
                                                     key={f}
                                                     onClick={() => selectFormat(f)}
@@ -416,7 +416,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                         animateWhileInView={{ opacity: 1 }}
                         animateTransition={{ duration: 1.5, delay: 1 }}
                         className={
-                            "col-span-12 grid sm:grid-cols-4 mt-[5px] w-full gap-[12px] items-center !p-3 relative bg-transparent"
+                            "col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-[5px] w-full gap-4 items-center !p-0 relative bg-transparent"
                         }
                     >
                         <AnimatePresence>
@@ -427,6 +427,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.3 }}
+                                    className="max-w-full"
                                 >
                                     <ItemCard
                                         item={item}
@@ -438,7 +439,9 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                     </Card>
 
                     {visibleCount < sorted.length && (
-                        <MainBtn text="View more" onClick={loadMore} className="mx-auto mt-8" />
+                        <div className="overflow-hidden mx-auto mt-8">
+                            <MainBtn text="View more" onClick={loadMore} />
+                        </div>
                     )}
                 </div>
             </section>

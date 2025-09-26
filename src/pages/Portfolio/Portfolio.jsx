@@ -4,7 +4,6 @@ import Card from "../../UI/Card";
 import PortfolioCard from "../../UI/PortfolioCard";
 import CompaniesSection from "../../components/CompaniesSection";
 import HaveDesignSection from "../../components/HaveDesignSection";
-import fawzy from "../../assets/images/fawzy.png";
 import oneBg from "../../assets/images/portfolio/1bg.webp";
 import twoBg from "../../assets/images/portfolio/2bg.webp";
 import threeBg from "../../assets/images/portfolio/3bg.webp";
@@ -27,13 +26,17 @@ import p7p1 from '../../assets/images/portfolio/p7p1.webp';
 import p7p2 from '../../assets/images/portfolio/p7p2.webp';
 import p7p3 from '../../assets/images/portfolio/p7p3.webp';
 import p7p4 from '../../assets/images/portfolio/p7p4.webp';
+import fawzi from '../../assets/images/portfolio/Fawzi.webp';
+import habiba from '../../assets/images/portfolio/Habiab.webp';
+import mario from '../../assets/images/portfolio/Mario.webp';
+import salman from '../../assets/images/portfolio/Salman.webp';
 import project1landing from '../../assets/images/portfolio/Project1.webp';
 import project2landing from '../../assets/images/portfolio/Project2.webp';
 import project3landing from '../../assets/images/portfolio/Project3.webp';
-import project4landing from '../../assets/images/portfolio/Project4.webp';
+import project4landing from '../../assets/images/portfolio/Project4.png';
 import project5landing from '../../assets/images/portfolio/Project5.webp';
 import project6landing from '../../assets/images/portfolio/Project6.webp';
-import project7landing from '../../assets/images/portfolio/Project7.webp';
+import project7landing from '../../assets/images/portfolio/Project7.png';
 import { useEffect, useState } from "react";
 import CircleBtn from "../../UI/CircleBtn";
 import { IoCloseOutline } from "react-icons/io5";
@@ -41,18 +44,32 @@ import { IoCloseOutline } from "react-icons/io5";
 const partners = [
     {
         id: 1,
-        image: fawzy,
-        title: "ceo",
+        image: fawzi,
+        title: "Chief Executive Officer",
         name: "FAWZI SAYED.",
-        description: "I am a Product Designer based in Cairo."
+        description: "Driving innovation and growth while empowering the team to deliver world-class experiences."
     },
     {
         id: 2,
-        image: fawzy,
-        title: "Head of Designers",
+        image: habiba,
+        title: "Chief Technical Officer",
         name: "Habiba Ehab.",
-        description: "I’m Habiaba UI UX Team Leader and Founder in BeFiro."
-    }
+        description: "Turning creative ideas into successful digital products with a focus on user experience."
+    },
+    {
+        id: 3,
+        image: mario,
+        title: "Chief Operating Officer",
+        name: "Mario Miranda.",
+        description: "Blending design expertise with business strategy to shape the future of Bfiro."
+    },
+    {
+        id: 4,
+        image: salman,
+        title: "Chief Financial Officer",
+        name: "Muhammad Salman.",
+        description: "Ensuring financial stability and sustainable growth through smart strategies."
+    },
 ];
 
 const projectLandings = [
@@ -117,42 +134,42 @@ const Portfolio = () => {
                 <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
                     <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
                 </div>
-                <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
+                <div className="content-contain mx-auto xs:text-center flex flex-col justify-start xs:items-center flex-1 mt-[42px] xs:mt-[150px] pb-[50px]">
                     <motion.h1
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="font-[600] text-[48px] md:text-[64px] leading-[100%] select-none">
+                        className="font-[600] text-[36px] xs:text-[48px] md:text-[64px] leading-[100%] select-none">
                         Portfolio
                     </motion.h1>
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-[#9CA7B4] text-[24px] font-[300] leading-[100%] mt-[20px] mb-[150px] select-none">
+                        className="text-[#9CA7B4] text-[18px] xs:text-[24px] font-[300] leading-[100%] mt-[20px] mb-[42px] xs:mb-[150px] select-none">
                         We're working hard to bring you something amazing
                     </motion.span>
                     <div className="grid grid-cols-4 gap-[5px] w-full mb-[5px]">
-                        <Card className={'col-span-4 lg:col-span-2'}
+                        <Card className={'col-span-4 lg:col-span-2 !max-w-full'}
                             animateInint={{ opacity: 0 }}
                             animateWhileInView={{ opacity: 1 }}
                             animateTransition={{ duration: 1, delay: 0.6 }}
                         >
-                            <div className="flex w-full h-full rounded-lg overflow-hidden gap-6">
-                                <div className="rounded-[20px] !min-w-[350px] h-full relative">
+                            <div className="flex flex-col xs:flex-row w-full h-full rounded-lg overflow-hidden gap-6">
+                                <div className="rounded-[20px] xs:min-w-[350px] max-w-full h-full relative">
                                     <img
                                         src={partner.image}
                                         alt={partner.name}
-                                        className="h-full object-cover rounded-[20px] !w-[350px]"
+                                        className="h-full object-cover rounded-[20px] !w-full xs:!w-[350px]"
                                     />
                                 </div>
-                                <div className="flex flex-col justify-between text-left">
+                                <div className="flex flex-col justify-between text-left flex-1">
                                     <div className="leading-tight">
-                                        <h3 className="text-[20px] text-[#9CA7B4] uppercase font-light text-nowrap">{partner.title}</h3>
-                                        <h2 className="text-[48px] text-wrap font-[600] text-white mt-3 mb-4">{partner.name}</h2>
-                                        <p className="text-[20px] text-[#9CA7B4] font-[600]">{partner.description}</p>
+                                        <h3 className="text-[16px] xs:text-[20px] text-[#9CA7B4] capitalize font-light text-nowrap">{partner.title}</h3>
+                                        <h2 className="text-[36px] xs:text-[48px] text-wrap font-[600] text-white mt-3 mb-4">{partner.name}</h2>
+                                        <p className="text-[14px] xs:text-[18px] text-[#9CA7B4] font-[600]">{partner.description}</p>
                                     </div>
-                                    <div className="flex justify-between pb-2">
+                                    <div className="flex justify-between pb-2 w-full">
                                         <CircleBtn handleClick={handlePrev} text={"Back"} className={`mr-auto ${currentPartner === 0 ? "hidden" : ""}`} dir="left" />
                                         <CircleBtn handleClick={handleNext} text={"Next"} className={`ml-auto ${currentPartner === partners.length - 1 ? "hidden" : ""}`} />
                                     </div>
@@ -169,14 +186,14 @@ const Portfolio = () => {
                                 <span className="opacity-50">LATEST WORK AND</span> PORTFOLIO{" "}
                                 <span className="size-3 rounded-full bg-[#9CA7B4] inline-block ml-6" />
                             </Card>
-                            <div className="flex gap-[5px] items-center">
+                            <div className="flex flex-col xs:flex-row gap-[5px] items-center">
                                 <div className={'group w-full'} onClick={() => openModal(1)}>
                                     <PortfolioCard background={oneBg} >
                                         <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
                                             <img src={p1l} alt="project one landing" className="rounded-b-[20px] w-full" />
                                         </div>
                                         <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
-                                            <img src={p1l} alt="project one landing" className="rounded-t-[20px] w-full" />
+                                            <img src={p1l} alt="project one landing" className="w-full" />
                                         </div>
                                     </PortfolioCard>
                                 </div>
@@ -186,29 +203,29 @@ const Portfolio = () => {
                                             <img src={p2logo} alt="project two logo" />
                                         </div>
                                         <div className="absolute bottom-[-20px] left-1/2 translate-x-[-50%] w-[90%] translate-y-[80px] duration-700 group-hover:translate-y-[35px]">
-                                            <img src={p2l} alt="project two landing" className="rounded-t-[20px] w-full" />
+                                            <img src={p2l} alt="project two landing" className="w-full" />
                                         </div>
                                     </PortfolioCard>
                                 </div>
                             </div>
                         </div>
-                        <div className={'group col-span-2 lg:col-span-1'} onClick={() => openModal(3)}>
+                        <div className={'group col-span-4 xs:col-span-2 lg:col-span-1'} onClick={() => openModal(3)}>
                             <PortfolioCard background={threeBg} >
                                 <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
                                     <img src={p3l1} alt="project three landing" className="rounded-b-[20px] w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
-                                    <img src={p3l2} alt="project three landing" className="rounded-t-[20px] w-full" />
+                                    <img src={p3l2} alt="project three landing" className="w-full" />
                                 </div>
                             </PortfolioCard>
                         </div>
-                        <div className={'group col-span-2 lg:hidden'} onClick={() => openModal(5)}>
+                        <div className={'group col-span-4 xs:col-span-2 lg:hidden'} onClick={() => openModal(5)}>
                             <PortfolioCard background={fiveBg}>
                                 <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
                                     <img src={p5l} alt="project five landing" className="rounded-b-[20px] w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
-                                    <img src={p5l} alt="project five landing" className="rounded-t-[20px] w-full" />
+                                    <img src={p5l} alt="project five landing" className="w-full" />
                                 </div>
                             </PortfolioCard>
                         </div>
@@ -234,7 +251,7 @@ const Portfolio = () => {
                                     <img src={p5l} alt="project five landing" className="rounded-b-[20px] w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
-                                    <img src={p5l} alt="project five landing" className="rounded-t-[20px] w-full" />
+                                    <img src={p5l} alt="project five landing" className="w-full" />
                                 </div>
                             </PortfolioCard>
                         </div>
@@ -287,7 +304,7 @@ const Portfolio = () => {
                         <div className="relative flex items-center justify-center">
                             <button
                                 onClick={closeModal}
-                                className="fixed top-4 right-4 text-2xl font-bold text-[#9CA7B4] trans-3 self-end hover:border-[white]  size-[55px] border-[3px] border-[#424242] rounded-full flex items-center justify-center"
+                                className="fixed top-4 right-4 text-2xl font-bold text-[#9CA7B4] trans-3 self-end hover:border-[white] size-[40px] xs:size-[55px] border-[3px] border-[#424242] rounded-full flex items-center justify-center"
                             >
                                 <IoCloseOutline className="text-[46px]" />
                             </button>

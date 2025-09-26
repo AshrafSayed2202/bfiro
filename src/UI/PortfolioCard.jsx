@@ -5,7 +5,7 @@ const PortfolioCard = ({ background, children, className }) => {
 
     return (
         <motion.div
-            className={`relative w-full overflow-hidden shadow-lg transition-all duration-300 rounded-[20px] cursor-pointer !h-[356px] ${className}`
+            className={`relative w-full overflow-hidden shadow-lg transition-all duration-300 cursor-pointer !h-[356px] ${className}`
             }
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}

@@ -5,9 +5,9 @@ const Cart = ({ fill = "#9CA7B4" }) => {
     <svg
       width="32"
       height="32"
+      className="w-6 h-6 xs:w-8 xs:h-8 group"
       viewBox="0 0 32 32"
       fill="none"
-      className="group"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

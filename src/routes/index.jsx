@@ -27,7 +27,7 @@ const MainRoute = () => {
           <Route path="password-setup" element={<PasswordSetup />} />
           <Route path="/" element={<MainRoot />}>
             <Route index element={<Home />} />
-            <Route path="browse/:id" element={<ProductDetails />} />
+            <Route path="products/:type/:id" element={<ProductDetails />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />

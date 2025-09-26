@@ -48,7 +48,7 @@ function CustomInput({
             {(label && !secondLabel) && (
                 <span
                     ref={labelRef}
-                    className={`absolute top-0 left-5  px-2 bg-[#121212] text-[14px] z-[2] ${spanClass ? spanClass : ""} `}
+                    className={`absolute top-0 left-5  px-2 bg-[#121212] text-[10px] xs:text-[14px] z-[2] ${spanClass ? spanClass : ""} `}
                 >
                     {label} <span className="text-red-500 ">{required && "*"}</span>
                 </span>
@@ -57,13 +57,13 @@ function CustomInput({
                 <div className={`flex justify-between items-center w-[calc(100%-40px)] absolute top-0 left-5 z-[2] text-[16px] ${spanClass ? spanClass : ""} `}>
                     <span
                         ref={labelRef}
-                        className={`bg-[#121212] px-2 text-[14px]`}
+                        className={`bg-[#121212] px-2 text-[10px] xs:text-[14px]`}
                     >
                         {label} <span className="text-red-500 ">{required && "*"}</span>
                     </span>
                     <span
                         ref={secondLabelRef}
-                        className={`bg-[#121212] px-2 text-[14px] cursor-pointer hover:underline`}
+                        className={`bg-[#121212] px-2 text-[10px] xs:text-[14px] cursor-pointer hover:underline`}
                     >
                         {secondLabel} <span className="text-red-500 ">{required && "*"}</span>
                     </span>

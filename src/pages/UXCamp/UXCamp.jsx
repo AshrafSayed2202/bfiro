@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import bg from "../../assets/images/pageBg.png";
-import { RiCheckboxCircleFill } from "react-icons/ri";
 import MainBtn from '../../UI/MainBtn';
 import Stars from '../../assets/images/svgs/Stars';
 import uxAvatar from '../../assets/images/uxAvatar.png';
@@ -11,6 +10,9 @@ import uikit from '../../assets/images/uikit.jpg';
 import mobileTemplate from '../../assets/images/mobileTemplate.jpg';
 import landingTemplate from '../../assets/images/landingTemplate.jpg';
 import { RiDownloadLine } from "react-icons/ri";
+import Verified from '../../assets/images/svgs/Verified';
+import PriceCheckMark from '../../assets/images/svgs/PriceCheckMark';
+import PriceCheckMarkColored from '../../assets/images/svgs/PriceCheckMarkColored';
 
 const UXCamp = () => {
     const { id } = useParams();
@@ -60,7 +62,8 @@ const UXCamp = () => {
     const renderLeftContent = () => {
         if (caseType === 'not_purchased') {
             return (
-                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left">
+                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left relative overflow-visible group hover:!bg-[#171718]">
+                    <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1]" />
                     <h2 className="font-[600] text-[32px] mb-[4px] bg-[linear-gradient(90deg,#1fccff,#3060ff)] bg-clip-text text-transparent">{uxData.name}</h2>
                     <p className="text-[#9CA7B4] text-[20px]">Starts from</p>
                     <h1 className='text-[64px] leading-normal font-bold relative'>{uxData.price}<span className='text-[20px] font-[400] text-[#9CA7B4] line-through absolute top-[10px]'>{uxData.priceInc}</span></h1>
@@ -68,7 +71,7 @@ const UXCamp = () => {
                         {uxData.tags.map((tag, idx) => (
                             <span
                                 key={idx}
-                                className={`text-[${tag.color}] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap`}
+                                className={`text-[${tag.color}] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap`}
                             >
                                 {tag.label}
                             </span>
@@ -77,7 +80,14 @@ const UXCamp = () => {
                     <ul className="flex flex-col gap-[16px]">
                         {uxData.list.map((li, ix) => (
                             <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
-                                <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
+                                <span className="relative">
+                                    <span>
+                                        <PriceCheckMark />
+                                    </span>
+                                    <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 trans-3">
+                                        <PriceCheckMarkColored />
+                                    </span>
+                                </span>
                                 {li}
                             </li>
                         ))}
@@ -108,7 +118,8 @@ const UXCamp = () => {
             );
         } else if (caseType === 'purchased_not_started') {
             return (
-                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left">
+                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left relative overflow-visible group hover:!bg-[#171718] trans-3">
+                    <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                     <h2 className="font-[600] text-[32px] mb-[10px] bg-[linear-gradient(90deg,#1fccff,#3060ff)] bg-clip-text text-transparent">UX Camp</h2>
                     <p className="text-[#9CA7B4] text-[20px]">Starts from</p>
                     <h1 className='text-[64px] leading-normal font-bold relative'>$100<span className='text-[20px] font-[400] text-[#9CA7B4] line-through absolute top-[10px]'>$200</span></h1>
@@ -116,7 +127,7 @@ const UXCamp = () => {
                         {uxData.tags.map((tag, idx) => (
                             <span
                                 key={idx}
-                                className={`text-[${tag.color}] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap`}
+                                className={`text-[${tag.color}] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap`}
                             >
                                 {tag.label}
                             </span>
@@ -125,7 +136,14 @@ const UXCamp = () => {
                     <ul className="flex flex-col gap-[16px] mb-6">
                         {uxData.list.map((li, ix) => (
                             <li key={ix} className="flex items-center gap-[9px] text-left leading-tight">
-                                <RiCheckboxCircleFill className="text-[#34C759] text-[24px]" />
+                                <span className="relative">
+                                    <span>
+                                        <PriceCheckMark />
+                                    </span>
+                                    <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 trans-3">
+                                        <PriceCheckMarkColored />
+                                    </span>
+                                </span>
                                 {li}
                             </li>
                         ))}
@@ -148,7 +166,8 @@ const UXCamp = () => {
             );
         } else {
             return (
-                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left">
+                <div className="flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] py-[40px] h-full text-left relative overflow-visible group hover:!bg-[#171718] trans-3">
+                    <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                     <h2 className="font-[600] text-[32px] bg-[linear-gradient(90deg,#1fccff,#3060ff)] bg-clip-text text-transparent">UX Camp</h2>
                     <p className='text-white text-[24px]'>Lessons time</p>
                     <p className="text-[#9CA7B4] text-[20px] mb-[20px]">Every day from 8 to 10 PM except Friday and Saturday</p>
@@ -186,7 +205,8 @@ const UXCamp = () => {
             </label>
         );
         return (
-            <div className={`flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] pb-[40px] h-full ${caseType === 'purchased_not_started' ? 'pt-[60px]' : 'pt-[10px]'}`}>
+            <div className={`flex flex-col bg-[#171718CC] rounded-[20px] px-[32px] xxs:px-[56px] pb-[40px] h-full relative overflow-visible group hover:!bg-[#171718] trans-3 ${caseType === 'purchased_not_started' ? 'pt-[60px]' : 'pt-[10px]'}`}>
+                <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                 <div className='flex justify-between items-end mb-[20px]'>
                     <div className='w-full'>
                         <div className="flex justify-between items-start text-left mb-[10px]">
@@ -197,18 +217,18 @@ const UXCamp = () => {
                             {sideElement}
                         </div>
                         <div className="flex flex-wrap gap-[10px]">
-                            <span className="text-[#FFA500] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">E-Book</span>
-                            <span className="text-[#2D68FF] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">UI Kit</span>
-                            <span className="text-[#2D68FF] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">Mobile App Template</span>
-                            <span className="text-[#2D68FF] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">Landing Page Template</span>
-                            <span className="text-[#2D68FF] bg-[#070707] text-[14px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap flex gap-2 items center">Verified Certificate <span className="flex items-center text-[19px] text-[#1FCCFF]"><RiCheckboxCircleFill className='rounded-full bg-white' /></span></span>
+                            <span className="text-[#FFA500] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">E-Book</span>
+                            <span className="text-[#2D68FF] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">UI Kit</span>
+                            <span className="text-[#2D68FF] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">Mobile App Template</span>
+                            <span className="text-[#2D68FF] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap">Landing Page Template</span>
+                            <span className="text-[#2D68FF] bg-[#070707] text-[12px] font-[300] p-[9px] px-[8px] rounded-[4px] text-nowrap flex gap-2 items center">Verified Certificate <Verified /></span>
                         </div>
                     </div>
                     {caseType !== 'purchased_not_started' && (
                         <img src={uxAvatar} alt="Small Image" className="hidden sm:block w-[141px]" />
                     )}
                 </div>
-                <div className="grid grid-cols-2 gap-[5px]">
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-[5px]">
                     {['E-book', 'UI Kit', 'Mobile App Template', 'Landing Page Template'].map((item, index) => (
                         <div
                             key={index}
@@ -244,19 +264,19 @@ const UXCamp = () => {
                 <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
                     <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
                 </div>
-                <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[150px] pb-[50px]">
+                <div className="content-contain mx-auto xs:text-center flex flex-col justify-start xs:items-center flex-1 mt-[42px] xs:mt-[150px] pb-[50px]">
                     <motion.h1
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="font-[600] text-[48px] md:text-[64px] leading-[100%] select-none">
+                        className="font-[600] text-[36px] xs:text-[48px] md:text-[64px] leading-[100%] select-none">
                         UX Camp
                     </motion.h1>
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-[#9CA7B4] text-[24px] font-[300] leading-[100%] mt-[20px] mb-[150px] select-none">
+                        className="text-[#9CA7B4] text-[18px] xs:text-[24px] font-[300] leading-[100%] mt-[20px] mb-[42px] xs:mb-[150px] select-none">
                         Become a profisional UX Designer
                     </motion.span>
                     <div className="w-full flex gap-[10px] flex-wrap md:flex-nowrap">

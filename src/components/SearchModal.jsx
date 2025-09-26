@@ -6,8 +6,8 @@ import project2 from "../assets/images/project2.png";
 import project3 from "../assets/images/project3.png";
 import project4 from "../assets/images/project4.png";
 import { FaSort, FaArrowRight, FaArrowLeft } from "react-icons/fa6";
-import { RiDashboardFill } from "react-icons/ri";
 import { useSearchParams } from "react-router-dom";
+import FormatsIcon from "../assets/images/Formats/formats.svg";
 import IllustratorIcon from "../assets/images/Formats/ai-prog.svg";
 import PowerPointIcon from "../assets/images/Formats/powerpoint-prog.svg";
 import Max3DIcon from "../assets/images/Formats/3ds-prog.svg";
@@ -45,12 +45,19 @@ const SearchModal = () => {
     const [ticks, setTicks] = useState([]);
     const [currentTick, setCurrentTick] = useState(0);
     const allLabels = ["ui-kit", "coded-template", "icon", "illustration", "font"];
+    const shownLabels = {
+        "ui-kit": 'UI Kits',
+        "coded-template": 'Coded Templates',
+        "icon": 'Icons',
+        "illustration": 'Illustrations',
+        "font": 'Fonts',
+    }
     const sortOptions = ["Release Date", "Popularity", "Highest price", "Lowest price"];
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const formatIcons = {
-        "All Format": <RiDashboardFill className="w-6 h-6" />,
+        "Any format": <img src={FormatsIcon} alt="Illustrator" className="w-6 h-6" />,
         Illustrator: <img src={IllustratorIcon} alt="Illustrator" className="w-6 h-6" />,
         PowerPoint: <img src={PowerPointIcon} alt="PowerPoint" className="w-6 h-6" />,
         "3D Studio Max": <img src={Max3DIcon} alt="3D Studio Max" className="w-6 h-6" />,
@@ -72,7 +79,7 @@ const SearchModal = () => {
         Photoshop: <img src={PhotoshopIcon} alt="Photoshop" className="w-6 h-6" />,
     };
 
-    const formatsList = Object.keys(formatIcons).filter(k => k !== "All Format");
+    const formatsList = Object.keys(formatIcons).filter(k => k !== "Any format");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -116,7 +123,7 @@ const SearchModal = () => {
     };
     const clearLabels = () => setActiveLabels(new Set());
 
-    const [selectedFormat, setSelectedFormat] = useState("All Format");
+    const [selectedFormat, setSelectedFormat] = useState("Any format");
     const [formatOpen, setFormatOpen] = useState(false);
     const toggleFormatDropdown = () => setFormatOpen(!formatOpen);
     const selectFormat = (f) => {
@@ -144,7 +151,7 @@ const SearchModal = () => {
     if (activeLabels.size > 0) {
         filtered = filtered.filter((p) => p.labels.some((l) => activeLabels.has(l.text)));
     }
-    if (selectedFormat !== "All Format") {
+    if (selectedFormat !== "Any format") {
         filtered = filtered.filter((p) => p.formats.some((fmt) => fmt.text === selectedFormat));
     }
 
@@ -363,7 +370,7 @@ const SearchModal = () => {
                     </div>
                     <button
                         onClick={closeModal}
-                        className="flex items-center justify-center bg-[#121212] border-[2px] border-[#323232] hover:border-white p-2 h-full aspect-square rounded-full text-[#9CA7B4] shadow-2xl"
+                        className="flex size-[40px] min-w-[40px] xs:size-[48px] xs:min-w-[48px] items-center justify-center bg-[#121212] border-[2px] border-[#323232] hover:border-white p-2 aspect-square rounded-full text-[#9CA7B4] shadow-2xl"
                     >
                         <CgClose className="w-6 h-6" />
                     </button>
@@ -380,7 +387,7 @@ const SearchModal = () => {
                                 </button>
                                 <button
                                     onClick={scrollRight}
-                                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#121212] border-[2px] border-[#323232] hover:border-white p-2 h-full aspect-square rounded-full text-[#9CA7B4] shadow-2xl hidden sm:block ${showRight ? 'sm:!flex justify-center items-center' : '!hidden'}`}
+                                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[rgb(24,24,24)] trans-3 border-[2px] border-[#323232] hover:border-white p-2 h-full aspect-square rounded-full text-[#9CA7B4] shadow-2xl hidden sm:block ${showRight ? 'sm:!flex justify-center items-center' : '!hidden'}`}
                                 >
                                     <FaArrowRight className="w-6 h-6" />
                                 </button>
@@ -400,19 +407,19 @@ const SearchModal = () => {
                                             onClick={() => toggleLabel(label)}
                                             className={`px-4 py-2 rounded-[50px] border-[2px] border-[#424242] text-[#9CA7B4] hover:border-white hover:text-white duration-300 flex-shrink-0 ${activeLabels.has(label) ? "!text-white !border-[#1FCCFF]" : ""}`}
                                         >
-                                            {label}
+                                            {shownLabels[label]}
                                         </button>
                                     ))}
                                 </div>
                             </div>
                             <div className="hidden sm:flex items-center gap-4">
-                                <div className="format-filter relative" ref={formatRef}>
+                                <div className="format-filter relative min-w-[182px] flex items-center justify-end" ref={formatRef}>
                                     <button
                                         onClick={toggleFormatDropdown}
-                                        className={`px-4 py-2 border-[2px] text-nowrap border-[#424242] rounded-[50px] flex items-center gap-2 text-[16px] sm:text-[18px] font-[600] p-4 hover:border-white text-[#9CA7B4] hover:text-white duration-300 ${selectedFormat !== "All Format" ? "!border-[#1FCCFF] !text-white" : ""}`}
+                                        className={`px-4 py-2 border-[2px] w-fit max-w-full  text-nowrap border-[#424242] rounded-[50px] flex items-center gap-2 text-[16px] sm:text-[18px] font-[600] p-4 hover:border-white text-[#9CA7B4] hover:text-white duration-300 ${selectedFormat !== "Any format" ? "!border-[#1FCCFF] !text-white" : ""}`}
                                     >
-                                        {selectedFormat === "All Format" ? "Formats" : selectedFormat}
                                         {formatIcons[selectedFormat]}
+                                        {selectedFormat === "Any format" ? "Format" : selectedFormat}
                                     </button>
                                     <AnimatePresence>
                                         {formatOpen && (
@@ -422,7 +429,7 @@ const SearchModal = () => {
                                                 exit={{ opacity: 0, scale: 0.95 }}
                                                 className="absolute top-full right-0 mt-2 bg-[#262626] w-[600px] shadow-lg rounded-[30px] grid grid-cols-3 gap-3 z-10 p-4"
                                             >
-                                                {["All Format", ...formatsList].map((f) => (
+                                                {["Any format", ...formatsList].map((f) => (
                                                     <button
                                                         key={f}
                                                         onClick={() => selectFormat(f)}

@@ -23,8 +23,11 @@ const MobileHeader = () => {
   const [notificationSideOpen, setNotificationSideOpen] = useState(false);
   const location = useLocation();
   const [cartSideOpen, setCartSideOpen] = useState(false);
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
+  const [cardSideHead, setCardSideHead] = useState(0);
+  const [showCheckout, setShowCheckout] = useState(false);
+
   const handleOpenSearch = () => {
     const currentParams = new URLSearchParams(location.search);
     currentParams.set('search', '1');
@@ -37,17 +40,44 @@ const MobileHeader = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  const pathname = useLocation().pathname;
+  useEffect(() => {
+    if (cart.items.length > 0) {
+      if (showCheckout) {
+        setCardSideHead(
+          <span className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#2194FF] py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none'>
+            Stripe
+          </span>
+        );
+      } else {
+        setCardSideHead(
+          <div className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#FF4A4A] hover:underline cursor-pointer py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none' onClick={() => clearCart()}>
+            Clear Cart
+          </div>
+        );
+      }
+    } else {
+      setCardSideHead(<div className="flex flex-col">
+        <h1 className="text-[30px] font-[400]">
+          Cart
+        </h1>
+        <p className="text-[16px] opacity-80">
+          Your cart is empty.
+        </p>
+      </div>);
+    }
+  }, [cart, showCheckout]);
   return (
     <>
       <div className="fixed w-full top-0 z-[99] block md:hidden ">
         <div
-          className={`h-[90px] ${scrolled ? "bg-[#1212129d] " : "bg-transparent"} px-[15px] rounded-b-[20px] flex items-center transition-all duration-500 filter-blur-4`}
+          className={`h-[90px] ${scrolled ? "bg-[rgba(24,24,24,0.98)] " : "bg-transparent"} px-[15px] ${pathname.includes("products") ? "" : "rounded-b-[20px]"}  flex items-center transition-all duration-500 filter-blur-4`}
         >
           <div className="flex items-center  justify-between gap-8 mx-auto content-contain">
             <div className="flex items-center justify-between gap-[55px] flex-1 text-[18px] lg:text-[20px] leading-[20px] ">
               <NavLink
                 to={"/"}
-                className="size-[54px] relative group cursor-pointer"
+                className="size-[43px] xs:!size-[54px] relative group cursor-pointer"
               >
                 <img
                   src={logo}
@@ -76,7 +106,7 @@ const MobileHeader = () => {
                 <button
                   className="cursor-pointer hover:text-white trans-3"
                   onClick={handleOpenSearch}>
-                  <FiSearch />
+                  <FiSearch className="size-[24px] xs:size-[32px]" />
                 </button>
                 {logged && (
                   <div className="relative cursor-pointer"
@@ -95,10 +125,10 @@ const MobileHeader = () => {
                 </div>
                 <div className="cursor-pointer hover:text-white trans-3" onClick={() => setMenuOpen(true)}>
                   {!logged ? (
-                    <HiOutlineMenu />
+                    <HiOutlineMenu className="size-[24px] xs:size-[32px]" />
                   ) : (
                     <div
-                      className="size-[46px] border-[3px] border-[#121212] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center"
+                      className="size-[36px] xs:size-[46px] border-[1px] xs:border-[3px] border-[#121212] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center"
                     >
                       <img src={fawzy} className="w-full h-full object-cover" />
                     </div>
@@ -112,13 +142,13 @@ const MobileHeader = () => {
       <Side isOpen={notificationSideOpen} setIsOpen={setNotificationSideOpen}>
         <NotificationSide />
       </Side>
-      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen} classNames={"!rounded-none"}>
-        <CartSide setIsOpen={setCartSideOpen} />
+      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen} classNames={"!rounded-none"} headContent={cardSideHead}>
+        <CartSide setIsOpen={setCartSideOpen} showCheckout={showCheckout} setShowCheckout={setShowCheckout} />
       </Side>
-      <Side isOpen={menuOpen} setIsOpen={setMenuOpen} isAnimated={false} classNames={'!w-screen !rounded-none !py-[17px]'}
+      <Side isOpen={menuOpen} setIsOpen={setMenuOpen} isAnimated={false} classNames={'!w-screen !rounded-none'}
         headContent={<NavLink
           to={"/"}
-          className="size-[54px] relative group cursor-pointer"
+          className="size-[43px] xs:!size-[54px] relative group cursor-pointer"
         >
           <img
             src={logo}

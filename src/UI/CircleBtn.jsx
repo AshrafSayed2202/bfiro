@@ -12,14 +12,14 @@ const CircleBtn = ({
         <Link
             to={to}
             onClick={handleClick}
-            className={`group relative !cursor-pointer !scale-[0.65] sm:!scale-100 inline-block ${className}`}
+            className={`group relative !cursor-pointer !scale-[0.65] sm:!scale-100 inline-block max-w-[50%] ${className}`}
         >
             <span
                 className={`text-[40px] absolute trans-8 ${dir == "right" ? "top-1/2 left-0 text-[#9CA7B4]  translate-x-[6px] -translate-y-[20px] group-hover:translate-x-[220%]" : "top-1/2 right-[-15px] text-[#9CA7B4] -translate-x-[6px] -translate-y-[20px] group-hover:-translate-x-[220%] "} group-hover:opacity-0`}
             >
                 {dir == "right" ? <BsArrowRight /> : <BsArrowLeft />}
             </span>
-            <div className="relative group shadowGlur  w-[70px] flex items-center justify-end">
+            <div className="relative group shadowGlur max-w-full w-[70px] flex items-center justify-end">
                 <button
                     className={`size-[55px] relative border-[3px] overflow-hidden border-[#9CA7B4] trans-5 group-hover:border-[#1FCCFF] rounded-full ${dir == "right" ? "invertedBtn" : "invertedBtnRev"} group-hover:mask-none`}
                     style={{ maskSize: "20px 24px" }}
