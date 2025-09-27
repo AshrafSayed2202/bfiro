@@ -376,8 +376,8 @@ const SearchModal = () => {
                     </button>
                 </div>
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
-                    <div className={`content-contain pt-3 pb-10 sticky top-0 z-10 backdrop-blur-md bg-[#121212]`}>
-                        <div className="flex flex-row gap-4 justify-between items-center">
+                    <div className={`!min-w-[100vw] px-2 pt-3 pb-10 sticky top-[-5px] z-10 backdrop-blur-md bg-[#121212]`}>
+                        <div className="flex flex-row gap-4 justify-between items-center content-contain">
                             <div className="relative flex gap-2 text-[18px] font-[600] overflow-x-auto sm:overflow-hidden scrollbar-hide">
                                 <button
                                     onClick={scrollLeft}

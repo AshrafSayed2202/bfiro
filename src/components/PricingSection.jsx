@@ -72,7 +72,7 @@ const PricingSection = () => {
               }
               onClick={() => navigate("/pricing")}
               className={"group"}
-              spanClass="px-[65px] !font-[300]"
+              spanClass="px-[65px] !font-[600]"
             ></MainBtn>
           </motion.div>
         </motion.div>

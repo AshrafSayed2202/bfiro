@@ -10,7 +10,7 @@ const ArrowSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="rounded-full text-[30px] text-[#9CA7B4] hover:text-[#ffffff] group flex items-center justify-center size-[55px] hover:border-[#ffffff] trans-3 border-[#9ca7b48a] border-[3px]"
+          className="rounded-full text-[20px] xs:text-[30px] text-[#9CA7B4] hover:text-[#ffffff] group flex items-center justify-center size-[40px] xs:size-[55px] hover:border-[#ffffff] trans-3 border-[#9ca7b48a] border-[3px]"
         >
           <FiArrowUp />
         </motion.button>

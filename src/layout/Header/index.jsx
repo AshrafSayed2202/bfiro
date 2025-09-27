@@ -27,7 +27,7 @@ const Header = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [productsHovered, setProductsHovered] = useState(false);
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
   const [open, setOpen] = useState(false);
   const [cartSideOpen, setCartSideOpen] = useState(false);
   const [isConnectOpen, setConnectOpen] = useState(false);

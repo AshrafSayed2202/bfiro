@@ -90,7 +90,7 @@ const Profile = () => {
                   }`}
                 onClick={() => handleTabClick('purchases')}
               >
-                Purchases
+                Purchases 0
               </button>
             </div>
             <button

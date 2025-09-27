@@ -209,11 +209,11 @@ const Settings = () => {
     };
 
     return (
-        <section className="relative overflow-x-hidden pt-[50px] sm:pt-[100px] overflow-y-auto min-h-svh flex flex-col">
+        <section className="relative overflow-x-hidden pt-[100px] overflow-y-auto min-h-svh flex flex-col">
             <div className="absolute top-0 left-0 inset-0 size-full z-[-1] select-none pointer-events-none flex items-center justify-center">
                 <img src={bg} className="min-w-full !h-screen object-cover absolute top-0 " />
             </div>
-            <div className="content-contain mx-auto text-center flex flex-col justify-start items-center flex-1 mt-[50px] sm:mt-[150px] pb-[50px]">
+            <div className="content-contain mx-auto xs:text-center flex flex-col justify-start xs:items-center flex-1 mt-[100px] sm:mt-[150px] pb-[50px]">
                 <motion.h1
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}

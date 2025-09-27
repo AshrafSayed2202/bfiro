@@ -28,8 +28,6 @@ import long from "../../assets/images/long.png";
 import pc5 from "../../assets/images/pc5.png";
 import { IoCloseOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import Cart from "../../assets/images/svgs/Cart";
-import { GoComment } from "react-icons/go";
 
 const ProductDetails = () => {
   const swiperRef = useRef(null);
@@ -100,7 +98,7 @@ const ProductDetails = () => {
         <img src={pc5} className="w-full h-full object-cover" />
         <div className="absolute bottom-[-50px] left-[-50px] w-[calc(100%+50px)] h-[150px] bg-black blur-lg z-[1]"></div>
       </div>
-      <div className={` w-screen text-[20px] xs:text-[32px] font-[600] mb-[16px] leading-[38px] z-[99] sticky top-[90px] md:top-[100px] pt-1 xs:pt-3 pb-2 xs:pb-5 ${scrolled ? "bg-[rgba(24,24,24,0.98)] filter-blur-4" : "bg-transparent"}`}>
+      <div className={` w-screen text-[20px] xs:text-[32px] font-[600] mb-[16px] leading-[38px] z-[99] sticky top-[82px] md:top-[92px] pt-1 xs:pt-3 pb-2 xs:pb-5 ${scrolled ? "bg-[rgba(24,24,24,0.98)] filter-blur-4" : "bg-transparent"}`}>
         <h1 className={` content-contain line-clamp-1`}>
           VidMagic - AI Text to video creator app
         </h1>
@@ -114,10 +112,10 @@ const ProductDetails = () => {
         </div>
         <Link to="/">Bfiro</Link>
         <MdOutlineArrowRight className="text-[20px]" />
-        <Link to="/products/ui-kits">UI Kits</Link>
+        <Link to="/products/ui-kits" className="text-nowrap">UI Kits</Link>
         <MdOutlineArrowRight className="text-[20px]" />
-        <div>Figma Resources</div>
-        <div className="bg-[#424242] size-[32px] md:size-[40px] rounded-full flex items-center justify-center">
+        <div className="truncate">Figma Resources</div>
+        <div className="bg-[#424242] size-[32px] min-w-[32px] md:size-[40px] md:min-w-[40px] rounded-full flex items-center justify-center">
           <img src={figma} className="size-[16px] md:size-[24px] " />
         </div>
       </div>
@@ -201,10 +199,10 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-[#171718CC] bgSquares flex flex-col gap-[15px] rounded-[30px] p-[30px] sticky top-[210px] z-10 max-w-full">
+        <div className="flex-1 bg-[#171718CC] bgSquares flex flex-col gap-[15px] rounded-[30px] p-[20px] sticky top-[210px] z-10 max-w-full">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t to-[#141414] rounded-[20px] from-[#121212fa] z-[-1]"></div>
           <h3 className="text-[32px] font-[400] leading-[40px]">Highlights</h3>
-          <ul className="flex flex-col gap-[24px] text-[20px] leading-[24px] font-[300] text-[#9CA7B4]">
+          <ul className="flex flex-col gap-[24px] text-[16px] xs:text-[20px] leading-[24px] font-[300] text-[#9CA7B4]">
             <li className="flex items-center gap-[9px] text-left leading-tight">
               <FaCircleCheck className="text-[#00A656] text-[22px]" />
               Organized Layers
@@ -230,34 +228,36 @@ const ProductDetails = () => {
           <div className="bg-[#424242] size-[40px] rounded-full flex items-center justify-center">
             <img src={figma} className="size-[24px] " />
           </div>
-          <div className="flex items-center gap-[16px] text-[20px] leading-[24px] font-[300] text-[#9CA7B4]">
+          <div className="flex items-center gap-[16px] text-[16px] xs:text-[20px] leading-[24px] font-[300] text-[#9CA7B4]">
             <FiDownloadCloud className="text-[32px]" />
             135.6 MB in <span>1 File</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-5 flex-wrap">
-            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]">
+            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px]">
               6 <Heart />
             </button>
-            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]">
-              6 <GoComment />
+            <button className="flex items-center gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px]">
+              6 <Comment />
             </button>
             <button
               onClick={() => setPreview(true)}
-              className="flex items-center relative z-[2] gap-[10px] text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[10px] py=[4px] sm:px-[18px] sm:py-[11px]"
+              className="flex items-center relative z-[2] gap-[10px] text-[16px] xs:text-[18px] font-[600] text-[#9CA7B4] rounded-[50px] border-[2px] border-[#424242] trans-3 hover:border-[white] px-[18px] py-[11px] flex-1 justify-center"
             >
               Preview
             </button>
             <MainBtn
-              text={<Cart fill="white" />}
-              className={"!px-0 !py-0  !text-white"}
-              spanClass={"!px-6 !py-[12px] !text-[16px] !font-[600]"}
+              text={'Add to Cart 39$'}
+              divClass={'w-full xs:w-auto'}
+              className={"!px-0 !py-0  !text-white w-full flex-1 xs:flex-auto"}
+              spanClass={"!px-6 !py-[12px] !text-[16px] !font-[600] !w-full xs:w-auto"}
               hasStars={false}
+              noScale={true}
             />
           </div>
         </div>
       </div>
       <div className=" content-contain">
-        <div className="mt-[32px] bg-[#1D1C1E] opacity-95 rounded-[40px] p-[18px] flex items-center justify-between">
+        <div className="mt-[32px] bg-[#1D1C1E] opacity-95 rounded-[40px] p-[18px] hidden xs:flex items-center justify-between">
           <div className="flex items-center justify-center gap-[16px]">
             <div className="size-[50px] rounded-full border-[2px] border-[#424242] flex items-center justify-center">
               <BsCloudArrowDownFill className="text-[24px]" />
@@ -276,9 +276,9 @@ const ProductDetails = () => {
       </div>
       <div className="flex flex-col items-center gap-[24px] mt-[50px] content-contain">
         <div className="bg-[#1D1C1E] opacity-95 rounded-[50px] pt-[48px] flex flex-col gap-[32px] overflow-hidden content-contain mx-auto w-full xs:w-[80%]">
-          <div className="px-[64px] flex items-center justify-between">
+          <div className="px-[20px] xs:px-[64px] flex items-center justify-between gap-2 xs:gap-0 flex-wrap">
             <h2 className="text-[26px] font-[400] leading-[40px]">Comments</h2>
-            <div className="flex items-center justify-center gap-[24px]">
+            <div className="flex items-center justify-center gap-[10px] xs:gap-[24px]">
               <button className="h-[48px] rounded-[50px] border-[2px] border-[#1FCCFF] text-white trans-3 px-[18px]">
                 Newest
               </button>
@@ -287,33 +287,35 @@ const ProductDetails = () => {
               </button>
             </div>
           </div>
-          <ul className="px-[64px] mb-[16px] flex flex-col gap-[10px]">
-            <li className="p-[16px] flex items-start justify-start gap-[16px]">
-              <div className="bg-black size-[58px] rounded-full flex items-center justify-center">
-                <img src={smallLogo} className="h-[41px] " />
+          <ul className="px-[20px] xs:px-[64px] mb-[16px] flex flex-col gap-[10px]">
+            <li className="xs:p-[16px] flex items-start justify-start gap-[16px]">
+              <div className="bg-black size-[40px] min-w-[px] xs:size-[58px] xs:min-w-[32px] rounded-full flex items-center justify-center">
+                <img src={smallLogo} className="h-[60%]" />
               </div>
               <div className="flex flex-col gap-[6px]">
-                <h4 className="text-[18px] font-[400] leading-[24px] text-white">
+                <h4 className="text-[14px] xs:text-[18px] font-[400] text-white">
                   Bfiro Studio
                 </h4>
-                <p className="text-[16px] font-[300] leading-[28px] text-[#9CA7B4]">
+                <p className="text-[12px] xs:text-[16px] font-[300] text-[#9CA7B4]">
                   Absolutely Amazing!
                 </p>
-                <span className="text-[#424242] text-[14px] leading-[24px]">
+                <span className="text-[#424242] text-[10px] xs:text-[14px]">
                   12 hours ago
                 </span>
               </div>
             </li>
           </ul>
-          <div className="bg-[#181818] py-[40px] px-[64px] flex items-center justify-between">
-            <p className="text-[16px] leading-[28px] font-[300] text-[#9CA7B4]">
+          <div className="bg-[#181818] py-[40px] px-[20px] xs:px-[64px] flex items-center justify-between flex-wrap gap-[10px] xs:gap-0">
+            <p className="text-[16px] leading-[28px] font-[300] text-[#9CA7B4] w-full xs:w-auto text-center xs:text-left">
               You must log in to comment.
             </p>
             <MainBtn
               text="Log in"
-              className={"!px-0 !py-0 "}
-              spanClass={"!px-12 !py-[14px] !text-[16px] !font-[600]"}
+              divClass={"!w-full xs:!w-auto"}
+              className={"!px-0 !py-0 w-full xs:w-auto flex-1 xs:flex-auto"}
+              spanClass={"!px-12 !py-[14px] !text-[16px] !font-[600] !w-full xs:!w-auto"}
               hasStars={false}
+              noScale={true}
             />
           </div>
         </div>

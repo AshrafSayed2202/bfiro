@@ -166,8 +166,8 @@ const Portfolio = () => {
                                 <div className="flex flex-col justify-between text-left flex-1">
                                     <div className="leading-tight">
                                         <h3 className="text-[16px] xs:text-[20px] text-[#9CA7B4] capitalize font-light text-nowrap">{partner.title}</h3>
-                                        <h2 className="text-[36px] xs:text-[48px] text-wrap font-[600] text-white mt-3 mb-4">{partner.name}</h2>
-                                        <p className="text-[14px] xs:text-[18px] text-[#9CA7B4] font-[600]">{partner.description}</p>
+                                        <h2 className="text-[30px] xs:text-[42px] text-wrap font-[600] text-white mt-3 mb-4 ">{partner.name}</h2>
+                                        <p className="text-[14px] xs:text-[18px] text-[#9CA7B4] font-[600] min-h-[56px]">{partner.description}</p>
                                     </div>
                                     <div className="flex justify-between pb-2 w-full">
                                         <CircleBtn handleClick={handlePrev} text={"Back"} className={`mr-auto ${currentPartner === 0 ? "hidden" : ""}`} dir="left" />
@@ -178,19 +178,19 @@ const Portfolio = () => {
                         </Card>
                         <div className="col-span-4 lg:col-span-2 flex flex-col gap-[5px]">
                             <Card
-                                className="text-[24px] text-left font-[600] leading-normal uppercase !p-6"
+                                className="text-[16px] xs:text-[24px] text-left font-[600] leading-normal uppercase !p-6"
                                 animateInint={{ opacity: 0 }}
                                 animateWhileInView={{ opacity: 1 }}
                                 animateTransition={{ duration: 1, delay: 0.6 }}
                             >
                                 <span className="opacity-50">LATEST WORK AND</span> PORTFOLIO{" "}
-                                <span className="size-3 rounded-full bg-[#9CA7B4] inline-block ml-6" />
+                                <span className="size-3 rounded-full bg-[#9CA7B4] inline-block ml-1 xs:ml-6" />
                             </Card>
                             <div className="flex flex-col xs:flex-row gap-[5px] items-center">
                                 <div className={'group w-full'} onClick={() => openModal(1)}>
                                     <PortfolioCard background={oneBg} >
                                         <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
-                                            <img src={p1l} alt="project one landing" className="rounded-b-[20px] w-full" />
+                                            <img src={p1l} alt="project one landing" className="w-full" />
                                         </div>
                                         <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
                                             <img src={p1l} alt="project one landing" className="w-full" />
@@ -212,7 +212,7 @@ const Portfolio = () => {
                         <div className={'group col-span-4 xs:col-span-2 lg:col-span-1'} onClick={() => openModal(3)}>
                             <PortfolioCard background={threeBg} >
                                 <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
-                                    <img src={p3l1} alt="project three landing" className="rounded-b-[20px] w-full" />
+                                    <img src={p3l1} alt="project three landing" className="w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
                                     <img src={p3l2} alt="project three landing" className="w-full" />
@@ -222,7 +222,7 @@ const Portfolio = () => {
                         <div className={'group col-span-4 xs:col-span-2 lg:hidden'} onClick={() => openModal(5)}>
                             <PortfolioCard background={fiveBg}>
                                 <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
-                                    <img src={p5l} alt="project five landing" className="rounded-b-[20px] w-full" />
+                                    <img src={p5l} alt="project five landing" className="w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
                                     <img src={p5l} alt="project five landing" className="w-full" />
@@ -248,7 +248,7 @@ const Portfolio = () => {
                         <div className={'group hidden lg:block'} onClick={() => openModal(5)}>
                             <PortfolioCard background={fiveBg}>
                                 <div className="absolute bottom-0 right-[20px] w-[55%] translate-y-[-15%] duration-700 group-hover:translate-y-[-3%]">
-                                    <img src={p5l} alt="project five landing" className="rounded-b-[20px] w-full" />
+                                    <img src={p5l} alt="project five landing" className="w-full" />
                                 </div>
                                 <div className="absolute top-0 left-[20px] w-[55%] translate-y-[15%] duration-700 group-hover:translate-y-[3%]">
                                     <img src={p5l} alt="project five landing" className="w-full" />

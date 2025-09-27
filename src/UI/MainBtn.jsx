@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import starsBG from "../assets/images/stars.png";
 
 const MainBtn = ({
@@ -12,6 +12,9 @@ const MainBtn = ({
     onClick = () => { },
     colorScheme = "blue",
 }) => {
+    if (disabled) {
+        colorScheme = ""
+    }
     // Define color schemes
     const colorSchemes = {
         blue: {

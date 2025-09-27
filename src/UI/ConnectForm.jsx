@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CustomInput from "./CustomInput";
 import MainBtn from "./MainBtn";
+import { t } from "i18next";
 
 const ConnectForm = () => {
     const [name, setName] = useState("");
@@ -28,7 +29,7 @@ const ConnectForm = () => {
     const selectedClass = "text-[#fff] border-[#1FCCFF] hover:border-[#1FCCFF]";
 
     return (
-        <div className="mt-[24px] max-w-[680px] w-full flex flex-col gap-[25px] overflow-auto">
+        <div className="mt-[24px] max-w-[680px] w-full flex flex-col gap-[25px] overflow-y-scroll xs:overflow-y-visible">
             {/* Title */}
             <div className="flex flex-col gap-[8px]">
                 <h2
@@ -144,7 +145,7 @@ const ConnectForm = () => {
                     type="textarea"
                     inputClass={"pr-[50px]"}
                     spanClass={'!bg-transparent'}
-                    divClass={"!h-[175px]"}
+                    divClass={"!h-[150px]"}
                     placeholder={"Tell us more about your project"}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -154,9 +155,11 @@ const ConnectForm = () => {
             <MainBtn
                 text="Submit"
                 hasStars={false}
-                className={"!px-0  !py-0 w-full"}
+                divClass="w-full"
+                className={"!px-0 !py-0 w-full"}
                 spanClass={"!px-7 !py-[20px] !text-[16px] w-full !font-[600]"}
                 onClick={handleSubmit}
+                noScale={true}
             />
         </div>
     );

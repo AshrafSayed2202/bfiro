@@ -8,7 +8,7 @@ import Code from "../assets/images/svgs/Code";
 import { HiQuestionMarkCircle } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { FiMinus, FiPlus } from "react-icons/fi";
-const FAQSection = ({setConnectOpen}) => {
+const FAQSection = ({ setConnectOpen }) => {
   return (
     <div className="content-contain flex flex-col-reverse md:grid grid-cols-2 gap-[5px] relative z-[25] mb-[5px]">
       <Card
@@ -23,11 +23,11 @@ const FAQSection = ({setConnectOpen}) => {
         </h4>
         <h2 className="font-[600] text-[24px] md:text-[40px]">Everything you need to know</h2>
         <div className="flex flex-col">
-          <div className="collapse  text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF]">
-            <input type="radio" name="my-accordion-1" defaultChecked />
-            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
+          <div className="collapse  text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF] has-[.peer:checked]:border-[#1FCCFF]">
+            <input type="radio" name="my-accordion-1" defaultChecked className="peer" />
+            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] peer-checked:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
               What is the Yearly-Access Pass?{" "}
-              <span className="text-[#424242] group-hover:text-[#1FCCFF] trans-3">
+              <span className="text-[#424242] group-hover:text-[#1FCCFF] peer-checked:text-[#1FCCFF] trans-3">
                 <FiMinus className="minus-icon" />
                 <FiPlus className="plus-icon" />
               </span>
@@ -40,11 +40,11 @@ const FAQSection = ({setConnectOpen}) => {
               </p>
             </div>
           </div>
-          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF]">
-            <input type="radio" name="my-accordion-1" />
-            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
+          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF] has-[.peer:checked]:border-[#1FCCFF]">
+            <input type="radio" name="my-accordion-1" className="peer" />
+            <div className="collapse-title flex items-center justify-between group-hover:text-[#1fccff] peer-checked:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
               How often do you release new products?
-              <span className="text-[#424242] group-hover:text-[#1FCCFF] trans-3">
+              <span className="text-[#424242] group-hover:text-[#1FCCFF] peer-checked:text-[#1FCCFF] trans-3">
                 <FiMinus className="minus-icon" />
                 <FiPlus className="plus-icon" />
               </span>
@@ -57,11 +57,11 @@ const FAQSection = ({setConnectOpen}) => {
               </p>
             </div>
           </div>
-          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF]">
-            <input type="radio" name="my-accordion-1" />
-            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
+          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF] has-[.peer:checked]:border-[#1FCCFF]">
+            <input type="radio" name="my-accordion-1" className="peer" />
+            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] peer-checked:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
               What is your refund policy?
-              <span className="text-[#424242] group-hover:text-[#1FCCFF] trans-3">
+              <span className="text-[#424242] group-hover:text-[#1FCCFF] peer-checked:text-[#1FCCFF] trans-3">
                 <FiMinus className="minus-icon" />
                 <FiPlus className="plus-icon" />
               </span>
@@ -74,11 +74,11 @@ const FAQSection = ({setConnectOpen}) => {
               </p>
             </div>
           </div>
-          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF]">
-            <input type="radio" name="my-accordion-1" />
-            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
+          <div className="collapse text-[#9CA7B4] !rounded-none group border-b border-[#5B5E7933] trans-3 hover:border-[#1FCCFF] has-[.peer:checked]:border-[#1FCCFF]">
+            <input type="radio" name="my-accordion-1" className="peer" />
+            <div className="collapse-title flex items-center   justify-between group-hover:text-[#1fccff] peer-checked:text-[#1fccff] trans-3 text-xl !py-0 !px-0 !font-[600] !text-[14px] md:!text-[24px]">
               Can multiple users download with the Yearly
-              <span className="text-[#424242] group-hover:text-[#1FCCFF] trans-3">
+              <span className="text-[#424242] group-hover:text-[#1FCCFF] peer-checked:text-[#1FCCFF] trans-3">
                 <FiMinus className="minus-icon" />
                 <FiPlus className="plus-icon" />
               </span>

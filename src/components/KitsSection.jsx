@@ -43,7 +43,7 @@ const KitsSection = () => {
         animateInint={{ opacity: 0 }}
         animateWhileInView={{ opacity: 1 }}
         className={
-          "col-span-12 flex gap-[10px] sm:gap-[20px] items-end sm:items-center justify-between !px-[28px] !py-[16px]  relative"
+          "col-span-12 flex gap-[10px] sm:gap-[20px] items-center justify-between !px-[28px] !py-[16px]  relative"
         }
       >
         <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight">

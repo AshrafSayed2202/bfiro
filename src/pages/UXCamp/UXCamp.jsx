@@ -92,24 +92,27 @@ const UXCamp = () => {
                             </li>
                         ))}
                     </ul>
-                    <div className="mt-[64px] flex items-center justify-center w-full">
+                    <div className="mt-[64px] flex items-center justify-center !w-full">
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1, delay: 1.6 }}
                             viewport={{ once: true }}
+                            className='!w-full'
                         >
-                            <motion.div whileHover="hover" initial="initial">
+                            <motion.div whileHover="hover" initial="initial" className='!w-full'>
                                 <MainBtn
                                     text={
-                                        <span className="flex gap-2 items-center ">
+                                        <span className="flex gap-2 items-center justify-center">
                                             <Stars />
                                             {uxData.button}
                                         </span>
                                     }
                                     onClick={() => setIsOpen(true)}
-                                    className={"group"}
-                                    spanClass="px-[35px] !py-[16px] !font-[300] !font-[600]"
+                                    divClass={'!w-full'}
+                                    className={"group !w-full flex-1"}
+                                    spanClass="px-[35px] !py-[16px] !font-[300] !font-[600] !w-full"
+                                    noScale={true}
                                 ></MainBtn>
                             </motion.div>
                         </motion.div>
@@ -170,7 +173,7 @@ const UXCamp = () => {
                     <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                     <h2 className="font-[600] text-[32px] bg-[linear-gradient(90deg,#1fccff,#3060ff)] bg-clip-text text-transparent">UX Camp</h2>
                     <p className='text-white text-[24px]'>Lessons time</p>
-                    <p className="text-[#9CA7B4] text-[20px] mb-[20px]">Every day from 8 to 10 PM except Friday and Saturday</p>
+                    <p className="text-[#9CA7B4] text-[16px] xs:text-[18px] mb-[20px]">Every day from 8 to 10 PM except Friday and Saturday</p>
                     <div className="grid grid-cols-4 gap-[8px] mb-12 overflow-hidden text-ellipsis">
                         {Array.from({ length: totalLessons }).map((_, index) => (
                             <span
@@ -182,12 +185,12 @@ const UXCamp = () => {
                         ))}
                     </div>
                     <div className='mb-11'>
-                        <MainBtn text="Meeting Link" className={'w-full'} spanClass={'w-full'} />
+                        <MainBtn text="Meeting Link" className={'w-full'} spanClass={'w-full'} noScale={true} />
                     </div>
                     <p className="text-white text-[24px] mb-[22px]">Certificate Link</p>
                     <div className="flex gap-[10px] flex-wrap items-center justify-center">
-                        <MainBtn text="View" className={'w-full'} spanClass={'w-full'} disabled={completedLessons !== totalLessons} hasStars={completedLessons === totalLessons} />
-                        <MainBtn text="Download" className={'w-full'} spanClass={'w-full'} disabled={completedLessons !== totalLessons} hasStars={completedLessons === totalLessons} />
+                        <MainBtn text="View" divClass={'flex-1'} className={'!w-full'} spanClass={'!w-full'} noScale={true} disabled={completedLessons !== totalLessons} hasStars={completedLessons === totalLessons} />
+                        <MainBtn text="Download" divClass={'flex-1'} className={'!w-full'} spanClass={'!w-full'} noScale={true} disabled={completedLessons !== totalLessons} hasStars={completedLessons === totalLessons} />
                     </div>
                 </div>
             );
@@ -209,7 +212,7 @@ const UXCamp = () => {
                 <div className="opacity-0 group-hover:opacity-100 bg-[linear-gradient(-270deg,#1fccff,#3060ff)] w-[calc(100%+2px)] h-[calc(100%+2px)] absolute left-[-1px] top-[-1px] rounded-[20px] z-[-1] trans-3" />
                 <div className='flex justify-between items-end mb-[20px]'>
                     <div className='w-full'>
-                        <div className="flex justify-between items-start text-left mb-[10px]">
+                        <div className="flex justify-between items-start text-left mb-[10px] flex-wrap gap-2">
                             <div>
                                 <h2 className="font-[600] text-[32px]">{isStarted ? <span>Material</span> : <span>Included</span>}</h2>
                                 <p className="text-[#9CA7B4] text-[18px]">{isStarted ? <span>Download Now</span> : <span>Get <span className='text-white'>$80</span> worth of materials</span>}</p>
