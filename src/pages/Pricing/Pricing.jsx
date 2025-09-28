@@ -277,24 +277,26 @@ const Pricing = () => {
               </motion.div>
             </motion.div>
           </Card>
-          <Card
-            animateInint={{ opacity: 0 }}
-            animateWhileInView={{ opacity: 1 }}
-            className={
-              "col-span-12 flex gap-[10px] sm:gap-[20px] items-center justify-between !px-[28px] !py-[16px] relative"
-            }
-          >
-            <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight">
-              <span className="text-[#9CA7B4]">
-                1000+ premium UI Kits for mobile & web projects
-                <span className="text-[#fff] inline-flex items-center mx-2">UI KITS
-                  <span className="size-[12px] inline-block bg-[#9CA7B4] rounded-full ml-[10px]"></span>
+          <div className="content-contain grid grid-cols-12 gap-4 mt-4">
+            <Card
+              animateInint={{ opacity: 0 }}
+              animateWhileInView={{ opacity: 1 }}
+              className={
+                "col-span-12 flex gap-[10px] sm:gap-[20px] items-center justify-between !px-[28px] !py-[16px]  relative"
+              }
+            >
+              <span className="text-[20px] sm:text-[24px] font-[600] flex items-center justify-start gap-2 leading-tight">
+                <span className="text-[#9CA7B4]">
+                  1000+ premium UI Kits for mobile & web projects
+                  <span className="text-[#fff] inline-flex items-center mx-2">UI KITS
+                    <span className="size-[12px] inline-block bg-[#9CA7B4] rounded-full ml-[10px]"></span>
+                  </span>
                 </span>
               </span>
-            </span>
-            <CircleBtn to={"#"} text={"More"} dir={"right"} />
+              <CircleBtn to={"#"} text={"More"} dir={"right"} />
 
-          </Card>
+            </Card>
+          </div>
           <Card
             animateInint={{ opacity: 0 }}
             animateWhileInView={{ opacity: 1 }}

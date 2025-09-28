@@ -1,0 +1,10 @@
+{
+  "email": {
+    "value": "",
+    "hasError": { "status": false, "message": "Email is required" }
+  },
+  "password": {
+    "value": "",
+    "hasError": { "status": false, "message": "Password is required" }
+  }
+}

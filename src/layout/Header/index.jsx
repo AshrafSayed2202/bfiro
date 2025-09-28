@@ -12,8 +12,6 @@ import IconSet from "../../assets/images/svgs/IconSet";
 import Illustrations from "../../assets/images/svgs/Illustrations";
 import Fonts from "../../assets/images/svgs/Fonts";
 import bfiroWhite from "../../assets/images/bfiro-white.png";
-import MainBtn from "../../UI/MainBtn";
-import fawzy from "../../assets/images/fawzy.png";
 import Inbox from "../../assets/images/svgs/Inbox";
 import Side from "../../UI/Side";
 import ProfileSide from "../../UI/ProfileSide";
@@ -22,12 +20,16 @@ import NotificationSide from "../../UI/NotificationSide";
 import { useCart } from "../../store/Cart";
 import ConnectForm from "../../UI/ConnectForm";
 import SearchModal from "../../components/SearchModal";
+import { useSelector } from "react-redux";
+
+const { storageUrl } = import.meta.env.VITE_BASE_STORAGE_URL;
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useSelector((state) => state.auth);
   const [scrolled, setScrolled] = useState(false);
   const [productsHovered, setProductsHovered] = useState(false);
-  const [logged, setLogged] = useState(true);
   const [open, setOpen] = useState(false);
   const [cartSideOpen, setCartSideOpen] = useState(false);
   const [isConnectOpen, setConnectOpen] = useState(false);
@@ -37,8 +39,10 @@ const Header = () => {
   const [showCheckout, setShowCheckout] = useState(false);
   const handleOpenSearch = () => {
     const currentParams = new URLSearchParams(location.search);
-    currentParams.set('search', '1');
-    navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
+    currentParams.set("search", "1");
+    navigate(`${location.pathname}?${currentParams.toString()}`, {
+      replace: true,
+    });
   };
 
   useEffect(() => {
@@ -53,26 +57,27 @@ const Header = () => {
     if (cart.items.length > 0) {
       if (showCheckout) {
         setCardSideHead(
-          <span className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#2194FF] py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none'>
+          <span className="flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#2194FF] py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none">
             Stripe
           </span>
         );
       } else {
         setCardSideHead(
-          <div className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#FF4A4A] hover:underline cursor-pointer py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none' onClick={() => clearCart()}>
+          <div
+            className="flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#FF4A4A] hover:underline cursor-pointer py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none"
+            onClick={() => clearCart()}
+          >
             Clear Cart
           </div>
         );
       }
     } else {
-      setCardSideHead(<div className="flex flex-col">
-        <h1 className="text-[30px] font-[400]">
-          Cart
-        </h1>
-        <p className="text-[16px] opacity-80">
-          Your cart is empty.
-        </p>
-      </div>);
+      setCardSideHead(
+        <div className="flex flex-col">
+          <h1 className="text-[30px] font-[400]">Cart</h1>
+          <p className="text-[16px] opacity-80">Your cart is empty.</p>
+        </div>
+      );
     }
   }, [cart, showCheckout]);
   const pathname = useLocation().pathname;
@@ -80,7 +85,7 @@ const Header = () => {
     <>
       <div className="fixed w-full top-0 z-[99] hidden md:block ">
         <div
-          className={`h-[100px] duration-500 ${scrolled ? "bg-[rgba(24,24,24,0.98)]" : "bg-transparent"} filter-blur-4 ${productsHovered ? "!bg-[#121212] rounded-b-[0px]" : "rounded-b-[20px]"} ${pathname.includes("products") ? '!rounded-b-[0px]' : 'rounded-b-[20px]'}`}
+          className={`h-[100px] duration-500 ${scrolled ? "bg-[rgba(24,24,24,0.98)]" : "bg-transparent"} filter-blur-4 ${productsHovered ? "!bg-[#121212] rounded-b-[0px]" : "rounded-b-[20px]"} ${pathname.includes("products") ? "!rounded-b-[0px]" : "rounded-b-[20px]"}`}
         >
           <div className="flex items-center justify-between gap-8 mx-auto content-contain">
             <div className="flex items-center justify-start gap-[55px] flex-1 text-[18px] lg:text-[20px] leading-[20px] ">
@@ -148,18 +153,28 @@ const Header = () => {
                 >
                   Pricing
                 </NavLink>
-                <NavLink to="/ux-camp/1" className={'relative p-[8px] rounded-[8px] overflow-hidden group trans-3'}>
+                <NavLink
+                  to="/ux-camp/1"
+                  className={
+                    "relative p-[8px] rounded-[8px] overflow-hidden group trans-3"
+                  }
+                >
                   {({ isActive }) => (
                     <>
                       <span
-                        className={`${isActive
-                          ? "text-white "
-                          : "!bg-gradient-to-r from-[#1FCCFF] to-[#3060FF]  bg-clip-text text-transparent group-hover:text-white"
-                          } trans-3`}
+                        className={`${
+                          isActive
+                            ? "text-white "
+                            : "!bg-gradient-to-r from-[#1FCCFF] to-[#3060FF]  bg-clip-text text-transparent group-hover:text-white"
+                        } trans-3`}
                       >
                         UX Camp
                       </span>
-                      {!isActive ? (<span className="bg-white/20 group-hover:!bg-gradient-to-r group-hover:from-[#1FCCFF] group-hover:to-[#3060FF] w-full h-full absolute top-0 left-0 trans-3 z-[-1]"></span>) : (<span className="!bg-gradient-to-r !from-[#1FCCFF] !to-[#3060FF] w-full h-full absolute top-0 left-0 trans-3 z-[-1]"></span>)}
+                      {!isActive ? (
+                        <span className="bg-white/20 group-hover:!bg-gradient-to-r group-hover:from-[#1FCCFF] group-hover:to-[#3060FF] w-full h-full absolute top-0 left-0 trans-3 z-[-1]"></span>
+                      ) : (
+                        <span className="!bg-gradient-to-r !from-[#1FCCFF] !to-[#3060FF] w-full h-full absolute top-0 left-0 trans-3 z-[-1]"></span>
+                      )}
                     </>
                   )}
                 </NavLink>
@@ -179,7 +194,7 @@ const Header = () => {
               >
                 Contact us
               </button>
-              {!logged && (
+              {!user && (
                 <>
                   <NavLink
                     to="/signup"
@@ -199,14 +214,16 @@ const Header = () => {
                   </NavLink>
                 </>
               )}
-              {logged && (
-                <div className="relative cursor-pointer"
+              {user && (
+                <div
+                  className="relative cursor-pointer"
                   onClick={() => setNotificationSideOpen(true)}
                 >
                   <Inbox />
                 </div>
               )}
-              <div className="relative cursor-pointer"
+              <div
+                className="relative cursor-pointer"
                 onClick={() => setCartSideOpen(true)}
               >
                 <Cart />
@@ -216,12 +233,23 @@ const Header = () => {
                   </span>
                 )}
               </div>
-              {logged && (
+              {user && (
                 <button
                   onClick={() => setOpen(true)}
-                  className="size-[46px] border-[3px] border-[#121212] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center"
+                  className="size-[46px] border-[3px] border-[#121212] bg-[--black] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center"
                 >
-                  <img src={fawzy} className="w-full h-full object-cover" />
+                  {user?.avatar_url ? (
+                    <img
+                      src={
+                        user?.avatar_url.startsWith("https://")
+                          ? user?.avatar_url
+                          : `${storageUrl}${user?.avatar_url}`
+                      }
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-base">{user?.name[0]}</div>
+                  )}
                 </button>
               )}
             </div>
@@ -236,7 +264,8 @@ const Header = () => {
             className={`absolute top-0 left-0 w-full h-full bg-[#121212] z-[-1] duration-500 transition-all ${productsHovered ? "opacity-100" : "opacity-0"}`}
           ></div>
           <div className="content-contain text-[18px] text-[#9CA7B4] font-[600] flex justify-center items-center gap-[16px] py-[30px] select-none">
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+            <button
+              className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
               onClick={() => navigate("products/ui-kits")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -244,7 +273,8 @@ const Header = () => {
               </span>
               UI Kits
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+            <button
+              className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
               onClick={() => navigate("products/coded-templates")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -252,7 +282,8 @@ const Header = () => {
               </span>
               Coded Templates
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+            <button
+              className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
               onClick={() => navigate("products/icons")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -260,7 +291,8 @@ const Header = () => {
               </span>
               Icons
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+            <button
+              className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
               onClick={() => navigate("products/illustrations")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -268,7 +300,8 @@ const Header = () => {
               </span>
               Illustrations
             </button>
-            <button className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
+            <button
+              className="border hover:border-[#1fccff] cursor-pointer group border-[#5B5E79] gap-[10px] trans-3 hover:text-white rounded-[20px] size-[192px] p-1 flex flex-col items-center justify-center"
               onClick={() => navigate("products/fonts")}
             >
               <span className="rounded-full size-[60px] bg-[#5B5E79] flex items-center  justify-center ">
@@ -298,8 +331,17 @@ const Header = () => {
       <Side isOpen={notificationSideOpen} setIsOpen={setNotificationSideOpen}>
         <NotificationSide />
       </Side>
-      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen} classNames={"!rounded-none"} headContent={cardSideHead}>
-        <CartSide setIsOpen={setCartSideOpen} showCheckout={showCheckout} setShowCheckout={setShowCheckout} />
+      <Side
+        isOpen={cartSideOpen}
+        setIsOpen={setCartSideOpen}
+        classNames={"!rounded-none"}
+        headContent={cardSideHead}
+      >
+        <CartSide
+          setIsOpen={setCartSideOpen}
+          showCheckout={showCheckout}
+          setShowCheckout={setShowCheckout}
+        />
       </Side>
       <Side isOpen={open} setIsOpen={setOpen}>
         <ProfileSide setOpen={setOpen} />

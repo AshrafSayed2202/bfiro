@@ -37,6 +37,9 @@ const Home = () => {
 
   return (
     <>
+      <Side isOpen={isConnectOpen} setIsOpen={setConnectOpen}>
+        <ConnectForm />
+      </Side>
       <style>
         {`
           @keyframes fadeOut {
@@ -69,9 +72,6 @@ const Home = () => {
         <FAQSection setConnectOpen={setConnectOpen} />
         <CompaniesSection />
         <HaveDesignSection setConnectOpen={setConnectOpen} />
-        <Side isOpen={isConnectOpen} setIsOpen={setConnectOpen}>
-          <ConnectForm />
-        </Side>
       </div>
     </>
   );

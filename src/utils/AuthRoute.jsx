@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 
-const ProtectedRoute = ({ children, isAuthenticated }) => {
+const AuthRoute = ({ children, isAuthenticated }) => {
   const location = useLocation();
 
   if (isAuthenticated) {
@@ -10,4 +10,4 @@ const ProtectedRoute = ({ children, isAuthenticated }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default AuthRoute;

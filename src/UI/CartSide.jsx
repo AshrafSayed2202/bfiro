@@ -136,7 +136,7 @@ const CartSide = ({ setIsOpen, hasCard = true, showCheckout, setShowCheckout }) 
                     )}
                 </div>
             )}
-            <div className={` h-full flex flex-col gap-[25px] justify-center overflow-hidden w-full mx-auto ${!showCheckout && window.innerWidth < 992 ? 'hidden' : 'flex'}`}>
+            <div className={` h-full flex flex-col gap-[25px] justify-center overflow-hidden w-full sm:w-[400px] mx-auto ${!showCheckout && window.innerWidth < 992 ? 'hidden' : 'flex'}`}>
                 <div className='flex gap-[15px] justify-between items-center'>
                     <div className='flex items-start gap-2'>
                         <button

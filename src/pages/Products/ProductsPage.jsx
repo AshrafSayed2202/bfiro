@@ -439,7 +439,7 @@ const ProductsPage = ({ title, subTitle, formatsList, apiEndpoint }) => {
                     </Card>
 
                     {visibleCount < sorted.length && (
-                        <div className="overflow-hidden mx-auto mt-8">
+                        <div className="overflow-hidden mx-auto mt-8 pb-5">
                             <MainBtn text="View more" onClick={loadMore} />
                         </div>
                     )}

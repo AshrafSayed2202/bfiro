@@ -15,23 +15,27 @@ import Inbox from "../../assets/images/svgs/Inbox";
 import NotificationSide from "../../UI/NotificationSide";
 import MobileNavSide from "../../UI/MobileNavSide";
 import SearchModal from "../../components/SearchModal";
+import { useSelector } from "react-redux";
 
 const MobileHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [logged, setLogged] = useState(true);
+  const { user } = useSelector((state) => state.auth);
   const [notificationSideOpen, setNotificationSideOpen] = useState(false);
   const location = useLocation();
   const [cartSideOpen, setCartSideOpen] = useState(false);
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
+
   const [cardSideHead, setCardSideHead] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
 
   const handleOpenSearch = () => {
     const currentParams = new URLSearchParams(location.search);
-    currentParams.set('search', '1');
-    navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
+    currentParams.set("search", "1");
+    navigate(`${location.pathname}?${currentParams.toString()}`, {
+      replace: true,
+    });
   };
   useEffect(() => {
     const onScroll = () => {
@@ -45,26 +49,27 @@ const MobileHeader = () => {
     if (cart.items.length > 0) {
       if (showCheckout) {
         setCardSideHead(
-          <span className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#2194FF] py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none'>
+          <span className="flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#2194FF] py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none">
             Stripe
           </span>
         );
       } else {
         setCardSideHead(
-          <div className='flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#FF4A4A] hover:underline cursor-pointer py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none' onClick={() => clearCart()}>
+          <div
+            className="flex gap-1 items-center font-[600] border-[2px] rounded-xl bg-[#1D1C1E] border-[#FF4A4A] hover:underline cursor-pointer py-[10px] px-[18px] sm:opacity-0 sm:select-none sm:pointer-events-none"
+            onClick={() => clearCart()}
+          >
             Clear Cart
           </div>
         );
       }
     } else {
-      setCardSideHead(<div className="flex flex-col">
-        <h1 className="text-[30px] font-[400]">
-          Cart
-        </h1>
-        <p className="text-[16px] opacity-80">
-          Your cart is empty.
-        </p>
-      </div>);
+      setCardSideHead(
+        <div className="flex flex-col">
+          <h1 className="text-[30px] font-[400]">Cart</h1>
+          <p className="text-[16px] opacity-80">Your cart is empty.</p>
+        </div>
+      );
     }
   }, [cart, showCheckout]);
   return (
@@ -105,17 +110,22 @@ const MobileHeader = () => {
               <div className="flex items-center text-[32px] text-[#9CA7B4] justify-center gap-[30px]">
                 <button
                   className="cursor-pointer hover:text-white trans-3"
-                  onClick={handleOpenSearch}>
+                  onClick={handleOpenSearch}
+                >
                   <FiSearch className="size-[24px] xs:size-[32px]" />
                 </button>
-                {logged && (
-                  <div className="relative cursor-pointer"
+                {user && (
+                  <div
+                    className="relative cursor-pointer"
                     onClick={() => setNotificationSideOpen(true)}
                   >
                     <Inbox />
                   </div>
                 )}
-                <div onClick={() => setCartSideOpen(true)} className="relative cursor-pointer">
+                <div
+                  onClick={() => setCartSideOpen(true)}
+                  className="relative cursor-pointer"
+                >
                   <Cart />
                   {cart.items.length > 0 && (
                     <span className="bg-[#34C759] size-[18px] absolute top-[-8px] right-[-8px] rounded-full trans-5 outline  outline-[#121212] text-white text-[12px] flex items-center justify-center">
@@ -123,14 +133,26 @@ const MobileHeader = () => {
                     </span>
                   )}
                 </div>
-                <div className="cursor-pointer hover:text-white trans-3" onClick={() => setMenuOpen(true)}>
-                  {!logged ? (
+                <div
+                  className="cursor-pointer hover:text-white trans-3"
+                  onClick={() => setMenuOpen(true)}
+                >
+                  {!user ? (
                     <HiOutlineMenu className="size-[24px] xs:size-[32px]" />
                   ) : (
-                    <div
-                      className="size-[36px] xs:size-[46px] border-[1px] xs:border-[3px] border-[#121212] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center"
-                    >
-                      <img src={fawzy} className="w-full h-full object-cover" />
+                    <div className="size-[36px] xs:size-[46px] border-[1px] xs:border-[3px] border-[#121212] outline-[#424242ce] outline rounded-full overflow-hidden flex items-center justify-center">
+                      {user?.avatar_url ? (
+                        <img
+                          src={
+                            user?.avatar_url.startsWith("https://")
+                              ? user?.avatar_url
+                              : `${storageUrl}${user?.avatar_url}`
+                          }
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-base">{user?.name[0]}</div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -142,37 +164,53 @@ const MobileHeader = () => {
       <Side isOpen={notificationSideOpen} setIsOpen={setNotificationSideOpen}>
         <NotificationSide />
       </Side>
-      <Side isOpen={cartSideOpen} setIsOpen={setCartSideOpen} classNames={"!rounded-none"} headContent={cardSideHead}>
-        <CartSide setIsOpen={setCartSideOpen} showCheckout={showCheckout} setShowCheckout={setShowCheckout} />
+      <Side
+        isOpen={cartSideOpen}
+        setIsOpen={setCartSideOpen}
+        classNames={"!rounded-none"}
+        headContent={cardSideHead}
+      >
+        <CartSide
+          setIsOpen={setCartSideOpen}
+          showCheckout={showCheckout}
+          setShowCheckout={setShowCheckout}
+        />
       </Side>
-      <Side isOpen={menuOpen} setIsOpen={setMenuOpen} isAnimated={false} classNames={'!w-screen !rounded-none'}
-        headContent={<NavLink
-          to={"/"}
-          className="size-[43px] xs:!size-[54px] relative group cursor-pointer"
-        >
-          <img
-            src={logo}
-            className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-            alt="Logo"
-          />
-          <img
-            src={logo2}
-            className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-            alt="Logo2"
-          />
-          <img
-            src={logo3}
-            className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-            alt="Logo3"
-            style={{ transitionDelay: "0.5s" }}
-          />
-          <img
-            src={logo4}
-            className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-            alt="Logo4"
-            style={{ transitionDelay: "1s" }}
-          />
-        </NavLink>}>
+      <Side
+        isOpen={menuOpen}
+        setIsOpen={setMenuOpen}
+        isAnimated={false}
+        classNames={"!w-screen !rounded-none"}
+        headContent={
+          <NavLink
+            to={"/"}
+            className="size-[43px] xs:!size-[54px] relative group cursor-pointer"
+          >
+            <img
+              src={logo}
+              className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+              alt="Logo"
+            />
+            <img
+              src={logo2}
+              className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+              alt="Logo2"
+            />
+            <img
+              src={logo3}
+              className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+              alt="Logo3"
+              style={{ transitionDelay: "0.5s" }}
+            />
+            <img
+              src={logo4}
+              className="absolute inset-0 object-contain w-full h-full transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+              alt="Logo4"
+              style={{ transitionDelay: "1s" }}
+            />
+          </NavLink>
+        }
+      >
         <MobileNavSide setIsOpen={setMenuOpen} />
       </Side>
       <SearchModal />
