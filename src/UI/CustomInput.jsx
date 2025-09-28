@@ -121,11 +121,11 @@ function CustomInput({
                     maskSize: maskSize,
                   }}
                   autoComplete="off"
-                  className={`invertedMaskInput pl-[95px] font-[300] bg-transparent border-[2px] h-full p-[20px] transition-colors duration-300 group-hover:border-[#FFFFFF] focus:border-[#FFFFFF] rounded-[18px] border-[#424242] outline-none ${inputClass} ${hasError?.status && " !border-red-500 group-hover:!border-red-500 focus:!border-red-500"}`}
+                  className={`invertedMaskInput font-[300] bg-transparent border-[2px] h-full p-[20px] transition-colors duration-300 group-hover:border-[#FFFFFF] focus:border-[#FFFFFF] rounded-[18px] border-[#424242] outline-none ${inputClass} ${hasError?.status && " !border-red-500 group-hover:!border-red-500 focus:!border-red-500"}`}
                   {...others}
                   required={required}
                 />
-                <div className="absolute z-[999] left-[20px] text-[16px] cursor-pointer text-[#424242] top-[50%] translate-y-[-50%]">
+                {/* <div className="absolute z-[999] left-[20px] text-[16px] cursor-pointer text-[#424242] top-[50%] translate-y-[-50%]">
                   <SelectInput
                     value={"+20"}
                     noOptionsMessage={() => "No Numbers available"}
@@ -134,7 +134,7 @@ function CustomInput({
                     inputName="phone"
                     manualSelections={manualSelections}
                   />
-                </div>
+                </div> */}
                 {/* Here the dropdown list to change the country code and the flag of the country */}
               </>
             ) : (

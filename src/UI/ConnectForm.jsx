@@ -29,7 +29,7 @@ const ConnectForm = () => {
     const selectedClass = "text-[#fff] border-[#1FCCFF] hover:border-[#1FCCFF]";
 
     return (
-        <div className="mt-[24px] max-w-[680px] w-full flex flex-col gap-[25px] overflow-y-scroll xs:overflow-y-visible">
+        <div className="mt-[24px] max-w-[680px] w-full flex flex-col gap-[10px] xs:gap-[25px] overflow-y-scroll xs:overflow-y-visible">
             {/* Title */}
             <div className="flex flex-col gap-[8px]">
                 <h2
@@ -145,22 +145,24 @@ const ConnectForm = () => {
                     type="textarea"
                     inputClass={"pr-[50px]"}
                     spanClass={'!bg-transparent'}
-                    divClass={"!h-[150px]"}
+                    divClass={"!h-[80px]"}
                     placeholder={"Tell us more about your project"}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 ></CustomInput>
             </div>
             {/* Submit Button */}
-            <MainBtn
-                text="Submit"
-                hasStars={false}
-                divClass="w-full"
-                className={"!px-0 !py-0 w-full"}
-                spanClass={"!px-7 !py-[20px] !text-[16px] w-full !font-[600]"}
-                onClick={handleSubmit}
-                noScale={true}
-            />
+            <div className="pb-3">
+                <MainBtn
+                    text="Submit"
+                    hasStars={false}
+                    divClass="w-full"
+                    className={"!px-0 !py-0 w-full"}
+                    spanClass={"!px-7 !py-[20px] !text-[16px] w-full !font-[600]"}
+                    onClick={handleSubmit}
+                    noScale={true}
+                />
+            </div>
         </div>
     );
 };

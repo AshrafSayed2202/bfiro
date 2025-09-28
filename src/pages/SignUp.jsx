@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Logo from "../assets/images/bfiro.png";
+import Logo from "../assets/images/Logo.png";
 import bg from "../assets/images/loginBg.jpg";
 import Google from "../assets/images/Google.png";
-import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import CustomInput from "../UI/CustomInput";
 import MainBtn from "../UI/MainBtn";
@@ -304,10 +303,10 @@ const Signup = () => {
       <div className="sm:w-[40%] h-screen items-center sm:h-screen flex flex-col">
         <div className="w-full flex flex-col justify-end sm:justify-center items-center relative flex-1">
           <span
-            className="rounded-full bg-[#000] size-[70px] xs:size-[100px] flex justify-center items-center mb-3 xs:mb-6 cursor-pointer border border-transparent hover:border-[#424242] trans-3"
+            className="rounded-full bg-[#000] size-[70px] xs:size-[100px] flex justify-center items-center mb-3 xs:mb-6 cursor-pointer outline outline-transparent hover:outline-[#424242] trans-3"
             onClick={() => navigate("/")}
           >
-            <img src={Logo} alt="logo" className="w-[50%]" />
+            <img src={Logo} alt="logo" className="w-[70%]" />
           </span>
           <h2 className="font-[600] text-[24px] xs:text-[32px] text-white mb-2 text-center">
             Create your account

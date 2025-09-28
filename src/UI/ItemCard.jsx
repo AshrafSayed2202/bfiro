@@ -113,7 +113,7 @@ const ItemCard = ({ item, className }) => {
                         }}
                     >
                         <div className="min-w-[30px] flex items-center justify-center mr-[8px] bg-[#000000] rounded-full size-[30px] flex-1 overflow-hidden">
-                            <img className="size-[14px] object-contain" src={bfiro} alt="Bfiro" />
+                            <img className="size-[70%] object-contain" src={bfiro} alt="Bfiro" />
                         </div>
                         <span>Bfiro</span>
                         <MdOutlineArrowRight className="text-[22px]" />

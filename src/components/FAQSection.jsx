@@ -15,7 +15,7 @@ const FAQSection = ({ setConnectOpen }) => {
         animateInint={{ opacity: 0, x: -200 }}
         animateWhileInView={{ opacity: 1, x: 0 }}
         className={
-          "flex flex-col gap-[22px] items-start justify-start !px-[40px]  !py-[35px]  relative"
+          "py-[45px] flex flex-col gap-[22px] items-start justify-start relative"
         }
       >
         <h4 className="bg-[#070D0D] p-[8px] rounded-[4px] opacity-80 font-[300] text-[#2D68FF]">

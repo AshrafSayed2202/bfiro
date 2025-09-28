@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoWhite from "../../assets/images/bfiro-white.png";
+import Logo from "../../assets/images/Logo.png";
 import CustomInput from "../../UI/CustomInput";
 import { LuArrowRight } from "react-icons/lu";
 import Figma from "../../assets/images/svgs/Figma";
@@ -22,9 +22,9 @@ const Footer = () => {
         <div className="flex items-start justify-between gap-[63px]">
           <Link
             to={"/"}
-            className="w-[50px] flex items-center justify-center overflow-hidden"
+            className="flex items-center justify-center overflow-hidden"
           >
-            <img src={logoWhite} className="w-full object-contain" />
+            <img src={Logo} className="w-full object-contain h-[107px]" />
           </Link>
           <div className="font-[600]  mt-[20px] grid grid-cols-4 gap-[60px] leading-[20px]">
             <div className="flex flex-col gap-[48px] text-[20px]  ">
